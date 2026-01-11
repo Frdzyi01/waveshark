@@ -14,10 +14,6 @@
             },
             select(country) {
                 this.expanded = country;
-                // Smooth scroll to content after expand - delayed to reduce layout thrashing
-                setTimeout(() => {
-                    document.getElementById('content-start').scrollIntoView({ behavior: 'smooth' });
-                }, 1050);
             }
         }"
         @mousemove.window="handleMove"
@@ -28,7 +24,7 @@
             x-show="expanded"
             x-transition.opacity.duration.500ms
             @click="expanded = null"
-            class="fixed top-24 left-8 z-40 text-white/70 hover:text-gold-400 flex items-center gap-2 uppercase tracking-widest text-sm backdrop-blur-sm bg-black/30 px-4 py-2 rounded-full border border-white/10"
+            class="fixed top-24 left-8 z-50 text-white/70 hover:text-gold-400 flex items-center gap-2 uppercase tracking-widest text-sm backdrop-blur-sm bg-black/30 px-4 py-2 rounded-full border border-white/10"
             style="display: none;">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -63,21 +59,73 @@
     };
   `"></div>
 
-
                 <!-- Overlay Gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500"
                     :class="hovered === 'singapore' ? 'opacity-60' : 'opacity-80'">
                 </div>
 
-                <!-- Text Content -->
+                <!-- Text Content (Preview) -->
                 <div class="absolute bottom-20 left-0 right-0 text-center transition-all duration-500 transform"
-                    :class="hovered === 'singapore' ? 'translate-y-0 scale-110' : 'translate-y-4 shadow-black'">
+                    :class="[
+                        hovered === 'singapore' ? 'translate-y-0 scale-110' : 'translate-y-4 shadow-black',
+                        expanded ? 'opacity-0 translate-y-20' : 'opacity-100'
+                    ]">
                     <h2 class="font-serif text-5xl md:text-7xl text-white font-bold tracking-tighter drop-shadow-2xl">
                         Singapore
                     </h2>
                     <p class="mt-4 text-gold-400 uppercase tracking-[0.3em] text-sm animate-pulse">
                         Discover Innovation
                     </p>
+                </div>
+
+                <!-- HIDDEN CONTENT (Shows when expanded) -->
+                <div x-show="expanded === 'singapore'"
+                    x-transition:enter="transition ease-out duration-1000 delay-300"
+                    x-transition:enter-start="opacity-0 translate-y-10"
+                    x-transition:enter-end="opacity-100 translate-y-0"
+                    class="absolute inset-0 z-30 overflow-y-auto bg-black/80 backdrop-blur-sm">
+
+                    <div class="max-w-7xl mx-auto px-6 py-24 min-h-screen flex flex-col justify-center">
+                        <div class="space-y-12">
+                            <div class="border-l-4 border-gold-500 pl-8">
+                                <h3 class="text-gold-500 uppercase tracking-widest mb-2">Selected Region</h3>
+                                <h1 class="text-6xl md:text-8xl font-serif font-bold leading-none mb-6 text-white">Singapore</h1>
+                                <p class="text-xl text-gray-300 max-w-2xl leading-relaxed">
+                                    A global financial hub and a melting pot of cultures. Explore our ventures in the heart of Southeast Asia's innovation center.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12">
+                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
+                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold mb-3 text-white">Fintech Growth</h4>
+                                    <p class="text-gray-400">Driving digital adoption in banking and finance sectors across the island.</p>
+                                </div>
+                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
+                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold mb-3 text-white">Urban Solutions</h4>
+                                    <p class="text-gray-400">Sustainable investments in smart city technologies and green energy.</p>
+                                </div>
+                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
+                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-bold mb-3 text-white">Capital Markets</h4>
+                                    <p class="text-gray-400">Strategic partnerships with leading venture firms in the marina bay district.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -93,26 +141,33 @@
                 @mouseenter="!expanded && (hovered = 'malaysia')"
                 @mouseleave="!expanded && (hovered = null)"
                 @click="!expanded && select('malaysia')">
+
                 <!-- Background Image -->
                 <div
                     class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out"
                     :style="`
-    background-image: url('{{ asset('images/laut-malay.jpg') }}');
-    transform: ${
-      !expanded && hovered === 'malaysia'
-        ? 'scale(1.1)'
-        : 'scale(1.0) translate(' + (mouseX * -20) + 'px, ' + (mouseY * -20) + 'px)'
-    };
-  `"></div>
+                        background-image: url('{{ asset('images/laut-malay.jpg') }}');
+                        transform: ${
+                            !expanded && hovered === 'malaysia'
+                                ? 'scale(1.1)'
+                                : 'scale(1.0) translate(' + (mouseX * -20) + 'px, ' + (mouseY * -20) + 'px)'
+                        };
+                    `">
+                </div>
 
                 <!-- Overlay Gradient -->
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500"
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500"
                     :class="hovered === 'malaysia' ? 'opacity-60' : 'opacity-80'">
                 </div>
 
-                <!-- Text Content -->
-                <div class="absolute bottom-20 left-0 right-0 text-center transition-all duration-500 transform"
-                    :class="hovered === 'malaysia' ? 'translate-y-0 scale-110' : 'translate-y-4'">
+                <!-- Text Content (Preview) -->
+                <div
+                    class="absolute bottom-20 left-0 right-0 text-center transition-all duration-500 transform"
+                    :class="[
+                        hovered === 'malaysia' ? 'translate-y-0 scale-110' : 'translate-y-4',
+                        expanded ? 'opacity-0 translate-y-20' : 'opacity-100'
+                    ]">
                     <h2 class="font-serif text-5xl md:text-7xl text-white font-bold tracking-tighter drop-shadow-2xl">
                         Malaysia
                     </h2>
@@ -120,7 +175,146 @@
                         Experience Culture
                     </p>
                 </div>
+
+                <!-- HIDDEN CONTENT (Shows when expanded) -->
+                <div
+                    x-show="expanded === 'malaysia'"
+                    x-transition:enter="transition ease-out duration-1000 delay-300"
+                    x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100"
+                    class="absolute inset-0 z-30 overflow-hidden"
+                    x-data="{
+                        active: 0,
+                        slides: [
+                            {
+                                title: 'Langkawi',
+                                desc: `The Jewel of Kedah. Turqouise waters, limestone cliffs, and ancient rainforests.`,
+                                image: '{{ asset('images/laut-malay.jpg') }}'
+                            },
+                            {
+                                title: 'Perhentian Islands',
+                                desc: `A tropical paradise with crystal clear waters, perfect for snorkeling and diving.`,
+                                image: '{{ asset('images/pangkalan-islands.jpg') }}'
+                            },
+                            {
+                                title: 'Sabah',
+                                desc: `Home to Mount Kinabalu and diverse wildlife. Explore the wild beauty of Borneo.`,
+                                image: '{{ asset('images/sabah.jpg') }}'
+                            }
+                        ],
+                        next() {
+                            this.active = (this.active + 1) % this.slides.length;
+                        },
+                        prev() {
+                            this.active = (this.active - 1 + this.slides.length) % this.slides.length;
+                        }
+                    }">
+
+                    <!-- Dynamic Background -->
+                    <template x-for="(slide, i) in slides" :key="i">
+                        <div
+                            class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out"
+                            :style="`background-image: url(${slide.image})`"
+                            :class="active === i ? 'opacity-100' : 'opacity-0'">
+                        </div>
+                    </template>
+
+                    <!-- Gradient Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
+
+                    <!-- Content Container -->
+                    <div class="relative z-10 h-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-12 pt-24 md:pt-0">
+
+                        <!-- LEFT TEXT INFO -->
+                        <div class="w-full md:w-5/12 space-y-8">
+                            <div class="overflow-hidden border-l-4 border-gold-500 pl-6">
+                                <h3 class="text-gold-500 uppercase tracking-widest text-sm font-bold mb-2 animate-fade-in-up">
+                                    Selected Region
+                                </h3>
+
+                                <h1
+                                    class="text-6xl md:text-8xl font-serif font-bold text-white transition-all duration-700 leading-none drop-shadow-2xl"
+                                    x-text="slides[active].title"
+                                    x-key="active">
+                                </h1>
+                            </div>
+
+                            <p
+                                class="text-lg md:text-xl text-gray-200 transition-all duration-500 leading-relaxed font-light drop-shadow-md"
+                                x-text="slides[active].desc"
+                                x-key="active">
+                            </p>
+
+                            <button
+                                class="group relative px-8 py-3 bg-white text-black font-bold uppercase tracking-widest overflow-hidden rounded-sm transition-all hover:pr-12">
+                                <span class="relative z-10">Discover Now</span>
+                                <div class="absolute inset-0 bg-gold-400 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100 z-0"></div>
+                                <svg class="w-4 h-4 absolute right-4 top-1/2 transform -translate-y-1/2 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- RIGHT CARDS SLIDER -->
+                        <div class="w-full md:w-6/12 relative">
+                            <!-- Cards Wrapper -->
+                            <div class="w-full flex gap-4 overflow-x-auto scrollbar-hide items-center justify-start py-8 px-4 snap-x">
+                                <template x-for="(slide, i) in slides" :key="i">
+                                    <div
+                                        @click="active = i"
+                                        class="relative shrink-0 w-40 h-64 md:w-56 md:h-80 rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 transform border-2 group shadow-2xl snap-center"
+                                        :class="active === i 
+                                         ? 'border-gold-500 scale-100 opacity-100 z-20 shadow-[0_10px_30px_rgba(212,175,55,0.3)]' 
+                                          : 'border-white/10 scale-95 opacity-70 hover:opacity-100 hover:scale-95 z-10 grayscale hover:grayscale-0'">
+
+                                        <img
+                                            :src="slide.image"
+                                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                                        <!-- Card Overlay -->
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-90"></div>
+
+                                        <div class="absolute bottom-4 left-4 right-4 text-left">
+                                            <span
+                                                class="block text-white font-serif font-bold text-lg md:text-xl tracking-wide leading-tight drop-shadow-lg"
+                                                x-text="slide.title">
+                                            </span>
+                                            <div class="h-0.5 bg-gold-400 mt-2 transition-all duration-500"
+                                                :class="active === i ? 'w-full' : 'w-0 group-hover:w-1/3'"></div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+
+
+                            <!-- Controls -->
+                            <div class="flex items-center gap-4 mt-8 ml-4">
+                                <button @click="prev()" class="p-3 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all group">
+                                    <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                </button>
+                                <div class="flex gap-2">
+                                    <template x-for="(slide, i) in slides" :key="i">
+                                        <div class="h-1 rounded-full transition-all duration-300"
+                                            :class="active === i ? 'w-8 bg-gold-500' : 'w-2 bg-white/30'">
+                                        </div>
+                                    </template>
+                                </div>
+                                <button @click="next()" class="p-3 rounded-full border border-white/20 text-white hover:bg-white hover:text-black transition-all group">
+                                    <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
 
             <!-- CENTER LOGO (Absolute) -->
             <div
@@ -132,79 +326,6 @@
                 </div>
             </div>
 
-        </div>
-
-        <!-- HIDDEN CONTENT SECTION (Appears after expand) -->
-        <div
-            id="content-start"
-            class="relative z-10 bg-black text-white min-h-screen"
-            :class="{ 'hidden': !expanded }">
-            <div class="max-w-7xl mx-auto px-6 py-24">
-                <div x-show="expanded === 'singapore'" x-transition.duration.1000ms class="space-y-12">
-                    <div class="border-l-4 border-gold-500 pl-8">
-                        <h3 class="text-gold-500 uppercase tracking-widest mb-2">Selected Region</h3>
-                        <h1 class="text-6xl md:text-8xl font-serif font-bold leading-none mb-6">Singapore</h1>
-                        <p class="text-xl text-gray-400 max-w-2xl leading-relaxed">
-                            A global financial hub and a melting pot of cultures. Explore our ventures in the heart of Southeast Asia's innovation center.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12">
-                        <div class="bg-gray-900 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group">
-                            <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold mb-3">Fintech Growth</h4>
-                            <p class="text-gray-400">Driving digital adoption in banking and finance sectors across the island.</p>
-                        </div>
-                        <div class="bg-gray-900 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group">
-                            <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold mb-3">Urban Solutions</h4>
-                            <p class="text-gray-400">Sustainable investments in smart city technologies and green energy.</p>
-                        </div>
-                        <div class="bg-gray-900 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group">
-                            <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <h4 class="text-xl font-bold mb-3">Capital Markets</h4>
-                            <p class="text-gray-400">Strategic partnerships with leading venture firms in the marina bay district.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div x-show="expanded === 'malaysia'" x-transition.duration.1000ms class="space-y-12">
-                    <div class="border-l-4 border-gold-500 pl-8">
-                        <h3 class="text-gold-500 uppercase tracking-widest mb-2">Selected Region</h3>
-                        <h1 class="text-6xl md:text-8xl font-serif font-bold leading-none mb-6">Malaysia</h1>
-                        <p class="text-xl text-gray-400 max-w-2xl leading-relaxed">
-                            A land of diverse opportunities and breathtaking landscapes. We are expanding our horizon into Kuala Lumpur and beyond.
-                        </p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12">
-                        <div class="bg-gray-900 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group">
-                            <h4 class="text-xl font-bold mb-3 text-gold-400">Tourism Tech</h4>
-                            <p class="text-gray-400">Revitalizing the travel industry through cutting-edge digital platforms.</p>
-                        </div>
-                        <div class="bg-gray-900 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group">
-                            <h4 class="text-xl font-bold mb-3 text-gold-400">E-Commerce</h4>
-                            <p class="text-gray-400">Empowering local SMEs to reach global markets through efficient logistics.</p>
-                        </div>
-                        <div class="bg-gray-900 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group">
-                            <h4 class="text-xl font-bold mb-3 text-gold-400">Agri-Tech</h4>
-                            <p class="text-gray-400">Investing in sustainable farming practices for a greener future.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>

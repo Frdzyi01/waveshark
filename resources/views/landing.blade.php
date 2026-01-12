@@ -38,6 +38,12 @@
             },
             setActive(index) {
                 this.activeDestination = index;
+            },
+            next() {
+                this.activeDestination = (this.activeDestination + 1) % this.malaysiaDestinations.length;
+            },
+            prev() {
+                this.activeDestination = (this.activeDestination - 1 + this.malaysiaDestinations.length) % this.malaysiaDestinations.length;
             }
         }"
         @mousemove.window="handleMove"
@@ -245,22 +251,54 @@
                         </div>
 
                         <!-- RIGHT SIDE: Carousel (60%) -->
-                        <div class="w-full md:w-7/12 h-full flex items-center justify-end pr-0 md:pr-12 lg:pr-24 overflow-x-auto md:overflow-visible">
-                            <div class="flex flex-row md:flex-col gap-6 p-6">
+                        <!-- RIGHT SIDE: Carousel (60%) -->
+                        <div class="w-full md:w-7/12 h-full relative flex items-center justify-center overflow-hidden">
+
+                            <!-- Slider Controls -->
+                            <div class="absolute left-4 md:left-10 z-40">
+                                <button @click.stop="prev()" class="p-3 md:p-4 rounded-full bg-white/10 text-white backdrop-blur-md hover:bg-gold-500 hover:text-black transition-all border border-white/20 hover:scale-110 shadow-lg group">
+                                    <svg class="w-6 h-6 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="absolute right-4 md:right-10 z-40">
+                                <button @click.stop="next()" class="p-3 md:p-4 rounded-full bg-white/10 text-white backdrop-blur-md hover:bg-gold-500 hover:text-black transition-all border border-white/20 hover:scale-110 shadow-lg group">
+                                    <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Carousel Track -->
+                            <div class="flex items-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                                :style="`transform: translateX(calc(50% - ${(activeDestination * 350) + 175}px))`">
+                                <!-- Fixed Slide Width: 350px (Card 320 + Gap 30). Center offset = 175px -->
+
                                 <template x-for="(dest, index) in malaysiaDestinations" :key="index">
-                                    <div @click="setActive(index)"
-                                        class="relative cursor-pointer transition-all duration-500 group"
-                                        :class="activeDestination === index ? 'w-64 md:w-80 scale-105 opacity-100 translate-x-0' : 'w-48 md:w-60 opacity-50 hover:opacity-100 hover:scale-100 translate-x-4 md:translate-x-8'">
+                                    <!-- Slide Container (Fixed Size) -->
+                                    <div class="w-[350px] h-[500px] flex items-center justify-center shrink-0 cursor-pointer"
+                                        @click="setActive(index)">
 
-                                        <!-- Image Container -->
-                                        <div class="aspect-[4/3] w-full overflow-hidden rounded-lg shadow-2xl border-2 transition-colors duration-500"
-                                            :class="activeDestination === index ? 'border-gold-500' : 'border-transparent'">
-                                            <img :src="dest.thumbnail" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" :alt="dest.name">
-                                        </div>
+                                        <!-- Inner Animated Card -->
+                                        <div class="relative overflow-hidden rounded-2xl transition-all duration-500 ease-out shadow-2xl bg-gray-900 border-2"
+                                            :class="activeDestination === index 
+                                                ? 'w-[320px] h-[480px] scale-100 opacity-100 border-gold-500 z-20 grayscale-0' 
+                                                : 'w-[280px] h-[400px] scale-95 opacity-50 border-transparent z-10 grayscale hover:grayscale-0 hover:opacity-80'">
 
-                                        <!-- Label (Visible on inactive items too) -->
-                                        <div class="absolute bottom-4 left-4 right-4">
-                                            <h3 class="text-white font-bold text-lg shadow-black drop-shadow-md" x-text="dest.name"></h3>
+                                            <!-- Card Image -->
+                                            <img :src="dest.thumbnail" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
+
+                                            <!-- Gradient Overlay -->
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity"
+                                                :class="activeDestination === index ? 'opacity-80' : 'opacity-60'"></div>
+
+                                            <!-- Card Content -->
+                                            <div class="absolute bottom-0 left-0 right-0 p-6 transform transition-all duration-500"
+                                                :class="activeDestination === index ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'">
+                                                <h3 class="text-2xl font-bold text-white mb-2 drop-shadow-lg" x-text="dest.name"></h3>
+                                                <div class="h-1 w-12 bg-gold-500"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </template>
@@ -271,16 +309,18 @@
                 </div>
 
 
-                <!-- CENTER LOGO (Absolute) -->
-                <div
-                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 transition-all duration-700 pointer-events-none"
-                    :class="{ 'opacity-0 scale-50': expanded, 'opacity-100 scale-100': !expanded }">
-                    <div class="relative">
-                        <div class="absolute inset-0 bg-gold-500 blur-3xl opacity-20 animate-pulse-slow rounded-full"></div>
-                        <img src="{{ asset('images/logo-waveshart-removebg.png') }}" class="h-32 w-auto drop-shadow-2xl relative z-10" alt="Center Logo">
-                    </div>
-                </div>
 
+
+            </div>
+
+            <!-- CENTER LOGO (Absolute - Global) -->
+            <div
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-700 pointer-events-none"
+                :class="{ 'opacity-0 scale-50': expanded, 'opacity-100 scale-100': !expanded }">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gold-500 blur-3xl opacity-20 animate-pulse-slow rounded-full"></div>
+                    <img src="{{ asset('images/logo-waveshart-removebg.png') }}" class="h-32 w-auto drop-shadow-2xl relative z-10" alt="Center Logo">
+                </div>
             </div>
 
 

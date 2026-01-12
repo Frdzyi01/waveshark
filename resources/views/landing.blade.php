@@ -213,98 +213,91 @@
                     x-transition:enter-end="opacity-100 translate-y-0"
                     class="absolute inset-0 z-30 overflow-hidden backdrop-blur-sm">
 
-                    <div class="h-full w-full flex flex-col md:flex-row">
+                    <div class="h-full w-full flex flex-col md:flex-row relative z-20">
 
-                        <!-- LEFT SIDE: Info (40%) -->
-                        <div class="w-full md:w-5/12 h-full flex flex-col justify-center px-12 md:pl-24 bg-gradient-to-r from-black/90 via-black/70 to-transparent">
-                            <div class="space-y-6 max-w-lg">
-                                <div class="flex items-center gap-3 text-gold-500 mb-2">
-                                    <span class="uppercase tracking-widest text-sm">Destination</span>
-                                    <div class="h-[1px] w-12 bg-gold-500/50"></div>
+                        <!-- LEFT PANEL: Active Destination Info -->
+                        <div class="w-full md:w-5/12 h-full flex flex-col justify-center px-8 md:pl-20 bg-gradient-to-r from-black/80 via-black/50 to-transparent">
+                            <div class="space-y-6 transform transition-all duration-500"
+                                x-transition:enter="transition ease-out duration-500"
+                                x-transition:enter-start="opacity-0 translate-y-10"
+                                x-transition:enter-end="opacity-100 translate-y-0"
+                                :key="activeDestination">
+
+                                <div class="flex items-center gap-3">
+                                    <div class="h-[2px] w-12 bg-gold-400"></div>
+                                    <span class="text-gold-400 uppercase tracking-widest text-sm font-bold">Discover Malaysia</span>
                                 </div>
 
-                                <h2 class="text-5xl md:text-7xl font-serif font-bold text-white leading-tight"
-                                    x-text="malaysiaDestinations[activeDestination].name"
-                                    x-transition:enter="transition ease-out duration-500"
-                                    x-transition:enter-start="opacity-0 translate-y-4"
-                                    x-transition:enter-end="opacity-100 translate-y-0"
-                                    :key="activeDestination">
+                                <h2 class="text-5xl md:text-7xl font-serif font-bold text-white leading-tight drop-shadow-2xl"
+                                    x-text="malaysiaDestinations[activeDestination].name">
                                 </h2>
 
-                                <p class="text-lg text-gray-200 font-light leading-relaxed"
-                                    x-text="malaysiaDestinations[activeDestination].description"
-                                    x-transition:enter="transition ease-out duration-500 delay-100"
-                                    x-transition:enter-start="opacity-0 translate-y-4"
-                                    x-transition:enter-end="opacity-100 translate-y-0"
-                                    :key="activeDestination">
+                                <p class="text-lg text-gray-200 leading-relaxed font-light max-w-md drop-shadow-lg"
+                                    x-text="malaysiaDestinations[activeDestination].description">
                                 </p>
 
-                                <div class="pt-8">
-                                    <button class="group px-8 py-3 bg-white text-black font-bold uppercase tracking-widest text-sm hover:bg-gold-400 transition-colors flex items-center gap-2">
-                                        <span>Discover Now</span>
-                                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                        </svg>
-                                    </button>
-                                </div>
+                                <button class="group mt-8 px-8 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold uppercase tracking-widest text-sm hover:bg-gold-500 hover:border-gold-500 hover:text-black transition-all duration-300 flex items-center gap-3 w-max">
+                                    <span>Explore Location</span>
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
 
-                        <!-- RIGHT SIDE: Carousel (60%) -->
-                        <!-- RIGHT SIDE: Carousel (60%) -->
-                        <div class="w-full md:w-7/12 h-full relative flex items-center justify-center overflow-hidden">
+                        <!-- RIGHT PANEL: 3 Cards + Slider Controls -->
+                        <div class="w-full md:w-7/12 h-full flex flex-col justify-center items-center relative perspective-1000">
 
-                            <!-- Slider Controls -->
-                            <div class="absolute left-4 md:left-10 z-40">
-                                <button @click.stop="prev()" class="p-3 md:p-4 rounded-full bg-white/10 text-white backdrop-blur-md hover:bg-gold-500 hover:text-black transition-all border border-white/20 hover:scale-110 shadow-lg group">
+                            <!-- Slider Container -->
+                            <div class="relative w-full max-w-4xl px-12 flex items-center justify-center gap-6">
+
+                                <!-- Prev Button -->
+                                <button @click.stop="prev()"
+                                    class="absolute left-0 z-30 p-3 rounded-full bg-black/40 text-white hover:bg-gold-500 hover:text-black transition-all border border-white/20 backdrop-blur-sm group">
                                     <svg class="w-6 h-6 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                     </svg>
                                 </button>
-                            </div>
-                            <div class="absolute right-4 md:right-10 z-40">
-                                <button @click.stop="next()" class="p-3 md:p-4 rounded-full bg-white/10 text-white backdrop-blur-md hover:bg-gold-500 hover:text-black transition-all border border-white/20 hover:scale-110 shadow-lg group">
+
+                                <!-- Cards Wrapper -->
+                                <div class="flex items-end justify-center gap-4 h-[450px]">
+                                    <template x-for="(dest, index) in malaysiaDestinations" :key="index">
+                                        <div class="relative transition-all duration-500 ease-out cursor-pointer group"
+                                            :class="activeDestination === index ? 'w-[280px] h-[450px] z-20' : 'w-[200px] h-[380px] opacity-60 hover:opacity-100 z-10 grayscale hover:grayscale-0'"
+                                            @click="setActive(index)">
+
+                                            <!-- Card Inner -->
+                                            <div class="w-full h-full rounded-2xl overflow-hidden shadow-2xl relative border-2 transition-all duration-500 bg-gray-900"
+                                                :class="activeDestination === index ? 'border-gold-400 scale-100' : 'border-transparent scale-95'">
+
+                                                <img :src="dest.image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+
+                                                <!-- Gradient -->
+                                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+
+                                                <!-- Card Text -->
+                                                <div class="absolute bottom-0 left-0 right-0 p-6 transform transition-all duration-500">
+                                                    <h3 class="font-serif font-bold text-white mb-2"
+                                                        :class="activeDestination === index ? 'text-2xl' : 'text-lg'">
+                                                        <span x-text="dest.name"></span>
+                                                    </h3>
+                                                    <div class="h-1 bg-gold-500 transition-all duration-500"
+                                                        :class="activeDestination === index ? 'w-12' : 'w-0'"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- Next Button -->
+                                <button @click.stop="next()"
+                                    class="absolute right-0 z-30 p-3 rounded-full bg-black/40 text-white hover:bg-gold-500 hover:text-black transition-all border border-white/20 backdrop-blur-sm group">
                                     <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                     </svg>
                                 </button>
                             </div>
-
-                            <!-- Carousel Track -->
-                            <div class="flex items-center transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                                :style="`transform: translateX(calc(50% - ${(activeDestination * 350) + 175}px))`">
-                                <!-- Fixed Slide Width: 350px (Card 320 + Gap 30). Center offset = 175px -->
-
-                                <template x-for="(dest, index) in malaysiaDestinations" :key="index">
-                                    <!-- Slide Container (Fixed Size) -->
-                                    <div class="w-[350px] h-[500px] flex items-center justify-center shrink-0 cursor-pointer"
-                                        @click="setActive(index)">
-
-                                        <!-- Inner Animated Card -->
-                                        <div class="relative overflow-hidden rounded-2xl transition-all duration-500 ease-out shadow-2xl bg-gray-900 border-2"
-                                            :class="activeDestination === index 
-                                                ? 'w-[320px] h-[480px] scale-100 opacity-100 border-gold-500 z-20 grayscale-0' 
-                                                : 'w-[280px] h-[400px] scale-95 opacity-50 border-transparent z-10 grayscale hover:grayscale-0 hover:opacity-80'">
-
-                                            <!-- Card Image -->
-                                            <img :src="dest.thumbnail" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110">
-
-                                            <!-- Gradient Overlay -->
-                                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent transition-opacity"
-                                                :class="activeDestination === index ? 'opacity-80' : 'opacity-60'"></div>
-
-                                            <!-- Card Content -->
-                                            <div class="absolute bottom-0 left-0 right-0 p-6 transform transition-all duration-500"
-                                                :class="activeDestination === index ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'">
-                                                <h3 class="text-2xl font-bold text-white mb-2 drop-shadow-lg" x-text="dest.name"></h3>
-                                                <div class="h-1 w-12 bg-gold-500"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </template>
-                            </div>
                         </div>
-
                     </div>
                 </div>
 

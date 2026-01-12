@@ -5,6 +5,27 @@
     <div x-data="{ 
             hovered: null, 
             expanded: null,
+            activeDestination: 0,
+            malaysiaDestinations: [
+                {
+                    name: 'Langkawi',
+                    description: 'The Jewel of Kedah. Turqouise waters, limestone cliffs, and ancient rainforests.',
+                    image: '{{ asset('images/laut-malay.jpg') }}',
+                    thumbnail: '{{ asset('images/laut-malay.jpg') }}'
+                },
+                {
+                    name: 'Perhentian Islands',
+                    description: 'A tropical paradise with crystal clear waters, perfect for snorkeling and diving.',
+                    image: '{{ asset('images/pangkalan-islands.jpg') }}',
+                    thumbnail: '{{ asset('images/pangkalan-islands.jpg') }}'
+                },
+                {
+                    name: 'Sabah',
+                    description: 'Home to Mount Kinabalu and diverse wildlife. Explore the wild beauty of Borneo.',
+                    image: '{{ asset('images/sabah.jpg') }}',
+                    thumbnail: '{{ asset('images/sabah.jpg') }}'
+                }
+            ],
             mouseX: 0,
             mouseY: 0,
             handleMove(e) {
@@ -14,6 +35,9 @@
             },
             select(country) {
                 this.expanded = country;
+            },
+            setActive(index) {
+                this.activeDestination = index;
             }
         }"
         @mousemove.window="handleMove"
@@ -39,10 +63,10 @@
             <div
                 class="relative h-1/2 md:h-full transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden cursor-pointer group transform-gpu"
                 style="will-change: width, opacity;"
-                :class="{ 
-                    'md:w-full h-full z-20': expanded === 'singapore', 
+                :class="{
+                    'md:w-full h-full z-20': expanded === 'singapore',
                     'md:w-0 h-0 opacity-0': expanded === 'malaysia',
-                    'md:w-1/2': !expanded 
+                    'md:w-1/2': !expanded
                 }"
                 @mouseenter="!expanded && (hovered = 'singapore')"
                 @mouseleave="!expanded && (hovered = null)"
@@ -142,11 +166,11 @@
                 @mouseleave="!expanded && (hovered = null)"
                 @click="!expanded && select('malaysia')">
 
-                <!-- Background Image -->
+                <!-- Background Image (Dynamic) -->
                 <div
-                    class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out"
+                    class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out"
                     :style="`
-                        background-image: url('{{ asset('images/laut-malay.jpg') }}');
+                        background-image: url('${expanded === 'malaysia' ? malaysiaDestinations[activeDestination].image : '{{ asset('images/laut-malay.jpg') }}'}');
                         transform: ${
                             !expanded && hovered === 'malaysia'
                                 ? 'scale(1.1)'
@@ -157,8 +181,8 @@
 
                 <!-- Overlay Gradient -->
                 <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500"
-                    :class="hovered === 'malaysia' ? 'opacity-60' : 'opacity-80'">
+                    class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-500"
+                    :class="hovered === 'malaysia' ? 'opacity-70' : 'opacity-80'">
                 </div>
 
                 <!-- Text Content (Preview) -->
@@ -181,68 +205,85 @@
                     x-transition:enter="transition ease-out duration-1000 delay-300"
                     x-transition:enter-start="opacity-0 translate-y-10"
                     x-transition:enter-end="opacity-100 translate-y-0"
-                    class="absolute inset-0 z-30 overflow-y-auto bg-black/80 backdrop-blur-sm">
+                    class="absolute inset-0 z-30 overflow-hidden backdrop-blur-sm">
 
-                    <div class="max-w-7xl mx-auto px-6 py-24 min-h-screen flex flex-col justify-center">
-                        <div class="space-y-12">
-                            <div class="border-l-4 border-gold-500 pl-8">
-                                <h3 class="text-gold-500 uppercase tracking-widest mb-2">Selected Region</h3>
-                                <h1 class="text-6xl md:text-8xl font-serif font-bold leading-none mb-6 text-white">Malaysia</h1>
-                                <p class="text-xl text-gray-300 max-w-2xl leading-relaxed">
-                                    Truly Asia. A land of diverse cultures, ancient rainforests, and crystal-clear waters. Experience the warmth of Malaysian hospitality.
+                    <div class="h-full w-full flex flex-col md:flex-row">
+
+                        <!-- LEFT SIDE: Info (40%) -->
+                        <div class="w-full md:w-5/12 h-full flex flex-col justify-center px-12 md:pl-24 bg-gradient-to-r from-black/90 via-black/70 to-transparent">
+                            <div class="space-y-6 max-w-lg">
+                                <div class="flex items-center gap-3 text-gold-500 mb-2">
+                                    <span class="uppercase tracking-widest text-sm">Destination</span>
+                                    <div class="h-[1px] w-12 bg-gold-500/50"></div>
+                                </div>
+
+                                <h2 class="text-5xl md:text-7xl font-serif font-bold text-white leading-tight"
+                                    x-text="malaysiaDestinations[activeDestination].name"
+                                    x-transition:enter="transition ease-out duration-500"
+                                    x-transition:enter-start="opacity-0 translate-y-4"
+                                    x-transition:enter-end="opacity-100 translate-y-0"
+                                    :key="activeDestination">
+                                </h2>
+
+                                <p class="text-lg text-gray-200 font-light leading-relaxed"
+                                    x-text="malaysiaDestinations[activeDestination].description"
+                                    x-transition:enter="transition ease-out duration-500 delay-100"
+                                    x-transition:enter-start="opacity-0 translate-y-4"
+                                    x-transition:enter-end="opacity-100 translate-y-0"
+                                    :key="activeDestination">
                                 </p>
-                            </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12">
-                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
-                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                <div class="pt-8">
+                                    <button class="group px-8 py-3 bg-white text-black font-bold uppercase tracking-widest text-sm hover:bg-gold-400 transition-colors flex items-center gap-2">
+                                        <span>Discover Now</span>
+                                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                                         </svg>
-                                    </div>
-                                    <h4 class="text-xl font-bold mb-3 text-white">Langkawi</h4>
-                                    <p class="text-gray-400">The Jewel of Kedah. Turqouise waters, limestone cliffs, and ancient rainforests.</p>
-                                </div>
-                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
-                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-xl font-bold mb-3 text-white">Perhentian Islands</h4>
-                                    <p class="text-gray-400">A tropical paradise with crystal clear waters, perfect for snorkeling and diving.</p>
-                                </div>
-                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
-                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-xl font-bold mb-3 text-white">Sabah</h4>
-                                    <p class="text-gray-400">Home to Mount Kinabalu and diverse wildlife. Explore the wild beauty of Borneo.</p>
+                                    </button>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- RIGHT SIDE: Carousel (60%) -->
+                        <div class="w-full md:w-7/12 h-full flex items-center justify-end pr-0 md:pr-12 lg:pr-24 overflow-x-auto md:overflow-visible">
+                            <div class="flex flex-row md:flex-col gap-6 p-6">
+                                <template x-for="(dest, index) in malaysiaDestinations" :key="index">
+                                    <div @click="setActive(index)"
+                                        class="relative cursor-pointer transition-all duration-500 group"
+                                        :class="activeDestination === index ? 'w-64 md:w-80 scale-105 opacity-100 translate-x-0' : 'w-48 md:w-60 opacity-50 hover:opacity-100 hover:scale-100 translate-x-4 md:translate-x-8'">
+
+                                        <!-- Image Container -->
+                                        <div class="aspect-[4/3] w-full overflow-hidden rounded-lg shadow-2xl border-2 transition-colors duration-500"
+                                            :class="activeDestination === index ? 'border-gold-500' : 'border-transparent'">
+                                            <img :src="dest.thumbnail" class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110" :alt="dest.name">
+                                        </div>
+
+                                        <!-- Label (Visible on inactive items too) -->
+                                        <div class="absolute bottom-4 left-4 right-4">
+                                            <h3 class="text-white font-bold text-lg shadow-black drop-shadow-md" x-text="dest.name"></h3>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
 
-            </div>
-
-
-            <!-- CENTER LOGO (Absolute) -->
-            <div
-                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 transition-all duration-700 pointer-events-none"
-                :class="{ 'opacity-0 scale-50': expanded, 'opacity-100 scale-100': !expanded }">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-gold-500 blur-3xl opacity-20 animate-pulse-slow rounded-full"></div>
-                    <img src="{{ asset('images/logo-waveshart-removebg.png') }}" class="h-32 w-auto drop-shadow-2xl relative z-10" alt="Center Logo">
+                <!-- CENTER LOGO (Absolute) -->
+                <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 transition-all duration-700 pointer-events-none"
+                    :class="{ 'opacity-0 scale-50': expanded, 'opacity-100 scale-100': !expanded }">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gold-500 blur-3xl opacity-20 animate-pulse-slow rounded-full"></div>
+                        <img src="{{ asset('images/logo-waveshart-removebg.png') }}" class="h-32 w-auto drop-shadow-2xl relative z-10" alt="Center Logo">
+                    </div>
                 </div>
+
             </div>
+
+
 
         </div>
-
-
-
-    </div>
 </x-layout>

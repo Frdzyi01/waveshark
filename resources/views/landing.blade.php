@@ -211,91 +211,102 @@
                     x-transition:enter="transition ease-out duration-1000 delay-300"
                     x-transition:enter-start="opacity-0 translate-y-10"
                     x-transition:enter-end="opacity-100 translate-y-0"
-                    class="absolute inset-0 z-30 overflow-hidden backdrop-blur-sm">
+                    class="absolute inset-0 z-30 overflow-hidden">
+
+                    <!-- Global Soft Shadow Overlay -->
+                    <div class="absolute inset-0 bg-black/40"></div>
 
                     <div class="h-full w-full flex flex-col md:flex-row relative z-20">
 
-                        <!-- LEFT PANEL: Active Destination Info -->
-                        <div class="w-full md:w-5/12 h-full flex flex-col justify-center px-8 md:pl-20 bg-gradient-to-r from-black/80 via-black/50 to-transparent">
-                            <div class="space-y-6 transform transition-all duration-500"
+                        <!-- LEFT PANEL: Hero Content -->
+                        <div class="w-full md:w-5/12 h-full flex flex-col justify-center px-12 md:pl-28 bg-gradient-to-r from-black/90 via-black/60 to-transparent">
+
+                            <!-- Content Wrapper with subtle overlay for structure -->
+                            <div class="space-y-8 transform transition-all duration-500 max-w-lg relative"
                                 x-transition:enter="transition ease-out duration-500"
                                 x-transition:enter-start="opacity-0 translate-y-10"
                                 x-transition:enter-end="opacity-100 translate-y-0"
                                 :key="activeDestination">
 
-                                <div class="flex items-center gap-3">
-                                    <div class="h-[2px] w-12 bg-gold-400"></div>
-                                    <span class="text-gold-400 uppercase tracking-widest text-sm font-bold">Discover Malaysia</span>
+                                <!-- Label -->
+                                <div class="flex items-center gap-4 mb-2">
+                                    <div class="h-[2px] w-16 bg-gold-400 box-shadow-gold"></div>
+                                    <span class="text-gold-400 uppercase tracking-[0.25em] text-xs md:text-sm font-bold shadow-black drop-shadow-md">Discover Malaysia</span>
                                 </div>
 
-                                <h2 class="text-5xl md:text-7xl font-serif font-bold text-white leading-tight drop-shadow-2xl"
+                                <!-- Heading -->
+                                <h2 class="text-6xl md:text-8xl font-serif font-bold text-white leading-[1] drop-shadow-2xl filter tracking-tight"
                                     x-text="malaysiaDestinations[activeDestination].name">
                                 </h2>
 
-                                <p class="text-lg text-gray-200 leading-relaxed font-light max-w-md drop-shadow-lg"
-                                    x-text="malaysiaDestinations[activeDestination].description">
-                                </p>
+                                <!-- Description -->
+                                <div class="relative pl-6 border-l-2 border-white/20">
+                                    <p class="text-lg md:text-xl text-gray-200 leading-relaxed font-light drop-shadow-xl"
+                                        x-text="malaysiaDestinations[activeDestination].description">
+                                    </p>
+                                </div>
 
-                                <button class="group mt-8 px-8 py-3 bg-white/10 backdrop-blur-md border border-white/30 text-white font-bold uppercase tracking-widest text-sm hover:bg-gold-500 hover:border-gold-500 hover:text-black transition-all duration-300 flex items-center gap-3 w-max">
-                                    <span>Explore Location</span>
-                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
-                                </button>
+                                <!-- Button -->
+                                <div class="pt-4">
+                                    <button class="group relative px-10 py-4 bg-transparent overflow-hidden rounded-sm border border-white/30 text-white font-bold uppercase tracking-widest text-xs hover:border-gold-500 hover:text-gold-400 transition-all duration-300 flex items-center gap-3 w-max backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+                                        <div class="absolute inset-0 w-0 bg-white/10 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                                        <span class="relative">Explore Location</span>
+                                        <svg class="w-4 h-4 relative group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- RIGHT PANEL: 3 Cards + Slider Controls -->
-                        <div class="w-full md:w-7/12 h-full flex flex-col justify-center items-center relative perspective-1000">
+                        <!-- RIGHT PANEL: Cards Area (NO PANEL, NO BLUR - Cards Float Directly) -->
+                        <div class="w-full md:w-7/12 h-full flex flex-col justify-center items-center relative px-8">
 
-                            <!-- Slider Container -->
-                            <div class="relative w-full max-w-4xl px-12 flex items-center justify-center gap-6">
+                            <!-- Cards Row with Controls (NO Background Panel) -->
+                            <div class="relative w-full max-w-6xl flex items-center justify-center gap-8 h-[550px]">
 
-                                <!-- Prev Button -->
+                                <!-- Slider Prev Control -->
                                 <button @click.stop="prev()"
-                                    class="absolute left-0 z-30 p-3 rounded-full bg-black/40 text-white hover:bg-gold-500 hover:text-black transition-all border border-white/20 backdrop-blur-sm group">
-                                    <svg class="w-6 h-6 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="p-4 rounded-full bg-black/70 text-white hover:bg-gold-500 hover:text-black transition-all border border-white/20 hover:border-gold-500 shadow-xl group shrink-0">
+                                    <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                     </svg>
                                 </button>
 
-                                <!-- Cards Wrapper -->
-                                <div class="flex items-end justify-center gap-4 h-[450px]">
+                                <!-- CARDS ROW (3 Separate Cards, Fixed Gap, No Panel Behind) -->
+                                <div class="flex-1 flex items-stretch justify-center gap-8 h-full">
                                     <template x-for="(dest, index) in malaysiaDestinations" :key="index">
-                                        <div class="relative transition-all duration-500 ease-out cursor-pointer group"
-                                            :class="activeDestination === index ? 'w-[280px] h-[450px] z-20' : 'w-[200px] h-[380px] opacity-60 hover:opacity-100 z-10 grayscale hover:grayscale-0'"
+
+                                        <!-- Card Item (Individual Card, No Container Behind) -->
+                                        <div class="relative flex-1 group cursor-pointer transition-all duration-300 h-full max-w-[280px]"
                                             @click="setActive(index)">
 
-                                            <!-- Card Inner -->
-                                            <div class="w-full h-full rounded-2xl overflow-hidden shadow-2xl relative border-2 transition-all duration-500 bg-gray-900"
-                                                :class="activeDestination === index ? 'border-gold-400 scale-100' : 'border-transparent scale-95'">
+                                            <!-- Card Visual (Shadow on Card Itself) -->
+                                            <div class="w-full h-full rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 relative"
+                                                :class="activeDestination === index ? 'ring-2 ring-gold-400 scale-[1.03]' : 'opacity-80 hover:opacity-100 grayscale hover:grayscale-0'">
 
-                                                <img :src="dest.image" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                                <!-- Image (Full Height, No Text) -->
+                                                <img :src="dest.image" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
 
-                                                <!-- Gradient -->
-                                                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                                                <!-- Subtle Bottom Gradient -->
+                                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
 
-                                                <!-- Card Text -->
-                                                <div class="absolute bottom-0 left-0 right-0 p-6 transform transition-all duration-500">
-                                                    <h3 class="font-serif font-bold text-white mb-2"
-                                                        :class="activeDestination === index ? 'text-2xl' : 'text-lg'">
-                                                        <span x-text="dest.name"></span>
-                                                    </h3>
-                                                    <div class="h-1 bg-gold-500 transition-all duration-500"
-                                                        :class="activeDestination === index ? 'w-12' : 'w-0'"></div>
-                                                </div>
+                                                <!-- Active Border Highlight -->
+                                                <div class="absolute inset-0 border-2 border-transparent transition-all duration-300 pointer-events-none rounded-2xl"
+                                                    :class="activeDestination === index ? 'border-gold-400/60' : ''"></div>
                                             </div>
                                         </div>
                                     </template>
                                 </div>
 
-                                <!-- Next Button -->
+                                <!-- Slider Next Control -->
                                 <button @click.stop="next()"
-                                    class="absolute right-0 z-30 p-3 rounded-full bg-black/40 text-white hover:bg-gold-500 hover:text-black transition-all border border-white/20 backdrop-blur-sm group">
-                                    <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="p-4 rounded-full bg-black/70 text-white hover:bg-gold-500 hover:text-black transition-all border border-white/20 hover:border-gold-500 shadow-xl group shrink-0">
+                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                                     </svg>
                                 </button>
+
                             </div>
                         </div>
                     </div>

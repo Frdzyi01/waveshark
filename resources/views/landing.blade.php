@@ -161,11 +161,12 @@
 
             <!-- RIGHT (MALAYSIA) -->
             <div
+                id="malaysia-card"
                 class="relative h-1/2 md:h-full transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden cursor-pointer group transform-gpu"
                 style="will-change: width, opacity;"
                 :class="{ 
                     'md:w-full h-full z-20': expanded === 'malaysia', 
-                    'md:w-0 h-0 opacity-0': expanded === 'singapore',
+                    'md:w-0 h-0 opacity-0': expanded === 'singapore', 
                     'md:w-1/2': !expanded 
                 }"
                 @mouseenter="!expanded && (hovered = 'malaysia')"
@@ -213,107 +214,93 @@
                     x-transition:enter-end="opacity-100 translate-y-0"
                     class="absolute inset-0 z-30 overflow-hidden">
 
-                    <!-- Global Soft Shadow Overlay -->
-                    <div class="absolute inset-0 bg-black/40"></div>
+                    <!-- NEW MALAYSIA SLIDER IMPLEMENTATION -->
+                    <div class="mys-container">
+                        <div class="mys-slide">
 
-                    <div class="h-full w-full flex flex-col md:flex-row relative z-20">
-
-                        <!-- LEFT PANEL: Hero Content -->
-                        <div class="w-full md:w-5/12 h-full flex flex-col justify-center px-12 md:pl-28 bg-gradient-to-r from-black/90 via-black/60 to-transparent">
-
-                            <!-- Content Wrapper with subtle overlay for structure -->
-                            <div class="space-y-8 transform transition-all duration-500 max-w-lg relative"
-                                x-transition:enter="transition ease-out duration-500"
-                                x-transition:enter-start="opacity-0 translate-y-10"
-                                x-transition:enter-end="opacity-100 translate-y-0"
-                                :key="activeDestination">
-
-                                <!-- Label -->
-                                <div class="flex items-center gap-4 mb-2">
-                                    <div class="h-[2px] w-16 bg-gold-400 box-shadow-gold"></div>
-                                    <span class="text-gold-400 uppercase tracking-[0.25em] text-xs md:text-sm font-bold shadow-black drop-shadow-md">Discover Malaysia</span>
-                                </div>
-
-                                <!-- Heading -->
-                                <h2 class="text-6xl md:text-8xl font-serif font-bold text-white leading-[1] drop-shadow-2xl filter tracking-tight"
-                                    x-text="malaysiaDestinations[activeDestination].name">
-                                </h2>
-
-                                <!-- Description -->
-                                <div class="relative pl-6 border-l-2 border-white/20">
-                                    <p class="text-lg md:text-xl text-gray-200 leading-relaxed font-light drop-shadow-xl"
-                                        x-text="malaysiaDestinations[activeDestination].description">
-                                    </p>
-                                </div>
-
-                                <!-- Button -->
-                                <div class="pt-4">
-                                    <button class="group relative px-10 py-4 bg-transparent overflow-hidden rounded-sm border border-white/30 text-white font-bold uppercase tracking-widest text-xs hover:border-gold-500 hover:text-gold-400 transition-all duration-300 flex items-center gap-3 w-max backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
-                                        <div class="absolute inset-0 w-0 bg-white/10 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
-                                        <span class="relative">Explore Location</span>
-                                        <svg class="w-4 h-4 relative group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                        </svg>
-                                    </button>
+                            <!-- Item 1: Langkawi -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Langkawi</div>
+                                    <div class="mys-des">
+                                        Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
+                                    </div>
+                                    <button class="mys-btn">See More</button>
                                 </div>
                             </div>
+
+                            <!-- Item 2: Pangkalan Islands -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Pangkalan Islands</div>
+                                    <div class="mys-des">
+                                        Gugusan pulau yang indah dengan air jernih dan pemandangan laut yang memukau.
+                                    </div>
+                                    <button class="mys-btn">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 3: Sabah -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Sabah</div>
+                                    <div class="mys-des">
+                                        Negeri di Bawah Bayu, rumah bagi Gunung Kinabalu dan hidupan liar yang unik.
+                                    </div>
+                                    <button class="mys-btn">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 4: Langkawi (Repeat for loop) -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Langkawi</div>
+                                    <div class="mys-des">
+                                        Destinasi pelancongan utama dengan legenda Mahsuri dan keindahan alam semulajadi.
+                                    </div>
+                                    <button class="mys-btn">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 5: Pangkalan Islands (Repeat) -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Pangkalan Islands</div>
+                                    <div class="mys-des">
+                                        Syurga tersembunyi bagi pencinta alam dan aktiviti air.
+                                    </div>
+                                    <button class="mys-btn">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 6: Sabah (Repeat) -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Sabah</div>
+                                    <div class="mys-des">
+                                        Terkenal dengan tapak menyelam bertaraf dunia di Sipadan dan budaya yang kaya.
+                                    </div>
+                                    <button class="mys-btn">See More</button>
+                                </div>
+                            </div>
+
                         </div>
 
-                        <!-- RIGHT PANEL: Cards Area (NO PANEL, NO BLUR - Cards Float Directly) -->
-                        <div class="w-full md:w-7/12 h-full flex flex-col justify-center items-center relative px-8">
-
-                            <!-- Cards Row with Controls (NO Background Panel) -->
-                            <div class="relative w-full max-w-6xl flex items-center justify-center gap-8 h-[550px]">
-
-                                <!-- Slider Prev Control -->
-                                <button @click.stop="prev()"
-                                    class="p-4 rounded-full bg-black/70 text-white hover:bg-gold-500 hover:text-black transition-all border border-white/20 hover:border-gold-500 shadow-xl group shrink-0">
-                                    <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                                    </svg>
-                                </button>
-
-                                <!-- CARDS ROW (3 Separate Cards, Fixed Gap, No Panel Behind) -->
-                                <div class="flex-1 flex items-stretch justify-center gap-8 h-full">
-                                    <template x-for="(dest, index) in malaysiaDestinations" :key="index">
-
-                                        <!-- Card Item (Individual Card, No Container Behind) -->
-                                        <div class="relative flex-1 group cursor-pointer transition-all duration-300 h-full max-w-[280px]"
-                                            @click="setActive(index)">
-
-                                            <!-- Card Visual (Shadow on Card Itself) -->
-                                            <div class="w-full h-full rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500 relative"
-                                                :class="activeDestination === index ? 'ring-2 ring-gold-400 scale-[1.03]' : 'opacity-80 hover:opacity-100 grayscale hover:grayscale-0'">
-
-                                                <!-- Image (Full Height, No Text) -->
-                                                <img :src="dest.image" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110">
-
-                                                <!-- Subtle Bottom Gradient -->
-                                                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
-
-                                                <!-- Active Border Highlight -->
-                                                <div class="absolute inset-0 border-2 border-transparent transition-all duration-300 pointer-events-none rounded-2xl"
-                                                    :class="activeDestination === index ? 'border-gold-400/60' : ''"></div>
-                                            </div>
-                                        </div>
-                                    </template>
-                                </div>
-
-                                <!-- Slider Next Control -->
-                                <button @click.stop="next()"
-                                    class="p-4 rounded-full bg-black/70 text-white hover:bg-gold-500 hover:text-black transition-all border border-white/20 hover:border-gold-500 shadow-xl group shrink-0">
-                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                    </svg>
-                                </button>
-
-                            </div>
+                        <div class="mys-button">
+                            <button class="mys-prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                                </svg>
+                            </button>
+                            <button class="mys-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
+
                 </div>
-
-
-
 
             </div>
 
@@ -327,7 +314,303 @@
                 </div>
             </div>
 
-
-
         </div>
+
+        <style>
+            /* Scoped Styles for Malaysia Slider (mys) */
+            .mys-container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                background: #000;
+                transition: background-image 0.5s ease-in-out;
+            }
+
+            .mys-container::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            .mys-container .mys-slide .mys-item {
+                width: 200px;
+                height: 300px;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+                border-radius: 20px;
+                box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+                background-position: 50% 50%;
+                background-size: cover;
+                display: inline-block;
+                transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
+                z-index: 10;
+            }
+
+            .mys-slide .mys-item:nth-child(1),
+            .mys-slide .mys-item:nth-child(2) {
+                top: 0;
+                left: 0;
+                transform: translate(0, 0);
+                border-radius: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 5;
+            }
+
+            .mys-slide .mys-item:nth-child(3) {
+                left: 50%;
+                z-index: 15;
+            }
+
+            .mys-slide .mys-item:nth-child(4) {
+                left: calc(50% + 220px);
+                z-index: 14;
+            }
+
+            .mys-slide .mys-item:nth-child(5) {
+                left: calc(50% + 440px);
+                z-index: 13;
+            }
+
+            .mys-slide .mys-item:nth-child(n + 6) {
+                left: calc(50% + 660px);
+                opacity: 0;
+                z-index: 12;
+            }
+
+            .mys-item .mys-content {
+                position: absolute;
+                top: 50%;
+                left: 100px;
+                width: 400px;
+                text-align: left;
+                color: #eee;
+                transform: translate(0, -50%);
+                font-family: system-ui;
+                display: none;
+                z-index: 20;
+            }
+
+            .mys-slide .mys-item:nth-child(2) .mys-content {
+                display: block;
+            }
+
+            .mys-content .mys-name {
+                font-size: 60px;
+                text-transform: uppercase;
+                font-weight: bold;
+                opacity: 0;
+                animation: mys-animate 1s ease-in-out 1 forwards;
+                text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                font-family: 'Playfair Display', serif;
+            }
+
+            .mys-content .mys-des {
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-size: 18px;
+                opacity: 0;
+                animation: mys-animate 1s ease-in-out 0.3s 1 forwards;
+                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .mys-content .mys-btn {
+                padding: 12px 30px;
+                border: none;
+                cursor: pointer;
+                opacity: 0;
+                animation: mys-animate 1s ease-in-out 0.6s 1 forwards;
+                background: white;
+                color: black;
+                font-weight: bold;
+                text-transform: uppercase;
+                border-radius: 4px;
+                transition: all 0.3s;
+            }
+
+            .mys-content .mys-btn:hover {
+                background: #d4af37;
+                color: white;
+            }
+
+            @keyframes mys-animate {
+                from {
+                    opacity: 0;
+                    transform: translate(0, 50px);
+                    filter: blur(10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translate(0);
+                    filter: blur(0);
+                }
+            }
+
+            .mys-button {
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                bottom: 50px;
+                z-index: 50;
+            }
+
+            .mys-button button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                cursor: pointer;
+                margin: 0 10px;
+                transition: 0.3s;
+                background: rgba(0, 0, 0, 0.3);
+                color: white;
+                backdrop-filter: blur(5px);
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+            }
+
+            .mys-button button:hover {
+                background: #d4af37;
+                color: #fff;
+                border-color: #d4af37;
+            }
+
+            @media (max-width: 768px) {
+                .mys-container .mys-slide .mys-item {
+                    width: 160px;
+                    height: 220px;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                    opacity: 0.5;
+                }
+
+                .mys-slide .mys-item:nth-child(1) {
+                    top: 50%;
+                    left: 0%;
+                    transform: translate(-50%, -50%) scale(0.8);
+                    opacity: 0;
+                }
+
+                .mys-slide .mys-item:nth-child(2) {
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(1.2);
+                    opacity: 1;
+                    z-index: 100;
+                    width: 180px;
+                    height: 250px;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+                }
+
+                .mys-slide .mys-item:nth-child(3) {
+                    top: 50%;
+                    left: 100%;
+                    transform: translate(-50%, -50%) scale(0.8);
+                    opacity: 0;
+                }
+
+                .mys-slide .mys-item:nth-child(n + 4) {
+                    left: 200%;
+                    opacity: 0;
+                }
+
+                .mys-item .mys-content {
+                    display: none;
+                }
+
+                .mys-slide .mys-item:nth-child(2) .mys-content {
+                    display: block;
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 300px;
+                    text-align: center;
+                    padding-top: 20px;
+                }
+
+                .mys-content .mys-name {
+                    font-size: 32px;
+                    color: #fff;
+                }
+
+                .mys-content .mys-des {
+                    font-size: 14px;
+                    color: #ddd;
+                }
+
+                .mys-content .mys-btn {
+                    padding: 8px 16px;
+                    font-size: 14px;
+                }
+
+                .mys-button {
+                    width: 100%;
+                    bottom: auto;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    justify-content: space-between;
+                    padding: 0 10px;
+                    display: flex;
+                    pointer-events: none;
+                }
+
+                .mys-button button {
+                    pointer-events: auto;
+                    width: 40px;
+                    height: 40px;
+                    font-size: 16px;
+                }
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const container = document.querySelector(".mys-container");
+                const next = document.querySelector(".mys-next");
+                const prev = document.querySelector(".mys-prev");
+                const slide = document.querySelector(".mys-slide");
+
+                if (!container || !next || !prev || !slide) return;
+
+                function updateBackground() {
+                    const items = document.querySelectorAll(".mys-item");
+                    if (items.length > 1) {
+                        const activeItem = items[1];
+                        const backgroundImage = activeItem.style.backgroundImage;
+
+                        container.style.backgroundImage = backgroundImage;
+                        container.style.backgroundSize = "cover";
+                        container.style.backgroundPosition = "center";
+                    }
+                }
+
+                updateBackground();
+
+                next.addEventListener("click", function() {
+                    let items = document.querySelectorAll(".mys-item");
+                    slide.appendChild(items[0]);
+                    updateBackground();
+                });
+
+                prev.addEventListener("click", function() {
+                    let items = document.querySelectorAll(".mys-item");
+                    slide.prepend(items[items.length - 1]);
+                    updateBackground();
+                });
+            });
+        </script>
 </x-layout>

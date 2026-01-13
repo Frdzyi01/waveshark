@@ -63,7 +63,7 @@
         </button>
 
         <!-- SPLIT HERO SECTION -->
-        <div class="relative h-screen w-full flex flex-col md:flex-row transition-all duration-1000 ease-in-out">
+        <div class="relative h-screen w-full flex flex-col md:flex-row transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]">
 
 
             <!-- LEFT (SINGAPORE) -->
@@ -75,7 +75,7 @@
                   block md:block"
                 style="will-change: width, opacity;"
                 :class="{
-                'md:w-full h-full z-20': expanded === 'singapore',
+                'absolute inset-0 z-40 w-full h-full md:relative md:inset-auto md:w-full md:z-20': expanded === 'singapore',
                 'md:w-0 h-0 opacity-0': expanded === 'malaysia',
                 'md:w-1/2': !expanded
                   }"
@@ -88,7 +88,7 @@
                     background-image: url('{{ asset('images/laut-singapore2.jpg') }}');
                     transform: ${
                     !expanded && hovered === 'singapore'
-                        ? 'scale(1.1)'
+                        ? 'scale(1.02)'
                         : 'scale(1.0) translate(' + (mouseX * -20) + 'px, ' + (mouseY * -20) + 'px)'
                     };
                 `"></div>
@@ -101,8 +101,8 @@
                 <!-- Text Content (Preview) -->
                 <div class="absolute bottom-20 left-0 right-0 text-center transition-all duration-500 transform"
                     :class="[
-                        hovered === 'singapore' ? 'translate-y-0 scale-110' : 'translate-y-4 shadow-black',
-                        expanded ? 'opacity-0 translate-y-20' : 'opacity-100'
+                        hovered === 'singapore' ? 'scale-[1.02]' : 'shadow-black',
+                        expanded ? 'opacity-0' : 'opacity-100'
                     ]">
                     <h2 class="font-serif text-5xl md:text-7xl text-white font-bold tracking-tighter drop-shadow-2xl">
                         Singapore
@@ -119,45 +119,89 @@
                     x-transition:enter-end="opacity-100 translate-y-0"
                     class="absolute inset-0 z-30 overflow-y-auto bg-black/80 backdrop-blur-sm">
 
-                    <div class="max-w-7xl mx-auto px-6 py-24 min-h-screen flex flex-col justify-center">
-                        <div class="space-y-12">
-                            <div class="border-l-4 border-gold-500 pl-8">
-                                <h3 class="text-gold-500 uppercase tracking-widest mb-2">Selected Region</h3>
-                                <h1 class="text-6xl md:text-8xl font-serif font-bold leading-none mb-6 text-white">Singapore</h1>
-                                <p class="text-xl text-gray-300 max-w-2xl leading-relaxed">
-                                    A global financial hub and a melting pot of cultures. Explore our ventures in the heart of Southeast Asia's innovation center.
-                                </p>
+                    <!-- NEW SINGAPORE SLIDER IMPLEMENTATION -->
+                    <div class="sg-container">
+                        <div class="sg-slide">
+
+                            <!-- Item 1 -->
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');">
+                                <div class="sg-content">
+                                    <div class="sg-name">Marina Bay</div>
+                                    <div class="sg-des">
+                                        Iconic skyline featuring the Marina Bay Sands and the futuristic Supertree Grove.
+                                    </div>
+                                    <button class="sg-btn">See More</button>
+                                </div>
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12">
-                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
-                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
-                                        </svg>
+                            <!-- Item 2 -->
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
+                                <div class="sg-content">
+                                    <div class="sg-name">Sentosa Island</div>
+                                    <div class="sg-des">
+                                        A sunny island resort home to Universal Studios, S.E.A. Aquarium, and pristine beaches.
                                     </div>
-                                    <h4 class="text-xl font-bold mb-3 text-white">Fintech Growth</h4>
-                                    <p class="text-gray-400">Driving digital adoption in banking and finance sectors across the island.</p>
-                                </div>
-                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
-                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-xl font-bold mb-3 text-white">Urban Solutions</h4>
-                                    <p class="text-gray-400">Sustainable investments in smart city technologies and green energy.</p>
-                                </div>
-                                <div class="bg-gray-900/80 p-8 hover:bg-gray-800 transition-colors border border-gray-800 hover:border-gold-500/30 group rounded-xl backdrop-blur-md">
-                                    <div class="h-12 w-12 bg-gold-500/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                                        <svg class="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                        </svg>
-                                    </div>
-                                    <h4 class="text-xl font-bold mb-3 text-white">Capital Markets</h4>
-                                    <p class="text-gray-400">Strategic partnerships with leading venture firms in the marina bay district.</p>
+                                    <button class="sg-btn">See More</button>
                                 </div>
                             </div>
+
+                            <!-- Item 3 -->
+                            <div class="sg-item" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
+                                <div class="sg-content">
+                                    <div class="sg-name">Gardens by the Bay</div>
+                                    <div class="sg-des">
+                                        A nature park spanning 101 hectares in the Central Region of Singapore.
+                                    </div>
+                                    <button class="sg-btn">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 4 (Repeat) -->
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');">
+                                <div class="sg-content">
+                                    <div class="sg-name">Marina Bay</div>
+                                    <div class="sg-des">
+                                        Experience the luxury and world-class entertainment at the heart of the city.
+                                    </div>
+                                    <button class="sg-btn">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 5 (Repeat) -->
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
+                                <div class="sg-content">
+                                    <div class="sg-name">Sentosa Island</div>
+                                    <div class="sg-des">
+                                        Adventure awaits at the State of Fun.
+                                    </div>
+                                    <button class="sg-btn">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 6 (Repeat) -->
+                            <div class="sg-item" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
+                                <div class="sg-content">
+                                    <div class="sg-name">Gardens by the Bay</div>
+                                    <div class="sg-des">
+                                        Discover the Cloud Forest and Flower Dome.
+                                    </div>
+                                    <button class="sg-btn">See More</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="sg-button">
+                            <button class="sg-prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                                </svg>
+                            </button>
+                            <button class="sg-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -173,10 +217,10 @@
            block md:block"
                 style="will-change: width, opacity;"
                 :class="{ 
-        'md:w-full h-full z-20': expanded === 'malaysia', 
-        'md:w-0 h-0 opacity-0': expanded === 'singapore', 
-        'md:w-1/2': !expanded 
-    }"
+            'md:w-full h-full z-20': expanded === 'malaysia', 
+            'md:w-0 h-0 opacity-0': expanded === 'singapore', 
+            'md:w-1/2': !expanded 
+        }"
                 @mouseenter="!expanded && (hovered = 'malaysia')"
                 @mouseleave="!expanded && (hovered = null)"
                 @click="expanded = 'malaysia'">
@@ -188,7 +232,7 @@
                         background-image: url('${expanded === 'malaysia' ? malaysiaDestinations[activeDestination].image : '{{ asset('images/laut-malay.jpg') }}'}');
                         transform: ${
                             !expanded && hovered === 'malaysia'
-                                ? 'scale(1.1)'
+                                ? 'scale(1.02)'
                                 : 'scale(1.0) translate(' + (mouseX * -20) + 'px, ' + (mouseY * -20) + 'px)'
                         };
                     `">
@@ -204,8 +248,8 @@
                 <div
                     class="absolute bottom-20 left-0 right-0 text-center transition-all duration-500 transform"
                     :class="[
-                        hovered === 'malaysia' ? 'translate-y-0 scale-110' : 'translate-y-4',
-                        expanded ? 'opacity-0 translate-y-20' : 'opacity-100'
+                        hovered === 'malaysia' ? 'scale-[1.02]' : 'shadow-black',
+                        expanded ? 'opacity-0' : 'opacity-100'
                     ]">
                     <h2 class="font-serif text-5xl md:text-7xl text-white font-bold tracking-tighter drop-shadow-2xl">
                         Malaysia
@@ -418,7 +462,7 @@
                 text-transform: uppercase;
                 font-weight: bold;
                 opacity: 0;
-                animation: mys-animate 1s ease-in-out 1 forwards;
+                animation: mys-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1 forwards;
                 text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
                 font-family: 'Playfair Display', serif;
             }
@@ -428,16 +472,17 @@
                 margin-bottom: 20px;
                 font-size: 18px;
                 opacity: 0;
-                animation: mys-animate 1s ease-in-out 0.3s 1 forwards;
+                animation: mys-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s 1 forwards;
                 text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             }
 
+            /* Buttons */
             .mys-content .mys-btn {
                 padding: 12px 30px;
                 border: none;
                 cursor: pointer;
                 opacity: 0;
-                animation: mys-animate 1s ease-in-out 0.6s 1 forwards;
+                animation: mys-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s 1 forwards;
                 background: white;
                 color: black;
                 font-weight: bold;
@@ -454,13 +499,13 @@
             @keyframes mys-animate {
                 from {
                     opacity: 0;
-                    transform: translate(0, 50px);
-                    filter: blur(10px);
+                    transform: scale(1.02);
+                    filter: blur(5px);
                 }
 
                 to {
                     opacity: 1;
-                    transform: translate(0);
+                    transform: scale(1);
                     filter: blur(0);
                 }
             }
@@ -584,6 +629,266 @@
                 }
             }
         </style>
+        <style>
+            /* Scoped Styles for Singapore Slider (sg) */
+            .sg-container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                background: #000;
+                transition: background-image 0.5s ease-in-out;
+            }
+
+            .sg-container::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            .sg-container .sg-slide .sg-item {
+                width: 200px;
+                height: 300px;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+                border-radius: 20px;
+                box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+                background-position: 50% 50%;
+                background-size: cover;
+                display: inline-block;
+                transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
+                z-index: 10;
+            }
+
+            .sg-slide .sg-item:nth-child(1),
+            .sg-slide .sg-item:nth-child(2) {
+                top: 0;
+                left: 0;
+                transform: translate(0, 0);
+                border-radius: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 5;
+            }
+
+            .sg-slide .sg-item:nth-child(3) {
+                left: 50%;
+                z-index: 15;
+            }
+
+            .sg-slide .sg-item:nth-child(4) {
+                left: calc(50% + 220px);
+                z-index: 14;
+            }
+
+            .sg-slide .sg-item:nth-child(5) {
+                left: calc(50% + 440px);
+                z-index: 13;
+            }
+
+            .sg-slide .sg-item:nth-child(n + 6) {
+                left: calc(50% + 660px);
+                opacity: 0;
+                z-index: 12;
+            }
+
+            .sg-item .sg-content {
+                position: absolute;
+                top: 50%;
+                left: 100px;
+                width: 400px;
+                text-align: left;
+                color: #eee;
+                transform: translate(0, -50%);
+                font-family: system-ui;
+                display: none;
+                z-index: 20;
+            }
+
+            .sg-slide .sg-item:nth-child(2) .sg-content {
+                display: block;
+            }
+
+            .sg-content .sg-name {
+                font-size: 60px;
+                text-transform: uppercase;
+                font-weight: bold;
+                opacity: 0;
+                animation: sg-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1 forwards;
+                text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                font-family: 'Playfair Display', serif;
+            }
+
+            .sg-content .sg-des {
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-size: 18px;
+                opacity: 0;
+                animation: sg-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s 1 forwards;
+                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .sg-content .sg-btn {
+                padding: 12px 30px;
+                border: none;
+                cursor: pointer;
+                opacity: 0;
+                animation: sg-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s 1 forwards;
+                background: white;
+                color: black;
+                font-weight: bold;
+                text-transform: uppercase;
+                border-radius: 4px;
+                transition: all 0.3s;
+            }
+
+            .sg-content .sg-btn:hover {
+                background: #d4af37;
+                color: white;
+            }
+
+            @keyframes sg-animate {
+                from {
+                    opacity: 0;
+                    transform: scale(1.02);
+                    filter: blur(5px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                    filter: blur(0);
+                }
+            }
+
+            .sg-button {
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                bottom: 50px;
+                z-index: 50;
+            }
+
+            .sg-button button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                cursor: pointer;
+                margin: 0 10px;
+                transition: 0.3s;
+                background: rgba(0, 0, 0, 0.3);
+                color: white;
+                backdrop-filter: blur(5px);
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+            }
+
+            .sg-button button:hover {
+                background: #d4af37;
+                color: #fff;
+                border-color: #d4af37;
+            }
+
+            @media (max-width: 768px) {
+                .sg-container .sg-slide .sg-item {
+                    width: 160px;
+                    height: 220px;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                    opacity: 0.5;
+                }
+
+                .sg-slide .sg-item:nth-child(1) {
+                    top: 50%;
+                    left: 0%;
+                    transform: translate(-50%, -50%) scale(0.8);
+                    opacity: 0;
+                }
+
+                .sg-slide .sg-item:nth-child(2) {
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(1.2);
+                    opacity: 1;
+                    z-index: 100;
+                    width: 180px;
+                    height: 250px;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+                }
+
+                .sg-slide .sg-item:nth-child(3) {
+                    top: 50%;
+                    left: 100%;
+                    transform: translate(-50%, -50%) scale(0.8);
+                    opacity: 0;
+                }
+
+                .sg-slide .sg-item:nth-child(n + 4) {
+                    left: 200%;
+                    opacity: 0;
+                }
+
+                .sg-item .sg-content {
+                    display: none;
+                }
+
+                .sg-slide .sg-item:nth-child(2) .sg-content {
+                    display: block;
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 300px;
+                    text-align: center;
+                    padding-top: 20px;
+                }
+
+                .sg-content .sg-name {
+                    font-size: 32px;
+                    color: #fff;
+                }
+
+                .sg-content .sg-des {
+                    font-size: 14px;
+                    color: #ddd;
+                }
+
+                .sg-content .sg-btn {
+                    padding: 8px 16px;
+                    font-size: 14px;
+                }
+
+                .sg-button {
+                    width: 100%;
+                    bottom: auto;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    justify-content: space-between;
+                    padding: 0 10px;
+                    display: flex;
+                    pointer-events: none;
+                }
+
+                .sg-button button {
+                    pointer-events: auto;
+                    width: 40px;
+                    height: 40px;
+                    font-size: 16px;
+                }
+            }
+        </style>
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
@@ -619,6 +924,42 @@
                     slide.prepend(items[items.length - 1]);
                     updateBackground();
                 });
+
+                // Singapore Slider Logic
+                {
+                    const sgContainer = document.querySelector(".sg-container");
+                    const sgNext = document.querySelector(".sg-next");
+                    const sgPrev = document.querySelector(".sg-prev");
+                    const sgSlide = document.querySelector(".sg-slide");
+
+                    if (sgContainer && sgNext && sgPrev && sgSlide) {
+                        function sgUpdateBackground() {
+                            const items = document.querySelectorAll(".sg-item");
+                            if (items.length > 1) {
+                                const activeItem = items[1];
+                                const backgroundImage = activeItem.style.backgroundImage;
+
+                                sgContainer.style.backgroundImage = backgroundImage;
+                                sgContainer.style.backgroundSize = "cover";
+                                sgContainer.style.backgroundPosition = "center";
+                            }
+                        }
+
+                        sgUpdateBackground();
+
+                        sgNext.addEventListener("click", function() {
+                            let items = document.querySelectorAll(".sg-item");
+                            sgSlide.appendChild(items[0]);
+                            sgUpdateBackground();
+                        });
+
+                        sgPrev.addEventListener("click", function() {
+                            let items = document.querySelectorAll(".sg-item");
+                            sgSlide.prepend(items[items.length - 1]);
+                            sgUpdateBackground();
+                        });
+                    }
+                }
             });
         </script>
 </x-layout>

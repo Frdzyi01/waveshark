@@ -65,18 +65,22 @@
         <!-- SPLIT HERO SECTION -->
         <div class="relative h-screen w-full flex flex-col md:flex-row transition-all duration-1000 ease-in-out">
 
+
             <!-- LEFT (SINGAPORE) -->
             <div
-                class="relative h-1/2 md:h-full transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden cursor-pointer group transform-gpu"
+                x-show="!(expanded === 'malaysia' && window.innerWidth < 768)"
+                x-cloak
+                class="relative h-1/2 md:h-full transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
+                  overflow-hidden cursor-pointer group transform-gpu
+                  block md:block"
                 style="will-change: width, opacity;"
                 :class="{
-                    'md:w-full h-full z-20': expanded === 'singapore',
-                    'md:w-0 h-0 opacity-0': expanded === 'malaysia',
-                    'md:w-1/2': !expanded
-                }"
-                @mouseenter="!expanded && (hovered = 'singapore')"
-                @mouseleave="!expanded && (hovered = null)"
+                'md:w-full h-full z-20': expanded === 'singapore',
+                'md:w-0 h-0 opacity-0': expanded === 'malaysia',
+                'md:w-1/2': !expanded
+                  }"
                 @click="!expanded && select('singapore')">
+
                 <!-- Background Image -->
                 <div
                     class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out"
@@ -162,16 +166,20 @@
             <!-- RIGHT (MALAYSIA) -->
             <div
                 id="malaysia-card"
-                class="relative h-1/2 md:h-full transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] overflow-hidden cursor-pointer group transform-gpu"
+                x-show="!(expanded === 'singapore' && window.innerWidth < 768)"
+                x-cloak
+                class="relative h-1/2 md:h-full transition-none md:transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
+           overflow-hidden cursor-pointer group transform-gpu
+           block md:block"
                 style="will-change: width, opacity;"
                 :class="{ 
-                    'md:w-full h-full z-20': expanded === 'malaysia', 
-                    'md:w-0 h-0 opacity-0': expanded === 'singapore', 
-                    'md:w-1/2': !expanded 
-                }"
+        'md:w-full h-full z-20': expanded === 'malaysia', 
+        'md:w-0 h-0 opacity-0': expanded === 'singapore', 
+        'md:w-1/2': !expanded 
+    }"
                 @mouseenter="!expanded && (hovered = 'malaysia')"
                 @mouseleave="!expanded && (hovered = null)"
-                @click="!expanded && select('malaysia')">
+                @click="expanded = 'malaysia'">
 
                 <!-- Background Image (Dynamic) -->
                 <div

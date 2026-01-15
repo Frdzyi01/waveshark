@@ -1168,7 +1168,8 @@
 
             /* ================= ABOUT ================= */
             .about {
-                padding: 80px 40px 140px;
+                padding: 100px 40px;
+                /* Standardized */
                 position: relative;
             }
 
@@ -1301,6 +1302,7 @@
             @media (max-width: 768px) {
                 .services {
                     padding: 60px 0;
+                    /* Standardized Mobile */
                     overflow: hidden;
                 }
 
@@ -1370,6 +1372,7 @@
             /* ================= TOUR PACKAGE SLIDER ================= */
             .tour-package {
                 padding: 100px 40px;
+                /* Standardized */
                 text-align: center;
                 max-width: 1400px;
                 /* Wider for slider */
@@ -1517,13 +1520,15 @@
                 }
 
                 .tour-package {
-                    padding: 50px 10px;
+                    padding: 60px 10px;
+                    /* Standardized Mobile */
                 }
             }
 
             /* ================= CTA SECTION ================= */
             .cta-section {
-                padding: 0 40px 100px;
+                padding: 100px 40px;
+                /* Standardized */
                 max-width: 1200px;
                 margin: auto;
             }

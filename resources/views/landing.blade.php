@@ -47,7 +47,7 @@
             }
         }"
         @mousemove.window="handleMove"
-        class="relative min-h-screen bg-black overflow-hidden">
+        class="relative min-h-screen bg-black overflow-x-hidden">
 
         <!-- BACK BUTTON (When Expanded) -->
         <button
@@ -367,6 +367,61 @@
             </div>
 
         </div>
+
+        <!-- ================= SERVICES ================= -->
+        <section class="services">
+            <div class="services-grid">
+                <div class="service-card">
+                    <h1>01</h1>
+                    <h3>Tour Packages</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="service-card">
+                    <h1>02</h1>
+                    <h3>Flight Booking</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="service-card">
+                    <h1>03</h1>
+                    <h3>Hotel Booking</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div class="service-card">
+                    <h1>04</h1>
+                    <h3>Destination Booking</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+        <section class="about">
+            <div class="about-wrapper">
+
+                <div class="about-img">
+                    <img src="images/laut-singapore2.jpg">
+                    <div class="cross tr"></div>
+                </div>
+
+                <div class="about-content">
+                    <div class="cross center-top"></div>
+                    <h2>About Us</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facere aut quibusdam beatae. Cum blanditiis odit nulla nisi, magni harum aliquam officia, aperiam odio sunt quas cupiditate in officiis molestias maiores repudiandae illo recusandae mollitia et a iste omnis. Laborum quis vitae unde sint possimus eaque accusantium, sunt magnam minus itaque explicabo a cumque asperiores, numquam, reprehenderit voluptatibus odit totam iure ipsa veritatis. Obcaecati odio tempore expedita fuga distinctio quas minus, ipsam rem numquam earum sequi alias adipisci culpa deserunt, excepturi, dolor sed corporis ut placeat iusto maxime! Amet veritatis omnis aut itaque voluptatibus nisi natus qui accusamus ex quae.
+                    </p>
+                    <div class="about-buttons">
+                        <button class="btn-gold">SEKARANG</button>
+                        <button class="btn-outline">KENAPA KAMI?</button>
+                    </div>
+                </div>
+
+                <div class="about-img">
+                    <img src="images/laut-malay.jpg">
+                    <div class="cross bl"></div>
+                </div>
+
+            </div>
+        </section>
 
         <style>
             /* Scoped Styles for Malaysia Slider (mys) */
@@ -886,6 +941,264 @@
                     width: 40px;
                     height: 40px;
                     font-size: 16px;
+                }
+            }
+        </style>
+
+        <style>
+            :root {
+                --gold: #d4af37;
+                --dark: #000;
+                --gray: #9ca3af;
+            }
+
+            /* ================= SERVICES ================= */
+            .services {
+                padding: 100px 40px;
+            }
+
+            .services-grid {
+                max-width: 1200px;
+                margin: auto;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 30px;
+            }
+
+            .service-card {
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                aspect-ratio: 1/1;
+                text-align: center;
+                padding: 40px 30px;
+                transition: .3s;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .service-card:hover {
+                border-color: var(--gold);
+            }
+
+            .service-card h1 {
+                font-size: 64px;
+                color: var(--gold);
+                margin-bottom: 20px;
+            }
+
+            .service-card h3 {
+                color: var(--gold);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: 15px;
+            }
+
+            .service-card p {
+                font-size: 12px;
+                color: var(--gray);
+                max-width: 200px;
+                line-height: 1.6;
+            }
+
+            /* ================= ABOUT ================= */
+            .about {
+                padding: 80px 40px 140px;
+                position: relative;
+            }
+
+            .about-wrapper {
+                max-width: 1200px;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 80px;
+                position: relative;
+            }
+
+            .about-img {
+                width: 300px;
+                height: 400px;
+                position: relative;
+            }
+
+            .about-img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                filter: brightness(75%);
+            }
+
+            .about-content {
+                max-width: 420px;
+                text-align: center;
+                position: relative;
+            }
+
+            .about-content h2 {
+                color: var(--gold);
+                font-size: 36px;
+                margin-bottom: 25px;
+            }
+
+            .about-content p {
+                font-size: 12px;
+                color: var(--gray);
+                line-height: 1.8;
+                text-align: justify;
+                margin-bottom: 35px;
+            }
+
+            .about-buttons {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .btn-gold {
+                background: var(--gold);
+                color: black;
+                padding: 12px 32px;
+                font-size: 11px;
+                font-weight: bold;
+                letter-spacing: 2px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .btn-outline {
+                background: transparent;
+                border: 1px solid var(--gold);
+                color: var(--gold);
+                padding: 12px 32px;
+                font-size: 11px;
+                font-weight: bold;
+                letter-spacing: 2px;
+                cursor: pointer;
+            }
+
+            /* ================= CROSS DECOR ================= */
+            .cross {
+                width: 22px;
+                height: 22px;
+                position: absolute;
+            }
+
+            .cross::before,
+            .cross::after {
+                content: "";
+                position: absolute;
+                background: var(--gold);
+            }
+
+            .cross::before {
+                width: 100%;
+                height: 1px;
+                top: 50%;
+                left: 0;
+            }
+
+            .cross::after {
+                height: 100%;
+                width: 1px;
+                left: 50%;
+                top: 0;
+            }
+
+            .tl {
+                top: -12px;
+                left: -12px;
+            }
+
+            .tr {
+                top: -12px;
+                right: -12px;
+            }
+
+            .bl {
+                bottom: -12px;
+                left: -12px;
+            }
+
+            .br {
+                bottom: -12px;
+                right: -12px;
+            }
+
+            .center-top {
+                top: -18px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /* ================= SERVICES MOBILE SLIDER ================= */
+            @media (max-width: 768px) {
+                .services {
+                    padding: 60px 0;
+                    overflow: hidden;
+                }
+
+                .services-grid {
+                    display: flex;
+                    gap: 20px;
+                    padding: 0 20px;
+                    overflow-x: auto;
+                    scroll-snap-type: x mandatory;
+                    -webkit-overflow-scrolling: touch;
+                }
+
+                .services-grid::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .service-card {
+                    min-width: 75%;
+                    aspect-ratio: 1 / 1;
+                    scroll-snap-align: center;
+                    flex-shrink: 0;
+                }
+            }
+
+            /* ================= ABOUT MOBILE ================= */
+            @media (max-width: 768px) {
+
+                .about-wrapper {
+                    flex-direction: column;
+                    gap: 40px;
+                }
+
+                /* sembunyikan SEMUA gambar dulu */
+                .about-img {
+                    display: none;
+                }
+
+                /* tampilkan HANYA 1 gambar (yang pertama) */
+                .about-img:first-child {
+                    display: block;
+                    width: 100%;
+                    height: 260px;
+                }
+
+                .about-img:first-child img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                /* rapihin konten */
+                .about-content {
+                    max-width: 100%;
+                    padding: 0 10px;
+                }
+
+                .about-content p {
+                    text-align: left;
+                }
+
+                /* hilangkan dekor cross biar clean */
+                .cross {
+                    display: none;
                 }
             }
         </style>

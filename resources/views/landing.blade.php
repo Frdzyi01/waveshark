@@ -124,7 +124,7 @@
                         <div class="sg-slide">
 
                             <!-- Item 1 -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');">
+                            <div class="sg-item" data-bg="{{ asset('images/laut-singapore.jpg') }}">
                                 <div class="sg-content">
                                     <div class="sg-name">Marina Bay</div>
                                     <div class="sg-des">
@@ -135,7 +135,7 @@
                             </div>
 
                             <!-- Item 2 -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
+                            <div class="sg-item" data-bg="{{ asset('images/laut-singapore2.jpg') }}">
                                 <div class="sg-content">
                                     <div class="sg-name">Sentosa Island</div>
                                     <div class="sg-des">
@@ -146,7 +146,7 @@
                             </div>
 
                             <!-- Item 3 -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
+                            <div class="sg-item" data-bg="{{ asset('images/singapore.jpg') }}">
                                 <div class="sg-content">
                                     <div class="sg-name">Gardens by the Bay</div>
                                     <div class="sg-des">
@@ -157,7 +157,7 @@
                             </div>
 
                             <!-- Item 4 (Repeat) -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');">
+                            <div class="sg-item" data-bg="{{ asset('images/laut-singapore.jpg') }}">
                                 <div class="sg-content">
                                     <div class="sg-name">Marina Bay</div>
                                     <div class="sg-des">
@@ -168,7 +168,7 @@
                             </div>
 
                             <!-- Item 5 (Repeat) -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
+                            <div class="sg-item" data-bg="{{ asset('images/laut-singapore2.jpg') }}">
                                 <div class="sg-content">
                                     <div class="sg-name">Sentosa Island</div>
                                     <div class="sg-des">
@@ -179,7 +179,7 @@
                             </div>
 
                             <!-- Item 6 (Repeat) -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
+                            <div class="sg-item" data-bg="{{ asset('images/singapore.jpg') }}">
                                 <div class="sg-content">
                                     <div class="sg-name">Gardens by the Bay</div>
                                     <div class="sg-des">
@@ -271,7 +271,7 @@
                         <div class="mys-slide">
 
                             <!-- Item 1: Langkawi -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
+                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/langkawi.jpg') }}">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -282,7 +282,7 @@
                             </div>
 
                             <!-- Item 2: Pangkalan Islands -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}');">
+                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}">
                                 <div class="mys-content">
                                     <div class="mys-name">Pangkalan Islands</div>
                                     <div class="mys-des">
@@ -293,7 +293,7 @@
                             </div>
 
                             <!-- Item 3: Sabah -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
+                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/sabah.jpg') }}">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
@@ -304,7 +304,7 @@
                             </div>
 
                             <!-- Item 4: Langkawi (Repeat for loop) -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
+                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/langkawi.jpg') }}">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -315,7 +315,7 @@
                             </div>
 
                             <!-- Item 5: Pangkalan Islands (Repeat) -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}');">
+                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}">
                                 <div class="mys-content">
                                     <div class="mys-name">Pangkalan Islands</div>
                                     <div class="mys-des">
@@ -326,7 +326,7 @@
                             </div>
 
                             <!-- Item 6: Sabah (Repeat) -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
+                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/sabah.jpg') }}">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
@@ -369,33 +369,42 @@
         </div>
 
         <!-- ================= SERVICES ================= -->
-        <section class="services">
-            <div class="services-grid">
-                <div class="service-card">
-                    <h1>01</h1>
-                    <h3>Tour Packages</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <!-- ================= SERVICES ================= -->
+        <section class="services reveal" x-data="{ servicePage: 0 }">
+            <div class="services-viewport">
+                <div class="services-grid" :class="{'slide-2': servicePage === 1}">
+                    <div class="service-card">
+                        <h1>01</h1>
+                        <h3>Tour Packages</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="service-card">
+                        <h1>02</h1>
+                        <h3>Flight Booking</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="service-card">
+                        <h1>03</h1>
+                        <h3>Hotel Booking</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="service-card">
+                        <h1>04</h1>
+                        <h3>Destination Booking</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <h1>02</h1>
-                    <h3>Flight Booking</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="service-card">
-                    <h1>03</h1>
-                    <h3>Hotel Booking</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
-                <div class="service-card">
-                    <h1>04</h1>
-                    <h3>Destination Booking</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
+            </div>
+
+            <!-- Mobile Pagination Dots -->
+            <div class="service-dots">
+                <div class="dot" :class="{'active': servicePage === 0}" @click="servicePage = 0"></div>
+                <div class="dot" :class="{'active': servicePage === 1}" @click="servicePage = 1"></div>
             </div>
         </section>
 
         <!-- ================= ABOUT ================= -->
-        <section class="about">
+        <section class="about reveal">
             <div class="about-wrapper">
 
                 <div class="about-img">
@@ -424,7 +433,7 @@
         </section>
 
         <!-- ================= TOUR PACKAGE SLIDER ================= -->
-        <section class="tour-package" x-data="{
+        <section class="tour-package reveal" x-data="{
                 activeTourSlide: 0,
                 tourItems: [
                     { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Pangkalan Islands' },
@@ -495,15 +504,15 @@
         </section>
 
         <!-- ================= CTA SECTION ================= -->
-        <section class="cta-section">
-            <div class="cta-banner" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
+        <section class="cta-section reveal">
+            <div class="cta-banner" data-bg="{{ asset('images/singapore.jpg') }}">
                 <!-- Overlay or Content if needed -->
             </div>
         </section>
 
         <!-- ================= TESTIMONY SECTION ================= -->
-        <section class="testimony-section">
-            <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
+        <section class="testimony-section reveal">
+            <div class="testimony-bg" data-bg="{{ asset('images/pangkalan-islands.jpg') }}"></div>
             <div class="testimony-overlay"></div>
             <div class="testimony-content">
                 <h2 class="testimony-title">Testimony</h2>
@@ -522,7 +531,7 @@
         </section>
 
         <!-- ================= FOOTER ================= -->
-        <footer class="site-footer">
+        <footer class="site-footer reveal">
             <div class="footer-container">
                 <div class="footer-row">
                     <!-- Column 1: Brand -->
@@ -1299,31 +1308,79 @@
             }
 
             /* ================= SERVICES MOBILE SLIDER ================= */
+            .service-dots {
+                display: none;
+            }
+
             @media (max-width: 768px) {
                 .services {
                     padding: 60px 0;
                     /* Standardized Mobile */
                     overflow: hidden;
+                    position: relative;
+                }
+
+                .services-viewport {
+                    overflow: hidden;
+                    width: 100%;
+                    padding-bottom: 30px;
+                    /* Space for dots */
                 }
 
                 .services-grid {
                     display: flex;
-                    gap: 20px;
-                    padding: 0 20px;
-                    overflow-x: auto;
-                    scroll-snap-type: x mandatory;
-                    -webkit-overflow-scrolling: touch;
+                    gap: 15px;
+                    /* Gap between cards */
+                    margin: 0;
+                    width: 100%;
+                    transition: transform 0.5s ease-in-out;
+                    padding: 0 7.5px;
+                    /* Half of gap to ensure perfect paging */
+                    justify-content: flex-start;
+                    box-sizing: border-box;
+                }
+
+                .services-grid.slide-2 {
+                    transform: translateX(-100%);
+                }
+
+                .service-card {
+                    min-width: calc(50% - 7.5px);
+                    /* (100% - 15px gap) / 2 */
+                    aspect-ratio: 1 / 1;
+                    flex-shrink: 0;
+                    padding: 15px;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                }
+
+                /* Resize text for mobile cards */
+                .service-card h1 {
+                    font-size: 42px;
+                    /* Smaller for mobile */
+                    margin-bottom: 10px;
+                }
+
+                .service-card h3 {
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+
+                .service-card p {
+                    font-size: 10px;
+                    line-height: 1.4;
                 }
 
                 .services-grid::-webkit-scrollbar {
                     display: none;
                 }
 
-                .service-card {
-                    min-width: 75%;
-                    aspect-ratio: 1 / 1;
-                    scroll-snap-align: center;
-                    flex-shrink: 0;
+                /* PAGINATION DOTS */
+                .service-dots {
+                    display: flex;
+                    justify-content: center;
+                    gap: 10px;
+                    margin-top: 20px;
+                    width: 100%;
                 }
             }
 
@@ -1875,10 +1932,42 @@
             .legal-links a:hover {
                 color: var(--gold);
             }
+
+            /* ================= ANIMATIONS ================= */
+            .reveal {
+                opacity: 0;
+                transform: translateY(50px);
+                transition: all 0.8s ease-out;
+            }
+
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
         </style>
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
+                // ... (Existing slider code) ...
+
+                // Scroll Animation Logic
+                const reveals = document.querySelectorAll('.reveal');
+                const revealOnScroll = () => {
+                    const windowHeight = window.innerHeight;
+                    const elementVisible = 150;
+
+                    reveals.forEach((reveal) => {
+                        const elementTop = reveal.getBoundingClientRect().top;
+                        if (elementTop < windowHeight - elementVisible) {
+                            reveal.classList.add('active');
+                        }
+                    });
+                };
+
+                window.addEventListener('scroll', revealOnScroll);
+                // Trigger once on load
+                revealOnScroll();
+
                 const container = document.querySelector(".mys-container");
                 const next = document.querySelector(".mys-next");
                 const prev = document.querySelector(".mys-prev");

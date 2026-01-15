@@ -213,14 +213,14 @@
                 x-show="!(expanded === 'singapore' && window.innerWidth < 768)"
                 x-cloak
                 class="relative h-1/2 md:h-full transition-none md:transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
-           overflow-hidden cursor-pointer group transform-gpu
-           block md:block"
+                    overflow-hidden cursor-pointer group transform-gpu
+                    block md:block"
                 style="will-change: width, opacity;"
                 :class="{ 
-            'md:w-full h-full z-20': expanded === 'malaysia', 
-            'md:w-0 h-0 opacity-0': expanded === 'singapore', 
-            'md:w-1/2': !expanded 
-        }"
+                        'md:w-full h-full z-20': expanded === 'malaysia', 
+                        'md:w-0 h-0 opacity-0': expanded === 'singapore', 
+                        'md:w-1/2': !expanded 
+                    }"
                 @mouseenter="!expanded && (hovered = 'malaysia')"
                 @mouseleave="!expanded && (hovered = null)"
                 @click="expanded = 'malaysia'">
@@ -422,6 +422,169 @@
 
             </div>
         </section>
+
+        <!-- ================= TOUR PACKAGE SLIDER ================= -->
+        <section class="tour-package" x-data="{
+                activeTourSlide: 0,
+                tourItems: [
+                    { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Pangkalan Islands' },
+                    { img: '{{ asset('images/laut-singapore.jpg') }}', title: 'Singapore Coast' },
+                    { img: '{{ asset('images/sabah.jpg') }}', title: 'Sabah Nature' },
+                    { img: '{{ asset('images/laut-malay.jpg') }}', title: 'Malay Coast' },
+                    { img: '{{ asset('images/singapore.jpg') }}', title: 'Gardens by the Bay' },
+                    { img: '{{ asset('images/laut-singapore2.jpg') }}', title: 'Sentosa Island' },
+                    { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Hidden Gems' },
+                    { img: '{{ asset('images/sabah.jpg') }}', title: 'Borneo Wild' }
+                ],
+                get visibleTourSlides() {
+                    if (window.innerWidth >= 1024) return 4;
+                    return 2;
+                },
+                get maxTourSlide() {
+                    return this.tourItems.length - this.visibleTourSlides;
+                },
+                nextTour() {
+                    if (this.activeTourSlide < this.maxTourSlide) {
+                        this.activeTourSlide++;
+                    } else {
+                        this.activeTourSlide = 0;
+                    }
+                },
+                prevTour() {
+                    if (this.activeTourSlide > 0) {
+                        this.activeTourSlide--;
+                    } else {
+                        this.activeTourSlide = this.maxTourSlide;
+                    }
+                }
+            }" @resize.window="activeTourSlide = 0">
+
+            <h2 class="section-title">Tour Package</h2>
+
+            <div class="tour-slider-container">
+                <!-- Wrapper -->
+                <div class="tour-track-wrapper">
+                    <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
+                        <template x-for="(item, index) in tourItems" :key="index">
+                            <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
+                                <div class="tour-card" :style="`background-image: url('${item.img}')`">
+                                    <div class="tour-overlay">
+                                        <div class="tour-info">
+                                            <h3 x-text="item.title"></h3>
+                                        </div>
+                                    </div>
+                                    <div class="tour-border"></div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Dots (Optional visualization of progress) -->
+            <div class="tour-dots mt-custom">
+                <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
+                    <span class="dot"
+                        :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
+                        @click="activeTourSlide = (i - 1) * visibleTourSlides">
+                    </span>
+                </template>
+            </div>
+
+        </section>
+
+        <!-- ================= CTA SECTION ================= -->
+        <section class="cta-section">
+            <div class="cta-banner" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
+                <!-- Overlay or Content if needed -->
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONY SECTION ================= -->
+        <section class="testimony-section">
+            <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
+            <div class="testimony-overlay"></div>
+            <div class="testimony-content">
+                <h2 class="testimony-title">Testimony</h2>
+                <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
+
+                <div class="quote-container">
+                    <span class="quote-icon left-quote">“</span>
+                    <p class="quote-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    </p>
+                    <span class="quote-icon right-quote">”</span>
+                </div>
+
+                <div class="testimony-author">- Febrian -</div>
+            </div>
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="site-footer">
+            <div class="footer-container">
+                <div class="footer-row">
+                    <!-- Column 1: Brand -->
+                    <div class="footer-col">
+                        <h3 class="footer-logo">WaveShark</h3>
+                        <p class="footer-desc">
+                            Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">FB</a>
+                            <a href="#" class="social-link">IG</a>
+                            <a href="#" class="social-link">TW</a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Quick Links -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Tours -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Top Tours</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Bali, Indonesia</a></li>
+                            <li><a href="#">Singapore</a></li>
+                            <li><a href="#">Sabah, Malaysia</a></li>
+                            <li><a href="#">Marine Park</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4: Newsletter -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Newsletter</h4>
+                        <p class="footer-desc">Subscribe to get the latest updates and offers.</p>
+                        <form action="#" class="newsletter-form" onsubmit="event.preventDefault();">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input">
+                            <button type="submit" class="newsletter-btn">Subscribe</button>
+                        </form>
+                        <div class="footer-contact mt-4" style="margin-top: 20px;">
+                            <p>info@waveshark.com</p>
+                            <p>+62 812 3456 7890</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 WaveShark Ventures. All Rights Reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
         <style>
             /* Scoped Styles for Malaysia Slider (mys) */
@@ -1200,6 +1363,510 @@
                 .cross {
                     display: none;
                 }
+            }
+
+            /* ================= TOUR PACKAGE SLIDER ================= */
+            .tour-package {
+                padding: 100px 40px;
+                text-align: center;
+                max-width: 1400px;
+                /* Wider for slider */
+                margin: auto;
+                position: relative;
+            }
+
+            .tour-slider-container {
+                position: relative;
+                padding: 0 40px;
+                /* Space for arrows */
+            }
+
+            .tour-track-wrapper {
+                overflow: hidden;
+                width: 100%;
+            }
+
+            .tour-track {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+            }
+
+            .tour-slide-item {
+                flex-shrink: 0;
+                padding: 0 10px;
+                /* Gap between cards */
+                box-sizing: border-box;
+            }
+
+            .tour-card {
+                position: relative;
+                aspect-ratio: 3/4;
+                background-size: cover;
+                background-position: center;
+                overflow: hidden;
+                cursor: pointer;
+                border-radius: 4px;
+                /* Optional slight roundness */
+            }
+
+            /* Reuse existing styles */
+            .section-title {
+                color: var(--gold);
+                font-size: 32px;
+                margin-bottom: 50px;
+                text-transform: capitalize;
+            }
+
+            .tour-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 60px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s;
+            }
+
+            .tour-info h3 {
+                color: #ccc;
+                font-size: 14px;
+                font-weight: normal;
+            }
+
+            .tour-border {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                border: 1px solid rgba(212, 175, 55, 0.5);
+                pointer-events: none;
+                transition: 0.3s;
+            }
+
+            .tour-card:hover .tour-border {
+                border-color: var(--gold);
+            }
+
+            /* Navigation Arrows */
+            .nav-arrow {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(0, 0, 0, 0.5);
+                border: 1px solid var(--gold);
+                color: var(--gold);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.3s;
+            }
+
+            .nav-arrow:hover {
+                background: var(--gold);
+                color: black;
+            }
+
+            .left-arrow {
+                left: 0;
+            }
+
+            .right-arrow {
+                right: 0;
+            }
+
+            .tour-dots {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+                background-color: #333;
+                border-radius: 50%;
+                display: inline-block;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .dot.active {
+                background-color: var(--gold);
+            }
+
+            /* Hide mobile grid tweaks since we use slider now */
+            @media (max-width: 768px) {
+                .tour-slider-container {
+                    padding: 0;
+                }
+
+                .tour-card {
+                    /* Big-big images on mobile (taller) */
+                    aspect-ratio: 2/3;
+                }
+
+                .tour-package {
+                    padding: 50px 10px;
+                }
+            }
+
+            /* ================= CTA SECTION ================= */
+            .cta-section {
+                padding: 0 40px 100px;
+                max-width: 1200px;
+                margin: auto;
+            }
+
+            .cta-banner {
+                width: 100%;
+                height: 300px;
+                background-size: cover;
+                background-position: center;
+            }
+
+            /* ================= TOUR & CTA MOBILE ================= */
+            @media (max-width: 768px) {
+                .cta-banner {
+                    height: 150px;
+                }
+            }
+
+            .mt-custom {
+                margin-top: 35px;
+            }
+
+            .mt-custom {
+                margin-top: 35px;
+            }
+
+            /* ================= TESTIMONY SECTION ================= */
+            .testimony-section {
+                position: relative;
+                width: 100%;
+                min-height: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: #fff;
+                overflow: hidden;
+            }
+
+            .testimony-bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+                z-index: 1;
+            }
+
+            .testimony-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.85);
+                /* Dark overlay */
+                z-index: 2;
+            }
+
+            .testimony-content {
+                position: relative;
+                z-index: 3;
+                max-width: 800px;
+                padding: 40px;
+            }
+
+            .testimony-title {
+                color: var(--gold);
+                /* Use the gold variable */
+                font-size: 40px;
+                /* Increased from 32px */
+                margin-bottom: 20px;
+            }
+
+            .testimony-subtitle {
+                color: #ccc;
+                font-size: 20px;
+                /* Increased from 16px */
+                margin-bottom: 50px;
+            }
+
+            .quote-container {
+                position: relative;
+                display: inline-block;
+                padding: 0 40px;
+            }
+
+            .quote-text {
+                font-size: 24px;
+                /* Increased from 18px */
+                line-height: 1.6;
+                font-style: italic;
+                color: #ddd;
+            }
+
+            .quote-icon {
+                color: var(--gold);
+                font-size: 60px;
+                font-family: serif;
+                /* Better looking quotes */
+                line-height: 0;
+                position: absolute;
+            }
+
+            .left-quote {
+                top: 10px;
+                left: 0;
+            }
+
+            .right-quote {
+                bottom: -10px;
+                right: 0;
+            }
+
+            .testimony-author {
+                margin-top: 30px;
+                font-size: 20px;
+                /* Increased from 16px */
+                color: var(--gold);
+            }
+
+            @media (max-width: 768px) {
+                .testimony-section {
+                    min-height: 400px;
+                }
+
+                .testimony-title {
+                    font-size: 32px;
+                    /* Increased from 28px */
+                }
+
+                .quote-text {
+                    font-size: 20px;
+                    /* Increased from 16px */
+                }
+
+                .quote-container {
+                    padding: 0 20px;
+                }
+
+                .quote-icon {
+                    font-size: 40px;
+                }
+
+                .testimony-subtitle {
+                    font-size: 16px;
+                }
+            }
+
+            /* ================= FOOTER ================= */
+            .site-footer {
+                background-color: #050505;
+                color: #ccc;
+                padding: 80px 0 0;
+                font-family: 'Arial', sans-serif;
+            }
+
+            .footer-container {
+                max-width: 1200px;
+                margin: auto;
+                padding: 0 40px;
+            }
+
+            .footer-row {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 40px;
+            }
+
+            .footer-col {
+                flex: 1;
+                min-width: 250px;
+                margin-bottom: 40px;
+            }
+
+            .footer-logo {
+                color: var(--gold);
+                font-size: 28px;
+                margin-bottom: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .footer-desc {
+                line-height: 1.6;
+                margin-bottom: 20px;
+                font-size: 14px;
+            }
+
+            .footer-title {
+                color: #fff;
+                font-size: 18px;
+                margin-bottom: 25px;
+                position: relative;
+                padding-bottom: 10px;
+            }
+
+            .footer-title::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 50px;
+                height: 2px;
+                background-color: var(--gold);
+            }
+
+            .footer-links {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-links li {
+                margin-bottom: 12px;
+            }
+
+            .footer-links a {
+                color: #bbb;
+                text-decoration: none;
+                transition: 0.3s;
+                display: inline-block;
+            }
+
+            .footer-links a:hover {
+                color: var(--gold);
+                transform: translateX(5px);
+            }
+
+            .footer-contact {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-contact li {
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .social-links {
+                display: flex;
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                border-radius: 50%;
+                text-decoration: none;
+                transition: 0.3s;
+                font-size: 14px;
+                border: 1px solid transparent;
+            }
+
+            .social-link:hover {
+                background: var(--gold);
+                color: #000;
+                border-color: var(--gold);
+            }
+
+            .footer-bottom {
+                background: #000;
+                text-align: center;
+                padding: 25px 0;
+                margin-top: 40px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 14px;
+            }
+
+            @media (max-width: 768px) {
+                .footer-row {
+                    flex-direction: column;
+                    gap: 20px;
+                }
+
+                .footer-col {
+                    margin-bottom: 20px;
+                }
+
+                .footer-bottom-content {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+            }
+
+            /* Newsletter */
+            .newsletter-form {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .newsletter-input {
+                padding: 10px;
+                border-radius: 4px;
+                border: 1px solid #333;
+                background: #111;
+                color: #fff;
+            }
+
+            .newsletter-btn {
+                padding: 10px;
+                background: var(--gold);
+                color: #000;
+                border: none;
+                border-radius: 4px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .newsletter-btn:hover {
+                background: #fff;
+            }
+
+            .footer-bottom-content {
+                max-width: 1200px;
+                margin: auto;
+                padding: 0 40px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .legal-links a {
+                color: #777;
+                text-decoration: none;
+                margin-left: 20px;
+                font-size: 12px;
+                transition: 0.3s;
+            }
+
+            .legal-links a:hover {
+                color: var(--gold);
             }
         </style>
 

@@ -1121,11 +1121,13 @@
             }
 
             .services-grid {
-                max-width: 1200px;
-                margin: auto;
+                max-width: 1000px;
+                /* Reduced to center content more */
+                margin: 0 auto;
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: 30px;
+                justify-content: center;
             }
 
             .service-card {
@@ -1145,7 +1147,7 @@
             }
 
             .service-card h1 {
-                font-size: 64px;
+                font-size: 84px;
                 color: var(--gold);
                 margin-bottom: 20px;
             }

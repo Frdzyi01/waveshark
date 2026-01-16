@@ -1,4 +1,28 @@
 <x-layout>
+    <!-- Page Transition Overlay -->
+    <div id="page-transition" class="fixed inset-0 z-[9999] pointer-events-none bg-black opacity-0 transition-opacity duration-500 ease-in-out flex items-center justify-center">
+        <div class="relative">
+            <div class="absolute inset-0 bg-gold-500 blur-2xl opacity-20 animate-pulse rounded-full"></div>
+            <img src="{{ asset('images/logo-waveshart-removebg.png') }}" class="h-24 w-auto drop-shadow-2xl relative z-10" alt="Loading...">
+        </div>
+    </div>
+
+    <script>
+        function startTransition(url) {
+            const overlay = document.getElementById('page-transition');
+
+            // Enable pointer events to block clicks and start fade
+            overlay.classList.remove('pointer-events-none');
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
+
+            // Navigate after animation (faster: 500ms match transition)
+            setTimeout(() => {
+                window.location.href = url;
+            }, 600);
+        }
+    </script>
+
     <x-header />
 
     <!-- Main Content Wrapper -->
@@ -12,12 +36,6 @@
                     description: 'The Jewel of Kedah. Turqouise waters, limestone cliffs, and ancient rainforests.',
                     image: '{{ asset('images/laut-malay.jpg') }}',
                     thumbnail: '{{ asset('images/laut-malay.jpg') }}'
-                },
-                {
-                    name: 'Perhentian Islands',
-                    description: 'A tropical paradise with crystal clear waters, perfect for snorkeling and diving.',
-                    image: '{{ asset('images/pangkalan-islands.jpg') }}',
-                    thumbnail: '{{ asset('images/pangkalan-islands.jpg') }}'
                 },
                 {
                     name: 'Sabah',
@@ -122,86 +140,16 @@
                     <!-- NEW SINGAPORE SLIDER IMPLEMENTATION -->
                     <div class="sg-container">
                         <div class="sg-slide">
-
-                            <!-- Item 1 -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');">
-                                <div class="sg-content">
-                                    <div class="sg-name">Marina Bay</div>
-                                    <div class="sg-des">
-                                        Iconic skyline featuring the Marina Bay Sands and the futuristic Supertree Grove.
-                                    </div>
-                                    <button class="sg-btn">See More</button>
-                                </div>
-                            </div>
-
-                            <!-- Item 2 -->
+                            <!-- Item 1: ST John Island -->
                             <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
-                                <div class="sg-content">
-                                    <div class="sg-name">Sentosa Island</div>
+                                <div class="sg-content" style="display: block;">
+                                    <div class="sg-name">ST John Island</div>
                                     <div class="sg-des">
-                                        A sunny island resort home to Universal Studios, S.E.A. Aquarium, and pristine beaches.
+                                        A tranquil getaway to experience nature and history.
                                     </div>
-                                    <button class="sg-btn">See More</button>
+                                    <button class="sg-btn" onclick="startTransition('/booking-stjohnislands')">See More</button>
                                 </div>
                             </div>
-
-                            <!-- Item 3 -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
-                                <div class="sg-content">
-                                    <div class="sg-name">Gardens by the Bay</div>
-                                    <div class="sg-des">
-                                        A nature park spanning 101 hectares in the Central Region of Singapore.
-                                    </div>
-                                    <button class="sg-btn">See More</button>
-                                </div>
-                            </div>
-
-                            <!-- Item 4 (Repeat) -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');">
-                                <div class="sg-content">
-                                    <div class="sg-name">Marina Bay</div>
-                                    <div class="sg-des">
-                                        Experience the luxury and world-class entertainment at the heart of the city.
-                                    </div>
-                                    <button class="sg-btn">See More</button>
-                                </div>
-                            </div>
-
-                            <!-- Item 5 (Repeat) -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
-                                <div class="sg-content">
-                                    <div class="sg-name">Sentosa Island</div>
-                                    <div class="sg-des">
-                                        Adventure awaits at the State of Fun.
-                                    </div>
-                                    <button class="sg-btn">See More</button>
-                                </div>
-                            </div>
-
-                            <!-- Item 6 (Repeat) -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
-                                <div class="sg-content">
-                                    <div class="sg-name">Gardens by the Bay</div>
-                                    <div class="sg-des">
-                                        Discover the Cloud Forest and Flower Dome.
-                                    </div>
-                                    <button class="sg-btn">See More</button>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="sg-button">
-                            <button class="sg-prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-                                </svg>
-                            </button>
-                            <button class="sg-next">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                </svg>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -277,62 +225,62 @@
                                     <div class="mys-des">
                                         Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
                                     </div>
-                                    <button class="mys-btn">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
                                 </div>
                             </div>
 
-                            <!-- Item 2: Pangkalan Islands -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}');">
-                                <div class="mys-content">
-                                    <div class="mys-name">Pangkalan Islands</div>
-                                    <div class="mys-des">
-                                        Gugusan pulau yang indah dengan air jernih dan pemandangan laut yang memukau.
-                                    </div>
-                                    <button class="mys-btn">See More</button>
-                                </div>
-                            </div>
-
-                            <!-- Item 3: Sabah -->
+                            <!-- Item 2: Sabah -->
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
                                         Negeri di Bawah Bayu, rumah bagi Gunung Kinabalu dan hidupan liar yang unik.
                                     </div>
-                                    <button class="mys-btn">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
                                 </div>
                             </div>
 
-                            <!-- Item 4: Langkawi (Repeat for loop) -->
+                            <!-- Item 3: Langkawi -->
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
                                         Destinasi pelancongan utama dengan legenda Mahsuri dan keindahan alam semulajadi.
                                     </div>
-                                    <button class="mys-btn">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
                                 </div>
                             </div>
 
-                            <!-- Item 5: Pangkalan Islands (Repeat) -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}');">
-                                <div class="mys-content">
-                                    <div class="mys-name">Pangkalan Islands</div>
-                                    <div class="mys-des">
-                                        Syurga tersembunyi bagi pencinta alam dan aktiviti air.
-                                    </div>
-                                    <button class="mys-btn">See More</button>
-                                </div>
-                            </div>
-
-                            <!-- Item 6: Sabah (Repeat) -->
+                            <!-- Item 4: Sabah -->
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
                                         Terkenal dengan tapak menyelam bertaraf dunia di Sipadan dan budaya yang kaya.
                                     </div>
-                                    <button class="mys-btn">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 5: Langkawi -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Langkawi</div>
+                                    <div class="mys-des">
+                                        Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
+                                    </div>
+                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
+                                </div>
+                            </div>
+
+                            <!-- Item 6: Sabah -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Sabah</div>
+                                    <div class="mys-des">
+                                        Negeri di Bawah Bayu, rumah bagi Gunung Kinabalu dan hidupan liar yang unik.
+                                    </div>
+                                    <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
                                 </div>
                             </div>
 

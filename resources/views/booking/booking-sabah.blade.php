@@ -527,6 +527,11 @@
         .tour-track {
             display: flex;
             transition: transform 0.5s ease-in-out;
+            width: 100%;
+        }
+
+        .justify-center {
+            justify-content: center;
         }
 
         .tour-slide-item {
@@ -557,18 +562,44 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 60px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            height: 100px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
+            padding-bottom: 15px;
             transition: 0.3s;
         }
 
         .tour-info h3 {
             color: #ccc;
-            font-size: 14px;
-            font-weight: normal;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .text-xs {
+            font-size: 12px;
+        }
+
+        .text-gray-400 {
+            color: #9ca3af;
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+
+        .mt-1 {
+            margin-top: 4px;
+        }
+
+        .mt-2 {
+            margin-top: 8px;
         }
 
         .tour-border {
@@ -1061,14 +1092,24 @@
     <section class="tour-package reveal" x-data="{
                 activeTourSlide: 0,
                 tourItems: [
-                    { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Pangkalan Islands' },
-                    { img: '{{ asset('images/laut-singapore.jpg') }}', title: 'Singapore Coast' },
-                    { img: '{{ asset('images/sabah.jpg') }}', title: 'Sabah Nature' },
-                    { img: '{{ asset('images/laut-malay.jpg') }}', title: 'Malay Coast' },
-                    { img: '{{ asset('images/singapore.jpg') }}', title: 'Gardens by the Bay' },
-                    { img: '{{ asset('images/laut-singapore2.jpg') }}', title: 'Sentosa Island' },
-                    { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Hidden Gems' },
-                    { img: '{{ asset('images/sabah.jpg') }}', title: 'Borneo Wild' }
+                    { 
+                        img: '{{ asset('images/laut-singapore2.jpg') }}', 
+                        title: 'Sunset Dinner Cruise', 
+                        desc: 'Romantic evening at sea', 
+                        price: 'RM 450' 
+                    },
+                    { 
+                        img: '{{ asset('images/laut-malay.jpg') }}', 
+                        title: 'Fishing Charter', 
+                        desc: 'Deep sea fishing adventure', 
+                        price: 'RM 600' 
+                    },
+                    { 
+                        img: '{{ asset('images/sabah.jpg') }}', 
+                        title: 'Mount Climbing', 
+                        desc: 'Conquer Mt. Kinabalu', 
+                        price: 'RM 1200' 
+                    }
                 ],
                 get visibleTourSlides() {
                     if (window.innerWidth >= 1024) return 4;
@@ -1098,13 +1139,15 @@
         <div class="tour-slider-container">
             <!-- Wrapper -->
             <div class="tour-track-wrapper">
-                <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
+                <div class="tour-track" :class="{ 'justify-center': tourItems.length <= visibleTourSlides }" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
                     <template x-for="(item, index) in tourItems" :key="index">
                         <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
                             <div class="tour-card" :style="`background-image: url('${item.img}')`">
                                 <div class="tour-overlay">
                                     <div class="tour-info">
                                         <h3 x-text="item.title"></h3>
+                                        <p x-text="item.desc" class="text-xs text-gray-400 mt-1"></p>
+                                        <p x-text="item.price" class="text-gold font-bold mt-2"></p>
                                     </div>
                                 </div>
                                 <div class="tour-border"></div>

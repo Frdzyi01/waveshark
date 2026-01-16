@@ -65,6 +65,7 @@
             }
         }"
         @mousemove.window="handleMove"
+        :class="{ 'h-screen overflow-hidden': expanded }"
         class="relative min-h-screen bg-black overflow-x-hidden">
 
         <!-- BACK BUTTON (When Expanded) -->
@@ -316,71 +317,74 @@
 
         </div>
 
-        <!-- ================= SERVICES ================= -->
-        <section class="services reveal" x-data="{ servicePage: 0 }">
-            <div class="services-viewport">
-                <div class="services-grid" :class="{'slide-2': servicePage === 1}">
-                    <div class="service-card">
-                        <h1>01</h1>
-                        <h3>Tour Packages</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    <div class="service-card">
-                        <h1>02</h1>
-                        <h3>Flight Booking</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    <div class="service-card">
-                        <h1>03</h1>
-                        <h3>Hotel Booking</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                    <div class="service-card">
-                        <h1>04</h1>
-                        <h3>Destination Booking</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </div>
-                </div>
-            </div>
+        <!-- ================= CONTENT WRAPPER (Hidden when expanded) ================= -->
+        <div x-show="!expanded" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
 
-            <!-- Mobile Pagination Dots -->
-            <div class="service-dots">
-                <div class="dot" :class="{'active': servicePage === 0}" @click="servicePage = 0"></div>
-                <div class="dot" :class="{'active': servicePage === 1}" @click="servicePage = 1"></div>
-            </div>
-        </section>
-
-        <!-- ================= ABOUT ================= -->
-        <section class="about reveal">
-            <div class="about-wrapper">
-
-                <div class="about-img">
-                    <img src="images/laut-singapore2.jpg">
-                    <div class="cross tr"></div>
-                </div>
-
-                <div class="about-content">
-                    <div class="cross center-top"></div>
-                    <h2>About Us</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facere aut quibusdam beatae. Cum blanditiis odit nulla nisi, magni harum aliquam officia, aperiam odio sunt quas cupiditate in officiis molestias maiores repudiandae illo recusandae mollitia et a iste omnis. Laborum quis vitae unde sint possimus eaque accusantium, sunt magnam minus itaque explicabo a cumque asperiores, numquam, reprehenderit voluptatibus odit totam iure ipsa veritatis. Obcaecati odio tempore expedita fuga distinctio quas minus, ipsam rem numquam earum sequi alias adipisci culpa deserunt, excepturi, dolor sed corporis ut placeat iusto maxime! Amet veritatis omnis aut itaque voluptatibus nisi natus qui accusamus ex quae.
-                    </p>
-                    <div class="about-buttons">
-                        <button class="btn-gold">SEKARANG</button>
-                        <button class="btn-outline">KENAPA KAMI?</button>
+            <!-- ================= SERVICES ================= -->
+            <section class="services reveal" x-data="{ servicePage: 0 }">
+                <div class="services-viewport">
+                    <div class="services-grid" :class="{'slide-2': servicePage === 1}">
+                        <div class="service-card">
+                            <h1>01</h1>
+                            <h3>Tour Packages</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                        <div class="service-card">
+                            <h1>02</h1>
+                            <h3>Flight Booking</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                        <div class="service-card">
+                            <h1>03</h1>
+                            <h3>Hotel Booking</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
+                        <div class="service-card">
+                            <h1>04</h1>
+                            <h3>Destination Booking</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="about-img">
-                    <img src="images/laut-malay.jpg">
-                    <div class="cross bl"></div>
+                <!-- Mobile Pagination Dots -->
+                <div class="service-dots">
+                    <div class="dot" :class="{'active': servicePage === 0}" @click="servicePage = 0"></div>
+                    <div class="dot" :class="{'active': servicePage === 1}" @click="servicePage = 1"></div>
                 </div>
+            </section>
 
-            </div>
-        </section>
+            <!-- ================= ABOUT ================= -->
+            <section class="about reveal">
+                <div class="about-wrapper">
 
-        <!-- ================= TOUR PACKAGE SLIDER ================= -->
-        <section class="tour-package reveal" x-data="{
+                    <div class="about-img">
+                        <img src="images/laut-singapore2.jpg">
+                        <div class="cross tr"></div>
+                    </div>
+
+                    <div class="about-content">
+                        <div class="cross center-top"></div>
+                        <h2>About Us</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facere aut quibusdam beatae. Cum blanditiis odit nulla nisi, magni harum aliquam officia, aperiam odio sunt quas cupiditate in officiis molestias maiores repudiandae illo recusandae mollitia et a iste omnis. Laborum quis vitae unde sint possimus eaque accusantium, sunt magnam minus itaque explicabo a cumque asperiores, numquam, reprehenderit voluptatibus odit totam iure ipsa veritatis. Obcaecati odio tempore expedita fuga distinctio quas minus, ipsam rem numquam earum sequi alias adipisci culpa deserunt, excepturi, dolor sed corporis ut placeat iusto maxime! Amet veritatis omnis aut itaque voluptatibus nisi natus qui accusamus ex quae.
+                        </p>
+                        <div class="about-buttons">
+                            <button class="btn-gold">SEKARANG</button>
+                            <button class="btn-outline">KENAPA KAMI?</button>
+                        </div>
+                    </div>
+
+                    <div class="about-img">
+                        <img src="images/laut-malay.jpg">
+                        <div class="cross bl"></div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ================= TOUR PACKAGE SLIDER ================= -->
+            <section class="tour-package reveal" x-data="{
                 activeTourSlide: 0,
                 tourItems: [
                     { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Pangkalan Islands' },
@@ -415,125 +419,127 @@
                 }
             }" @resize.window="activeTourSlide = 0">
 
-            <h2 class="section-title">Tour Package</h2>
+                <h2 class="section-title">Tour Package</h2>
 
-            <div class="tour-slider-container">
-                <!-- Wrapper -->
-                <div class="tour-track-wrapper">
-                    <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
-                        <template x-for="(item, index) in tourItems" :key="index">
-                            <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
-                                <div class="tour-card" :style="`background-image: url('${item.img}')`">
-                                    <div class="tour-overlay">
-                                        <div class="tour-info">
-                                            <h3 x-text="item.title"></h3>
+                <div class="tour-slider-container">
+                    <!-- Wrapper -->
+                    <div class="tour-track-wrapper">
+                        <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
+                            <template x-for="(item, index) in tourItems" :key="index">
+                                <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
+                                    <div class="tour-card" :style="`background-image: url('${item.img}')`">
+                                        <div class="tour-overlay">
+                                            <div class="tour-info">
+                                                <h3 x-text="item.title"></h3>
+                                            </div>
                                         </div>
+                                        <div class="tour-border"></div>
                                     </div>
-                                    <div class="tour-border"></div>
                                 </div>
-                            </div>
-                        </template>
+                            </template>
+                        </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <!-- Dots (Optional visualization of progress) -->
-            <div class="tour-dots mt-custom">
-                <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
-                    <span class="dot"
-                        :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
-                        @click="activeTourSlide = (i - 1) * visibleTourSlides">
-                    </span>
-                </template>
-            </div>
-
-        </section>
-
-        <!-- ================= TESTIMONY SECTION ================= -->
-        <section class="testimony-section">
-            <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
-            <div class="testimony-overlay"></div>
-            <div class="testimony-content">
-                <h2 class="testimony-title">Testimony</h2>
-                <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
-
-                <div class="quote-container">
-                    <span class="quote-icon left-quote">“</span>
-                    <p class="quote-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                    </p>
-                    <span class="quote-icon right-quote">”</span>
+                <!-- Dots (Optional visualization of progress) -->
+                <div class="tour-dots mt-custom">
+                    <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
+                        <span class="dot"
+                            :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
+                            @click="activeTourSlide = (i - 1) * visibleTourSlides">
+                        </span>
+                    </template>
                 </div>
 
-                <div class="testimony-author">- Febrian -</div>
-            </div>
-        </section>
+            </section>
 
-        <!-- ================= FOOTER ================= -->
-        <footer class="site-footer reveal">
-            <div class="footer-container">
-                <div class="footer-row">
-                    <!-- Column 1: Brand -->
-                    <div class="footer-col">
-                        <h3 class="footer-logo">WaveShark</h3>
-                        <p class="footer-desc">
-                            Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
+            <!-- ================= TESTIMONY SECTION ================= -->
+            <section class="testimony-section">
+                <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
+                <div class="testimony-overlay"></div>
+                <div class="testimony-content">
+                    <h2 class="testimony-title">Testimony</h2>
+                    <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
+
+                    <div class="quote-container">
+                        <span class="quote-icon left-quote">“</span>
+                        <p class="quote-text">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                         </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link">FB</a>
-                            <a href="#" class="social-link">IG</a>
-                            <a href="#" class="social-link">TW</a>
+                        <span class="quote-icon right-quote">”</span>
+                    </div>
+
+                    <div class="testimony-author">- Febrian -</div>
+                </div>
+            </section>
+
+            <!-- ================= FOOTER ================= -->
+            <footer class="site-footer reveal">
+                <div class="footer-container">
+                    <div class="footer-row">
+                        <!-- Column 1: Brand -->
+                        <div class="footer-col">
+                            <h3 class="footer-logo">WaveShark</h3>
+                            <p class="footer-desc">
+                                Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-link">FB</a>
+                                <a href="#" class="social-link">IG</a>
+                                <a href="#" class="social-link">TW</a>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Column 2: Quick Links -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
+                        <!-- Column 2: Quick Links -->
+                        <div class="footer-col">
+                            <h4 class="footer-title">Quick Links</h4>
+                            <ul class="footer-links">
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Services</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                            </ul>
+                        </div>
 
-                    <!-- Column 3: Tours -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Top Tours</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Bali, Indonesia</a></li>
-                            <li><a href="#">Singapore</a></li>
-                            <li><a href="#">Sabah, Malaysia</a></li>
-                            <li><a href="#">Marine Park</a></li>
-                        </ul>
-                    </div>
+                        <!-- Column 3: Tours -->
+                        <div class="footer-col">
+                            <h4 class="footer-title">Top Tours</h4>
+                            <ul class="footer-links">
+                                <li><a href="#">Bali, Indonesia</a></li>
+                                <li><a href="#">Singapore</a></li>
+                                <li><a href="#">Sabah, Malaysia</a></li>
+                                <li><a href="#">Marine Park</a></li>
+                            </ul>
+                        </div>
 
-                    <!-- Column 4: Newsletter -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Newsletter</h4>
-                        <p class="footer-desc">Subscribe to get the latest updates and offers.</p>
-                        <form action="#" class="newsletter-form" onsubmit="event.preventDefault();">
-                            <input type="email" placeholder="Enter your email" class="newsletter-input">
-                            <button type="submit" class="newsletter-btn">Subscribe</button>
-                        </form>
-                        <div class="footer-contact mt-4" style="margin-top: 20px;">
-                            <p>info@waveshark.com</p>
-                            <p>+62 812 3456 7890</p>
+                        <!-- Column 4: Newsletter -->
+                        <div class="footer-col">
+                            <h4 class="footer-title">Newsletter</h4>
+                            <p class="footer-desc">Subscribe to get the latest updates and offers.</p>
+                            <form action="#" class="newsletter-form" onsubmit="event.preventDefault();">
+                                <input type="email" placeholder="Enter your email" class="newsletter-input">
+                                <button type="submit" class="newsletter-btn">Subscribe</button>
+                            </form>
+                            <div class="footer-contact mt-4" style="margin-top: 20px;">
+                                <p>info@waveshark.com</p>
+                                <p>+62 812 3456 7890</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2024 WaveShark Ventures. All Rights Reserved.</p>
-                    <div class="legal-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <p>&copy; 2024 WaveShark Ventures. All Rights Reserved.</p>
+                        <div class="legal-links">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
+        <!-- ================= END CONTENT WRAPPER ================= -->
 
         <style>
             /* Scoped Styles for Malaysia Slider (mys) */

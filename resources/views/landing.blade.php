@@ -124,7 +124,7 @@
                         <div class="sg-slide">
 
                             <!-- Item 1 -->
-                            <div class="sg-item" data-bg="{{ asset('images/laut-singapore.jpg') }}">
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');">
                                 <div class="sg-content">
                                     <div class="sg-name">Marina Bay</div>
                                     <div class="sg-des">
@@ -135,7 +135,7 @@
                             </div>
 
                             <!-- Item 2 -->
-                            <div class="sg-item" data-bg="{{ asset('images/laut-singapore2.jpg') }}">
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
                                 <div class="sg-content">
                                     <div class="sg-name">Sentosa Island</div>
                                     <div class="sg-des">
@@ -146,7 +146,7 @@
                             </div>
 
                             <!-- Item 3 -->
-                            <div class="sg-item" data-bg="{{ asset('images/singapore.jpg') }}">
+                            <div class="sg-item" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
                                 <div class="sg-content">
                                     <div class="sg-name">Gardens by the Bay</div>
                                     <div class="sg-des">
@@ -157,7 +157,7 @@
                             </div>
 
                             <!-- Item 4 (Repeat) -->
-                            <div class="sg-item" data-bg="{{ asset('images/laut-singapore.jpg') }}">
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');">
                                 <div class="sg-content">
                                     <div class="sg-name">Marina Bay</div>
                                     <div class="sg-des">
@@ -168,7 +168,7 @@
                             </div>
 
                             <!-- Item 5 (Repeat) -->
-                            <div class="sg-item" data-bg="{{ asset('images/laut-singapore2.jpg') }}">
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
                                 <div class="sg-content">
                                     <div class="sg-name">Sentosa Island</div>
                                     <div class="sg-des">
@@ -179,7 +179,7 @@
                             </div>
 
                             <!-- Item 6 (Repeat) -->
-                            <div class="sg-item" data-bg="{{ asset('images/singapore.jpg') }}">
+                            <div class="sg-item" style="background-image: url('{{ asset('images/singapore.jpg') }}');">
                                 <div class="sg-content">
                                     <div class="sg-name">Gardens by the Bay</div>
                                     <div class="sg-des">
@@ -271,7 +271,7 @@
                         <div class="mys-slide">
 
                             <!-- Item 1: Langkawi -->
-                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/langkawi.jpg') }}">
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -282,7 +282,7 @@
                             </div>
 
                             <!-- Item 2: Pangkalan Islands -->
-                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}">
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Pangkalan Islands</div>
                                     <div class="mys-des">
@@ -293,7 +293,7 @@
                             </div>
 
                             <!-- Item 3: Sabah -->
-                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/sabah.jpg') }}">
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
@@ -304,7 +304,7 @@
                             </div>
 
                             <!-- Item 4: Langkawi (Repeat for loop) -->
-                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/langkawi.jpg') }}">
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -315,7 +315,7 @@
                             </div>
 
                             <!-- Item 5: Pangkalan Islands (Repeat) -->
-                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}">
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/pangkalan-islands.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Pangkalan Islands</div>
                                     <div class="mys-des">
@@ -326,7 +326,7 @@
                             </div>
 
                             <!-- Item 6: Sabah (Repeat) -->
-                            <div class="mys-item" data-bg="{{ asset('template-slider-malaysia/image/sabah.jpg') }}">
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
@@ -368,7 +368,6 @@
 
         </div>
 
-        <!-- ================= SERVICES ================= -->
         <!-- ================= SERVICES ================= -->
         <section class="services reveal" x-data="{ servicePage: 0 }">
             <div class="services-viewport">
@@ -503,16 +502,9 @@
 
         </section>
 
-        <!-- ================= CTA SECTION ================= -->
-        <section class="cta-section reveal">
-            <div class="cta-banner" data-bg="{{ asset('images/singapore.jpg') }}">
-                <!-- Overlay or Content if needed -->
-            </div>
-        </section>
-
         <!-- ================= TESTIMONY SECTION ================= -->
-        <section class="testimony-section reveal">
-            <div class="testimony-bg" data-bg="{{ asset('images/pangkalan-islands.jpg') }}"></div>
+        <section class="testimony-section">
+            <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
             <div class="testimony-overlay"></div>
             <div class="testimony-content">
                 <h2 class="testimony-title">Testimony</h2>

@@ -10,218 +10,148 @@
 
         :root {
             --primary-color: #3d5cb8;
-            --primary-color-dark: #334c99;
+            --white: #ffffff;
+            --gold: #d4af37;
             --text-dark: #0f172a;
             --text-light: #94a3b8;
-            --extra-light: #f1f5f9;
-            --white: #ffffff;
-            --max-width: 1200px;
         }
-
 
         .booking-page-font {
             font-family: "Poppins", sans-serif;
         }
 
-        .section__container {
-            max-width: var(--max-width);
-            margin: auto;
-            padding: 2rem 1rem;
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            /* Full height to encompass search + services */
+            display: flex;
+            flex-direction: column;
+            /* Stack Search + Services vertically */
+            align-items: center;
+            justify-content: center;
+            /* Center vertically */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+            padding-top: 80px;
+            /* Add padding for navbar space */
+            padding-bottom: 40px;
+            gap: 60px;
+            /* Gap between search and services */
         }
 
-        .header__container {
+        /* GRADIENT OVERLAY */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(0, 0, 0, 0.4) 0%,
+                    /* Darker top for navbar visibility */
+                    rgba(0, 0, 0, 0.2) 40%,
+                    /* Lighter middle */
+                    rgba(0, 0, 0, 0.9) 100%
+                    /* Dark bottom for contrast with search/services */
+                );
+            z-index: 1;
+        }
+
+        /* SEARCH CONTAINER */
+        .search-container {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 700px;
+            padding: 0 20px;
             text-align: center;
-            padding-bottom: 1rem;
         }
 
-        .section__header {
-            font-size: 2.5rem;
-            font-weight: 600;
-            line-height: 3rem;
+        .search-title {
             color: var(--white);
-            margin-bottom: 1rem;
-            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn {
-            padding: 0.75rem 2rem;
-            outline: none;
-            border: none;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--white);
-            background-image: linear-gradient(to right, var(--primary-color) 0%, #00d2ff 51%, var(--primary-color) 100%);
-            background-size: 200% auto;
-            border-radius: 2rem;
-            cursor: pointer;
-            transition: 0.5s;
-            box-shadow: 0 4px 15px rgba(61, 92, 184, 0.3);
-            text-transform: uppercase;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
         }
 
-        .btn:hover {
-            background-position: right center;
-            color: #fff;
-            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.4);
-            transform: translateY(-3px);
-        }
-
-        .booking__container {
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            /* Glassmorphism Effect */
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .booking__container form {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr) auto;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .booking__container .input__content {
-            width: 100%;
-        }
-
-        .booking__container .form__group {
+        /* GLASSMORPHISM SEARCH BAR */
+        .search-box {
+            position: relative;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            padding: 8px 8px 8px 25px;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
-        .booking__container .form__group span {
-            padding: 12px;
-            font-size: 1.5rem;
-            color: var(--white);
-            background-color: rgba(255, 255, 255, 0.15);
-            border-radius: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: 0.3s;
+        .search-box:focus-within {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
         }
 
-        .booking__container .form__group:hover span {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            transform: scale(1.05);
-        }
-
-        .booking__container .input__group {
+        .search-input {
             width: 100%;
-            position: relative;
-        }
-
-        .booking__container label {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            font-size: 1rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
-            pointer-events: none;
-            transition: 0.3s;
-        }
-
-        .booking__container input {
-            width: 100%;
-            padding: 10px 0;
-            font-size: 1rem;
-            outline: none;
-            border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-            color: var(--white);
             background: transparent;
-            transition: 0.3s;
-        }
-
-        .booking__container input:focus {
-            border-bottom-color: #d4af37;
-        }
-
-        .booking__container input:focus~label,
-        .booking__container input:valid~label,
-        .booking__container input[type="date"]~label,
-        .booking__container input[type="number"]~label {
-            font-size: 0.8rem;
-            top: -5px;
-            color: #d4af37;
-            font-weight: 600;
-        }
-
-        /* Adjust for date inputs since they might always have value/placeholder behavior */
-        .booking__container input[type="date"] {
+            border: none;
+            outline: none;
             color: var(--white);
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        /* Date picker icon color fix for webkit */
-        .booking__container input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
         }
 
-        .booking__container .form__group p {
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        .booking__container .btn {
-            padding: 1rem;
-            font-size: 1.2rem;
+        .search-btn {
+            background: var(--white);
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
             display: flex;
-            justify-content: center;
             align-items: center;
-            white-space: nowrap;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-left: 10px;
         }
 
-        @media (width < 900px) {
-            .booking__container form {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .search-btn:hover {
+            background: var(--gold);
+            color: #000;
+            transform: scale(1.1) rotate(90deg);
         }
 
-        @media (width < 600px) {
-            .booking__container form {
-                grid-template-columns: repeat(1, 1fr);
-            }
-
-            .booking__container .btn {
-                margin-top: 1rem;
-            }
+        .search-btn i {
+            font-size: 1.2rem;
         }
 
-        /* ================= FROM LANDING PAGE ================= */
-        :root {
-            --gold: #d4af37;
-            --dark: #000;
-            --gray: #9ca3af;
-        }
-
-        /* Reveals */
-        .reveal {
-            position: relative;
-            transform: translateY(150px);
-            opacity: 0;
-            transition: 1s all ease;
-        }
-
-        .reveal.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* ================= SERVICES ================= */
+        /* SERVICES SECTION */
         .services {
-            padding: 100px 40px;
-            background: black;
-            /* Ensure background matches landing */
+            padding: 0 40px;
+            /* Removed vertical padding, handled by Hero gap/padding */
+            background: transparent;
+            /* Make transparent to show hero bg */
+            position: relative;
+            z-index: 2;
+            width: 100%;
         }
 
+        /* Adjusted Grid for 5 items */
         .services-grid {
             max-width: 1200px;
             margin: 0 auto;
@@ -232,42 +162,151 @@
         }
 
         .service-card {
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            aspect-ratio: 1/1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            /* Slightly more transparent */
+            backdrop-filter: blur(10px);
+            /* Add Glassmorphism */
+            aspect-ratio: 4/5;
+            /* Slightly taller for elegance */
             text-align: center;
-            padding: 40px 30px;
-            transition: .3s;
+            padding: 30px 20px;
+            transition: 0.4s ease;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
         }
 
         .service-card:hover {
             border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-10px);
         }
 
         .service-card h1 {
-            font-size: 84px;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.1);
+            font-weight: 800;
+            transition: 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .service-card:hover h1 {
             color: var(--gold);
-            margin-bottom: 20px;
+            transform: scale(1.1);
         }
 
         .service-card h3 {
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-size: 1.1rem;
             margin-bottom: 15px;
+            margin-top: 10px;
+            z-index: 2;
         }
 
         .service-card p {
-            font-size: 12px;
-            color: var(--gray);
-            max-width: 200px;
+            font-size: 0.85rem;
+            color: var(--text-light);
             line-height: 1.6;
+            margin-bottom: auto;
+            z-index: 2;
         }
 
-        /* ================= ABOUT ================= */
+        /* MOBILE RESPONSIVENESS */
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 900px) {
+            .hero {
+                min-height: 100vh;
+                height: auto;
+                padding-top: 120px;
+                /* More space for navbar */
+                padding-bottom: 60px;
+                gap: 40px;
+            }
+
+            .search-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-title {
+                font-size: 2rem;
+            }
+
+            .services {
+                padding: 0;
+            }
+
+            .services-viewport {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 20px 20px 20px;
+                /* Adjusted bottom padding */
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                /* Firefox */
+                -ms-overflow-style: none;
+                /* IE 10+ */
+            }
+
+            .services-viewport::-webkit-scrollbar {
+                display: none;
+                /* Hide scrollbar for cleaner look */
+            }
+
+            .services-grid {
+                display: flex;
+                gap: 20px;
+                width: max-content;
+            }
+
+            .service-card {
+                min-width: 280px;
+                /* Slightly wider for better readability */
+                scroll-snap-align: center;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            }
+
+            /* Remove dots for native scroll feel */
+            .service-dots {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .service-card {
+                min-width: 260px;
+            }
+        }
+
+        /* SCROLLBAR HIDING */
+        .services-viewport::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .services-viewport::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .services-viewport::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        /* ABOUT SECTION STYLES (Kept from original but cleaned up) */
         .about {
             padding: 100px 40px;
             position: relative;
@@ -399,79 +438,6 @@
             transform: translateX(-50%);
         }
 
-        /* ================= SERVICES MOBILE SLIDER ================= */
-        .service-dots {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .services {
-                padding: 60px 0;
-                overflow: hidden;
-                position: relative;
-            }
-
-            .services-viewport {
-                overflow: hidden;
-                width: 100%;
-                padding-bottom: 30px;
-            }
-
-            .services-grid {
-                display: flex;
-                gap: 15px;
-                margin: 0;
-                width: 100%;
-                transition: transform 0.5s ease-in-out;
-                padding: 0 7.5px;
-                justify-content: flex-start;
-                box-sizing: border-box;
-            }
-
-            .services-grid.slide-2 {
-                transform: translateX(-100%);
-            }
-
-            .services-grid.slide-3 {
-                transform: translateX(-200%);
-            }
-
-            .service-card {
-                min-width: calc(50% - 7.5px);
-                aspect-ratio: 1 / 1;
-                flex-shrink: 0;
-                padding: 15px;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .service-card h1 {
-                font-size: 42px;
-                margin-bottom: 10px;
-            }
-
-            .service-card h3 {
-                font-size: 14px;
-                margin-bottom: 10px;
-            }
-
-            .service-card p {
-                font-size: 10px;
-                line-height: 1.4;
-            }
-
-            .services-grid::-webkit-scrollbar {
-                display: none;
-            }
-
-            .service-dots {
-                display: flex;
-                justify-content: center;
-                gap: 10px;
-                margin-top: 20px;
-                width: 100%;
-            }
-        }
-
         /* ================= ABOUT MOBILE ================= */
         @media (max-width: 768px) {
             .about-wrapper {
@@ -540,15 +506,6 @@
             box-sizing: border-box;
         }
 
-        .tour-card {
-            position: relative;
-            aspect-ratio: 3/4;
-            background-size: cover;
-            background-position: center;
-            overflow: hidden;
-            cursor: pointer;
-            border-radius: 4px;
-        }
 
         .section-title {
             color: var(--gold);
@@ -557,64 +514,80 @@
             text-transform: capitalize;
         }
 
-        .tour-overlay {
+        .tour-card {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: transparent;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        /* Image Section */
+        .tour-card-img {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 100px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 15px;
-            transition: 0.3s;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+            z-index: 1;
+        }
+
+        .tour-card:hover .tour-card-img {
+            transform: scale(1.1);
+        }
+
+        /* Content Section */
+        .tour-card-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            /* Darker background for text */
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: left;
+            transition: background 0.3s ease;
+        }
+
+        .tour-card:hover .tour-card-content {
+            background: rgba(0, 0, 0, 0.85);
         }
 
         .tour-info h3 {
-            color: #ccc;
+            color: var(--gold);
             font-size: 16px;
             font-weight: bold;
-            margin-bottom: 2px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .text-xs {
+        .tour-info p {
             font-size: 12px;
+            color: #d1d5db;
+            margin-bottom: 8px;
         }
 
-        .text-gray-400 {
-            color: #9ca3af;
-        }
-
-        .text-gold {
-            color: var(--gold);
-        }
-
-        .font-bold {
+        .tour-info .price {
+            color: var(--white);
             font-weight: bold;
+            font-size: 14px;
         }
 
-        .mt-1 {
-            margin-top: 4px;
-        }
-
-        .mt-2 {
-            margin-top: 8px;
-        }
-
+        /* Remove old overlay and border styles */
+        .tour-overlay,
         .tour-border {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            pointer-events: none;
-            transition: 0.3s;
-        }
-
-        .tour-card:hover .tour-border {
-            border-color: var(--gold);
+            display: none;
         }
 
         .tour-dots {
@@ -924,187 +897,104 @@
         }
     </style>
 
+    <div class="booking-page-font bg-black">
 
-    <div x-data="{
-        destination: '',
-        checkIn: '',
-        checkOut: '',
-        guests: '',
-        bookNow() {
-            if (!this.destination || !this.checkIn || !this.checkOut) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            const phone = '6281234567890';
-            const message = `Hello, I would like to book a trip.%0a%0aDestination: ${this.destination}%0aCheck-in: ${this.checkIn}%0aCheck-out: ${this.checkOut}%0aGuests: ${this.guests}`;
-            const url = `https://wa.me/${phone}?text=${message}`;
-            window.open(url, '_blank');
-        }
-         }" class="relative w-full h-screen font-sans booking-page-font">
-
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ asset('images/laut-malay.jpg') }}');">
-            <div class="absolute inset-0 bg-black/40"></div>
-        </div>
-
-
-        <!-- Back/Close Button -->
-        <a href="{{ url('/') }}" class="absolute top-24 left-8 z-50 text-white hover:text-gold-400 transition-colors duration-300 bg-black/30 backdrop-blur-md p-2 rounded-full border border-white/10">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+        <!-- Back Button -->
+        <a href="http://127.0.0.1:8000" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
+    margin-top: 7rem;
+    margin-left: 1rem;
+">
+            <i class="ri-close-line text-xl"></i>
         </a>
 
-        <!-- Fixed Bottom Content -->
-        <div style="position: absolute !important; bottom: 0 !important; left: 0 !important; width: 100% !important; z-index: 9999 !important; padding-bottom: 20px !important; display: flex !important; justify-content: center !important; margin-bottom:100px !important;">
+        <!-- HERO SECTION (Contains Search + Services) -->
+        <div class="hero" style="background-image: url('{{ asset('images/laut-malay.jpg') }}');">
+            <div class="hero-overlay"></div>
 
-            <!-- Template Booking Form -->
-            <section class="section__container booking__container w-full max-w-7xl" style="position: relative; z-index: 20;">
-                <form @submit.prevent="bookNow()">
-                    <div class="form__group">
-                        <span><i class="ri-map-pin-line"></i></span>
-                        <div class="input__content">
-                            <div class="input__group">
-                                <input type="text" x-model="destination" required />
-                                <label>Destinations</label>
-                            </div>
-                            <p>Country, city, airport...</p>
+
+            <!-- Search Content -->
+            <div class="search-container">
+                <h1 class="search-title">Discover Langkawi</h1>
+
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Search activities (e.g., Jetski, Mangrove Tour)...">
+                    <button class="search-btn">
+                        <i class="ri-search-line"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SERVICES SECTION (Now Inside Hero) -->
+            <section class="services">
+                <div class="services-viewport">
+                    <div class="services-grid">
+                        <!-- Service 1 -->
+                        <div class="service-card">
+                            <h1>01</h1>
+                            <h3>Car Rental</h3>
+                            <p>Explore the island at your own pace with our premium fleet.</p>
+                        </div>
+                        <!-- Service 2 -->
+                        <div class="service-card">
+                            <h1>02</h1>
+                            <h3>Island Hopping</h3>
+                            <p>Discover hidden gems and pristine beaches across the archipelago.</p>
+                        </div>
+                        <!-- Service 3 -->
+                        <div class="service-card">
+                            <h1>03</h1>
+                            <h3>Jetski Rides</h3>
+                            <p>Experience the adrenaline rush on the open turquoise waters.</p>
+                        </div>
+                        <!-- Service 4 -->
+                        <div class="service-card">
+                            <h1>05</h1>
+                            <h3>Mangrove Tour</h3>
+                            <p>Navigate through the ancient geopark and diverse ecosystems.</p>
+                        </div>
+                        <!-- Service 5 -->
+                        <div class="service-card">
+                            <h1>06</h1>
+                            <h3>Dinner Cruise</h3>
+                            <p>Enjoy a romantic sunset dinner with breathtaking views.</p>
                         </div>
                     </div>
-                    <div class="form__group">
-                        <span><i class="ri-calendar-line"></i></span>
-                        <div class="input__content">
-                            <div class="input__group">
-                                <input type="date" x-model="checkIn" required />
-                                <label>Check In</label>
-                            </div>
-                            <p>Add date</p>
-                        </div>
-                    </div>
-                    <div class="form__group">
-                        <span><i class="ri-calendar-line"></i></span>
-                        <div class="input__content">
-                            <div class="input__group">
-                                <input type="date" x-model="checkOut" required />
-                                <label>Check Out</label>
-                            </div>
-                            <p>Add date</p>
-                        </div>
-                    </div>
-                    <div class="form__group">
-                        <span><i class="ri-user-3-line"></i></span>
-                        <div class="input__content">
-                            <div class="input__group">
-                                <input type="number" x-model="guests" required />
-                                <label>Guest</label>
-                            </div>
-                            <p>All types</p>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn">BOOK NOW</button>
-                </form>
+                </div>
             </section>
-            <!-- Template End Booking Form -->
-
-            <!-- BLACK BOTTOM SHADOW (BOTTOM ONLY) -->
-            <div
-                class="absolute left-0 bottom-0 w-full pointer-events-none black-bottom-shadow"
-                style="
-        height: 260px;
-        z-index: 1;
-        background: linear-gradient(
-            to top,
-            rgba(0,0,0,1) 0%,
-            rgba(0,0,0,0.95) 0%,
-            rgba(0,0,0,0.75) 35%,
-            rgba(0,0,0,0.4) 65%,
-            rgba(0,0,0,0) 100%
-        );
-    "></div>
-
-
         </div>
 
+        <!-- ================= ABOUT ================= -->
+        <section class="about">
+            <div class="about-wrapper">
 
+                <div class="about-img">
+                    <img src="{{ asset('images/laut-malay.jpg') }}">
+                    <div class="cross tr"></div>
+                </div>
 
+                <div class="about-content">
+                    <div class="cross center-top"></div>
+                    <h2>About Langkawi</h2>
+                    <p>
+                        Langkawi, known as the "Jewel of Kedah", is a stunning archipelago of 99 islands on Malaysia's west coast. Famous for its turquoise waters, limestone cliffs, and ancient rainforests, it offers a perfect blend of relaxation and adventure. Experience the thrill of jetski rides, explore the mangroves, or enjoy a romantic sunset dinner cruise. Langkawi is the ultimate tropical escape.
+                    </p>
+                    <div class="about-buttons">
+                        <button class="btn-gold">BOOK NOW</button>
+                        <button class="btn-outline">LEARN MORE</button>
+                    </div>
+                </div>
 
-    </div>
+                <div class="about-img">
+                    <img src="{{ asset('images/pangkalan-islands.jpg') }}">
+                    <div class="cross bl"></div>
+                </div>
 
-    <!-- ================= SERVICES ================= -->
-    <section class="services reveal" x-data="{ servicePage: 0 }">
-        <div class="services-viewport">
-            <div class="services-grid" :class="{
-                'slide-2': servicePage === 1, 
-                'slide-3': servicePage === 2
-            }">
-                <div class="service-card">
-                    <h1>01</h1>
-                    <h3>Car Rental</h3>
-                    <p>Explore the island at your own pace with our premium fleet.</p>
-                </div>
-                <div class="service-card">
-                    <h1>02</h1>
-                    <h3>Island Hopping</h3>
-                    <p>Discover hidden gems and pristine beaches across the archipelago.</p>
-                </div>
-                <div class="service-card">
-                    <h1>03</h1>
-                    <h3>Jetski Rides</h3>
-                    <p>Experience the adrenaline rush on the open turquoise waters.</p>
-                </div>
-                <div class="service-card">
-                    <h1>04</h1>
-                    <h3>Mangrove Tour</h3>
-                    <p>Navigate through the ancient geopark and diverse ecosystems.</p>
-                </div>
-                <div class="service-card">
-                    <h1>05</h1>
-                    <h3>Dinner Cruise</h3>
-                    <p>Enjoy a romantic sunset dinner with breathtaking views.</p>
-                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Mobile Pagination Dots -->
-        <div class="service-dots">
-            <div class="dot" :class="{'active': servicePage === 0}" @click="servicePage = 0"></div>
-            <div class="dot" :class="{'active': servicePage === 1}" @click="servicePage = 1"></div>
-            <div class="dot" :class="{'active': servicePage === 2}" @click="servicePage = 2"></div>
-        </div>
-    </section>
 
-    <!-- ================= ABOUT ================= -->
-    <section class="about reveal">
-        <div class="about-wrapper">
-
-            <div class="about-img">
-                <img src="{{ asset('images/laut-malay.jpg') }}">
-                <div class="cross tr"></div>
-            </div>
-
-            <div class="about-content">
-                <div class="cross center-top"></div>
-                <h2>About Langkawi</h2>
-                <p>
-                    Langkawi, known as the "Jewel of Kedah", is a stunning archipelago of 99 islands on Malaysia's west coast. Famous for its turquoise waters, limestone cliffs, and ancient rainforests, it offers a perfect blend of relaxation and adventure. Experience the thrill of jetski rides, explore the mangroves, or enjoy a romantic sunset dinner cruise. Langkawi is the ultimate tropical escape.
-                </p>
-                <div class="about-buttons">
-                    <button class="btn-gold">BOOK NOW</button>
-                    <button class="btn-outline">LEARN MORE</button>
-                </div>
-            </div>
-
-            <div class="about-img">
-                <img src="{{ asset('images/pangkalan-islands.jpg') }}">
-                <div class="cross bl"></div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ================= TOUR PACKAGE SLIDER ================= -->
-    <section class="tour-package reveal" x-data="{
+        <!-- ================= TOUR PACKAGE SLIDER ================= -->
+        <section class="tour-package" x-data="{
                 activeTourSlide: 0,
                 tourItems: [
                     { 
@@ -1161,148 +1051,127 @@
                 }
             }" @resize.window="activeTourSlide = 0">
 
-        <h2 class="section-title">Tour Package</h2>
+            <h2 class="section-title">Tour Package</h2>
 
-        <div class="tour-slider-container">
-            <!-- Wrapper -->
-            <div class="tour-track-wrapper">
-                <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
-                    <template x-for="(item, index) in tourItems" :key="index">
-                        <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
-                            <div class="tour-card" :style="`background-image: url('${item.img}')`">
-                                <div class="tour-overlay">
-                                    <div class="tour-info">
-                                        <h3 x-text="item.title"></h3>
-                                        <p x-text="item.desc" class="text-xs text-gray-400 mt-1"></p>
-                                        <p x-text="item.price" class="text-gold font-bold mt-2"></p>
+            <div class="tour-slider-container">
+                <!-- Wrapper -->
+                <div class="tour-track-wrapper">
+                    <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
+                        <template x-for="(item, index) in tourItems" :key="index">
+                            <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
+                                <div class="tour-card">
+                                    <div class="tour-card-img" :style="`background-image: url('${item.img}')`"></div>
+                                    <div class="tour-card-content">
+                                        <div class="tour-info">
+                                            <h3 x-text="item.title"></h3>
+                                            <p x-text="item.desc"></p>
+                                            <span class="price" x-text="item.price"></span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="tour-border"></div>
                             </div>
-                        </div>
-                    </template>
+                        </template>
+                    </div>
                 </div>
+
             </div>
 
-        </div>
-
-        <!-- Dots (Optional visualization of progress) -->
-        <div class="tour-dots mt-custom">
-            <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
-                <span class="dot"
-                    :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
-                    @click="activeTourSlide = (i - 1) * visibleTourSlides">
-                </span>
-            </template>
-        </div>
-
-    </section>
-
-    <!-- ================= TESTIMONY SECTION ================= -->
-    <section class="testimony-section">
-        <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
-        <div class="testimony-overlay"></div>
-        <div class="testimony-content">
-            <h2 class="testimony-title">Testimony</h2>
-            <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
-
-            <div class="quote-container">
-                <span class="quote-icon left-quote">“</span>
-                <p class="quote-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                </p>
-                <span class="quote-icon right-quote">”</span>
+            <!-- Dots (Optional visualization of progress) -->
+            <div class="tour-dots mt-custom">
+                <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
+                    <span class="dot"
+                        :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
+                        @click="activeTourSlide = (i - 1) * visibleTourSlides">
+                    </span>
+                </template>
             </div>
 
-            <div class="testimony-author">- Febrian -</div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ================= FOOTER ================= -->
-    <footer class="site-footer reveal">
-        <div class="footer-container">
-            <div class="footer-row">
-                <!-- Column 1: Brand -->
-                <div class="footer-col">
-                    <h3 class="footer-logo">WaveShark</h3>
-                    <p class="footer-desc">
-                        Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
+        <!-- ================= TESTIMONY SECTION ================= -->
+        <section class="testimony-section">
+            <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
+            <div class="testimony-overlay"></div>
+            <div class="testimony-content">
+                <h2 class="testimony-title">Testimony</h2>
+                <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
+
+                <div class="quote-container">
+                    <span class="quote-icon left-quote">“</span>
+                    <p class="quote-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
                     </p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">FB</a>
-                        <a href="#" class="social-link">IG</a>
-                        <a href="#" class="social-link">TW</a>
+                    <span class="quote-icon right-quote">”</span>
+                </div>
+
+                <div class="testimony-author">- Febrian -</div>
+            </div>
+        </section>
+
+        <!-- ================= FOOTER ================= -->
+        <footer class="site-footer">
+            <div class="footer-container">
+                <div class="footer-row">
+                    <!-- Column 1: Brand -->
+                    <div class="footer-col">
+                        <h3 class="footer-logo">WaveShark</h3>
+                        <p class="footer-desc">
+                            Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
+                        </p>
+                        <div class="social-links">
+                            <a href="#" class="social-link">FB</a>
+                            <a href="#" class="social-link">IG</a>
+                            <a href="#" class="social-link">TW</a>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Column 2: Quick Links -->
-                <div class="footer-col">
-                    <h4 class="footer-title">Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                    </ul>
-                </div>
+                    <!-- Column 2: Quick Links -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Quick Links</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
 
-                <!-- Column 3: Tours -->
-                <div class="footer-col">
-                    <h4 class="footer-title">Top Tours</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Bali, Indonesia</a></li>
-                        <li><a href="#">Singapore</a></li>
-                        <li><a href="#">Sabah, Malaysia</a></li>
-                        <li><a href="#">Marine Park</a></li>
-                    </ul>
-                </div>
+                    <!-- Column 3: Tours -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Top Tours</h4>
+                        <ul class="footer-links">
+                            <li><a href="#">Bali, Indonesia</a></li>
+                            <li><a href="#">Singapore</a></li>
+                            <li><a href="#">Sabah, Malaysia</a></li>
+                            <li><a href="#">Marine Park</a></li>
+                        </ul>
+                    </div>
 
-                <!-- Column 4: Newsletter -->
-                <div class="footer-col">
-                    <h4 class="footer-title">Newsletter</h4>
-                    <p class="footer-desc">Subscribe to get the latest updates and offers.</p>
-                    <form action="#" class="newsletter-form" onsubmit="event.preventDefault();">
-                        <input type="email" placeholder="Enter your email" class="newsletter-input">
-                        <button type="submit" class="newsletter-btn">Subscribe</button>
-                    </form>
-                    <div class="footer-contact mt-4" style="margin-top: 20px;">
-                        <p>info@waveshark.com</p>
-                        <p>+62 812 3456 7890</p>
+                    <!-- Column 4: Newsletter -->
+                    <div class="footer-col">
+                        <h4 class="footer-title">Newsletter</h4>
+                        <p class="footer-desc">Subscribe to get the latest updates and offers.</p>
+                        <form action="#" class="newsletter-form" onsubmit="event.preventDefault();">
+                            <input type="email" placeholder="Enter your email" class="newsletter-input">
+                            <button type="submit" class="newsletter-btn">Subscribe</button>
+                        </form>
+                        <div class="footer-contact mt-4" style="margin-top: 20px;">
+                            <p>info@waveshark.com</p>
+                            <p>+62 812 3456 7890</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; 2024 WaveShark Ventures. All Rights Reserved.</p>
-                <div class="legal-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 WaveShark Ventures. All Rights Reserved.</p>
+                    <div class="legal-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
 
-    <script>
-        // Simple Scoop Reveal Animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const reveals = document.querySelectorAll('.reveal');
 
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
-                const elementVisible = 150;
-
-                reveals.forEach((reveal) => {
-                    const elementTop = reveal.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveal.classList.add('active');
-                    }
-                });
-            };
-
-            window.addEventListener('scroll', revealOnScroll);
-            // Trigger once on load
-            revealOnScroll();
-        });
-    </script>
 </x-layout>

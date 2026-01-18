@@ -138,12 +138,12 @@
                     x-transition:enter-end="opacity-100 translate-y-0"
                     class="absolute inset-0 z-30 overflow-y-auto bg-black/80 backdrop-blur-sm">
 
-                    <!-- NEW SINGAPORE SLIDER IMPLEMENTATION -->
                     <div class="sg-container">
                         <div class="sg-slide">
-                            <!-- Item 1: ST John Island -->
+
+                            <!-- Item 1: ST John Island (Using Langkawi Image as requested 'tiru malay') -->
                             <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
-                                <div class="sg-content" style="display: block;">
+                                <div class="sg-content">
                                     <div class="sg-name">ST John Island</div>
                                     <div class="sg-des">
                                         A tranquil getaway to experience nature and history.
@@ -151,6 +151,35 @@
                                     <button class="sg-btn" onclick="startTransition('/booking-stjohnislands')">See More</button>
                                 </div>
                             </div>
+
+
+                            <!-- Item 2: Singapore City (Using Sabah Image) -->
+                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');">
+                                <div class="sg-content">
+                                    <div class="sg-name">ST John Island</div>
+                                    <div class="sg-des">
+                                        A tranquil getaway to experience nature and history.
+                                    </div>
+                                    <button class="sg-btn" onclick="startTransition('/booking-stjohnislands')">See More</button>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="sg-button" style="display: none;">
+                            <button class="sg-prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                                </svg>
+                            </button>
+                            <button class="sg-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -219,18 +248,8 @@
                     <div class="mys-container">
                         <div class="mys-slide">
 
-                            <!-- Item 1: Langkawi -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
-                                <div class="mys-content">
-                                    <div class="mys-name">Langkawi</div>
-                                    <div class="mys-des">
-                                        Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
-                                    </div>
-                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
-                                </div>
-                            </div>
+                            <!-- Item 1: Sabah -->
 
-                            <!-- Item 2: Sabah -->
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
@@ -238,6 +257,19 @@
                                         Negeri di Bawah Bayu, rumah bagi Gunung Kinabalu dan hidupan liar yang unik.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
+                                </div>
+                            </div>
+
+
+                            <!-- Item 2: Langkawi -->
+
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Langkawi</div>
+                                    <div class="mys-des">
+                                        Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
+                                    </div>
+                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
                                 </div>
                             </div>
 
@@ -321,7 +353,7 @@
         <div x-show="!expanded" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
 
             <!-- ================= SERVICES ================= -->
-            <section class="services reveal" x-data="{ servicePage: 0 }">
+            <section class="services" x-data="{ servicePage: 0 }">
                 <div class="services-viewport">
                     <div class="services-grid" :class="{'slide-2': servicePage === 1}">
                         <div class="service-card">
@@ -355,7 +387,7 @@
             </section>
 
             <!-- ================= ABOUT ================= -->
-            <section class="about reveal">
+            <section class="about">
                 <div class="about-wrapper">
 
                     <div class="about-img">
@@ -384,7 +416,7 @@
             </section>
 
             <!-- ================= TOUR PACKAGE SLIDER ================= -->
-            <section class="tour-package reveal" x-data="{
+            <section class="tour-package" x-data="{
                 activeTourSlide: 0,
                 tourItems: [
                     { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Pangkalan Islands' },
@@ -475,7 +507,7 @@
             </section>
 
             <!-- ================= FOOTER ================= -->
-            <footer class="site-footer reveal">
+            <footer class="site-footer">
                 <div class="footer-container">
                     <div class="footer-row">
                         <!-- Column 1: Brand -->
@@ -712,6 +744,178 @@
                 background: #d4af37;
                 color: #fff;
                 border-color: #d4af37;
+            }
+
+            /* REMOVED STYLES RESTORED BELOW FOR SINGAPORE SLIDER */
+            /* Scoped Styles for Singapore Slider (sg) */
+            .sg-container {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                background: #000;
+                transition: background-image 0.5s ease-in-out;
+            }
+
+            .sg-container::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 0;
+                pointer-events: none;
+            }
+
+            .sg-container .sg-slide .sg-item {
+                width: 200px;
+                height: 300px;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+                border-radius: 20px;
+                box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5);
+                background-position: 50% 50%;
+                background-size: cover;
+                display: inline-block;
+                transition: 1s cubic-bezier(0.5, 0, 0.5, 1);
+                z-index: 10;
+            }
+
+            /* Ensure first item (active) takes full screen */
+            .sg-slide .sg-item:nth-child(1) {
+                top: 0;
+                left: 0;
+                transform: translate(0, 0);
+                border-radius: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 5;
+            }
+
+            .sg-item .sg-content {
+                position: absolute;
+                top: 50%;
+                left: 100px;
+                width: 400px;
+                text-align: left;
+                color: #eee;
+                transform: translate(0, -50%);
+                font-family: system-ui;
+                display: none;
+                /* Overridden inline for single item */
+                z-index: 20;
+            }
+
+            .sg-content .sg-name {
+                font-size: 60px;
+                text-transform: uppercase;
+                font-weight: bold;
+                opacity: 0;
+                animation: sg-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1 forwards;
+                text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+                font-family: 'Playfair Display', serif;
+            }
+
+            .sg-content .sg-des {
+                margin-top: 10px;
+                margin-bottom: 20px;
+                font-size: 18px;
+                opacity: 0;
+                animation: sg-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s 1 forwards;
+                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .sg-content .sg-btn {
+                padding: 12px 30px;
+                border: none;
+                cursor: pointer;
+                opacity: 0;
+                animation: sg-animate 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s 1 forwards;
+                background: white;
+                color: black;
+                font-weight: bold;
+                text-transform: uppercase;
+                border-radius: 4px;
+                transition: all 0.3s;
+            }
+
+            .sg-content .sg-btn:hover {
+                background: #d4af37;
+                color: white;
+            }
+
+            @keyframes sg-animate {
+                from {
+                    opacity: 0;
+                    transform: scale(1.02);
+                    filter: blur(5px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1);
+                    filter: blur(0);
+                }
+            }
+
+            /* MOBILE MEDIA QUERY FOR SINGAPORE */
+            @media (max-width: 768px) {
+                .sg-container .sg-slide .sg-item {
+                    width: 160px;
+                    height: 220px;
+                    border-radius: 15px;
+                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+                    opacity: 1;
+                    /* Always visible for single item */
+                }
+
+                /* Active item (Only 1 for Singapore) */
+                .sg-slide .sg-item:nth-child(1) {
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) scale(1.2);
+                    opacity: 1;
+                    z-index: 100;
+                    width: 180px;
+                    height: 250px;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+                }
+
+                .sg-item .sg-content {
+                    display: none;
+                }
+
+                /* Show content for active item */
+                .sg-slide .sg-item:nth-child(1) .sg-content {
+                    display: block;
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 300px;
+                    text-align: center;
+                    padding-top: 20px;
+                }
+
+                .sg-content .sg-name {
+                    font-size: 32px;
+                    color: #fff;
+                }
+
+                .sg-content .sg-des {
+                    font-size: 14px;
+                    color: #ddd;
+                }
+
+                .sg-content .sg-btn {
+                    padding: 8px 16px;
+                    font-size: 14px;
+                }
             }
 
             @media (max-width: 768px) {
@@ -1878,41 +2082,13 @@
             .legal-links a:hover {
                 color: var(--gold);
             }
-
-            /* ================= ANIMATIONS ================= */
-            .reveal {
-                opacity: 0;
-                transform: translateY(50px);
-                transition: all 0.8s ease-out;
-            }
-
-            .reveal.active {
-                opacity: 1;
-                transform: translateY(0);
-            }
         </style>
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 // ... (Existing slider code) ...
 
-                // Scroll Animation Logic
-                const reveals = document.querySelectorAll('.reveal');
-                const revealOnScroll = () => {
-                    const windowHeight = window.innerHeight;
-                    const elementVisible = 150;
 
-                    reveals.forEach((reveal) => {
-                        const elementTop = reveal.getBoundingClientRect().top;
-                        if (elementTop < windowHeight - elementVisible) {
-                            reveal.classList.add('active');
-                        }
-                    });
-                };
-
-                window.addEventListener('scroll', revealOnScroll);
-                // Trigger once on load
-                revealOnScroll();
 
                 const container = document.querySelector(".mys-container");
                 const next = document.querySelector(".mys-next");

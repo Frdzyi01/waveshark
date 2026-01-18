@@ -201,18 +201,7 @@
             --gray: #9ca3af;
         }
 
-        /* Reveals */
-        .reveal {
-            position: relative;
-            transform: translateY(150px);
-            opacity: 0;
-            transition: 1s all ease;
-        }
 
-        .reveal.active {
-            transform: translateY(0);
-            opacity: 1;
-        }
 
         /* ================= SERVICES ================= */
         .services {
@@ -994,7 +983,7 @@
     </div>
 
     <!-- ================= SERVICES ================= -->
-    <section class="services reveal" x-data="{ servicePage: 0 }">
+    <section class="services" x-data="{ servicePage: 0 }">
         <div class="services-viewport">
             <div class="services-grid" :class="{'slide-2': servicePage === 1}">
                 <div class="service-card">
@@ -1028,7 +1017,7 @@
     </section>
 
     <!-- ================= ABOUT ================= -->
-    <section class="about reveal">
+    <section class="about">
         <div class="about-wrapper">
 
             <div class="about-img">
@@ -1057,7 +1046,7 @@
     </section>
 
     <!-- ================= TOUR PACKAGE SLIDER ================= -->
-    <section class="tour-package reveal" x-data="{
+    <section class="tour-package" x-data="{
                 activeTourSlide: 0,
                 tourItems: [
                     { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Pangkalan Islands' },
@@ -1148,7 +1137,7 @@
     </section>
 
     <!-- ================= FOOTER ================= -->
-    <footer class="site-footer reveal">
+    <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-row">
                 <!-- Column 1: Brand -->
@@ -1212,26 +1201,5 @@
         </div>
     </footer>
 
-    <script>
-        // Simple Scoop Reveal Animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const reveals = document.querySelectorAll('.reveal');
 
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
-                const elementVisible = 150;
-
-                reveals.forEach((reveal) => {
-                    const elementTop = reveal.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveal.classList.add('active');
-                    }
-                });
-            };
-
-            window.addEventListener('scroll', revealOnScroll);
-            // Trigger once on load
-            revealOnScroll();
-        });
-    </script>
 </x-layout>

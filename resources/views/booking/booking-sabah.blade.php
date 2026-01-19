@@ -279,9 +279,26 @@
                 box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             }
 
-            /* Remove dots for native scroll feel */
+            /* Service Dots for Mobile */
             .service-dots {
-                display: none;
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 15px;
+                padding-bottom: 20px;
+            }
+
+            .service-dot {
+                width: 8px;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transition: 0.3s;
+            }
+
+            .service-dot.active {
+                background: var(--gold);
+                transform: scale(1.2);
             }
         }
 
@@ -585,6 +602,21 @@
             color: var(--white);
             font-weight: bold;
             font-size: 14px;
+        }
+
+        .starts-from {
+            font-size: 1rem;
+            color: #9ca3af;
+            font-style: italic;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .tour-card:hover .starts-from {
+            color: var(--gold);
+            transform: translateX(5px);
         }
 
         /* Remove old overlay and border styles */
@@ -928,8 +960,14 @@
             </div>
 
             <!-- SERVICES SECTION (Now Inside Hero) -->
-            <section class="services">
-                <div class="services-viewport">
+            <section class="services" x-data="{ 
+                activeService: 0, 
+                updateActive(el) {
+                    const cardWidth = 300; // 280px width + 20px gap approx
+                    this.activeService = Math.round(el.scrollLeft / cardWidth);
+                }
+            }">
+                <div class="services-viewport" @scroll.debounce.50ms="updateActive($el)">
                     <div class="services-grid">
                         <!-- Service 1 -->
                         <div class="service-card">
@@ -951,6 +989,13 @@
                         </div>
 
                     </div>
+                </div>
+
+                <!-- Pagination Dots (Mobile Only) -->
+                <div class="service-dots">
+                    <template x-for="i in 3">
+                        <span class="service-dot" :class="{ 'active': activeService === i - 1 }"></span>
+                    </template>
                 </div>
             </section>
         </div>
@@ -1057,7 +1102,10 @@
                                         <div class="tour-info">
                                             <h3 x-text="item.title"></h3>
                                             <p x-text="item.desc"></p>
-                                            <span class="price" x-text="item.price"></span>
+                                            <div class="price-container" style="margin-top: 5px;">
+                                                <span class="starts-from">starts from</span>
+                                                <span class="price" x-text="item.price"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1100,70 +1148,7 @@
             </div>
         </section>
 
-        <!-- ================= FOOTER ================= -->
-        <footer class="site-footer">
-            <div class="footer-container">
-                <div class="footer-row">
-                    <!-- Column 1: Brand -->
-                    <div class="footer-col">
-                        <h3 class="footer-logo">WaveShark</h3>
-                        <p class="footer-desc">
-                            Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
-                        </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link">FB</a>
-                            <a href="#" class="social-link">IG</a>
-                            <a href="#" class="social-link">TW</a>
-                        </div>
-                    </div>
-
-                    <!-- Column 2: Quick Links -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 3: Tours -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Top Tours</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Bali, Indonesia</a></li>
-                            <li><a href="#">Singapore</a></li>
-                            <li><a href="#">Sabah, Malaysia</a></li>
-                            <li><a href="#">Marine Park</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 4: Newsletter -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Newsletter</h4>
-                        <p class="footer-desc">Subscribe to get the latest updates and offers.</p>
-                        <form action="#" class="newsletter-form" onsubmit="event.preventDefault();">
-                            <input type="email" placeholder="Enter your email" class="newsletter-input">
-                            <button type="submit" class="newsletter-btn">Subscribe</button>
-                        </form>
-                        <div class="footer-contact mt-4" style="margin-top: 20px;">
-                            <p>info@waveshark.com</p>
-                            <p>+62 812 3456 7890</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2024 WaveShark Ventures. All Rights Reserved.</p>
-                    <div class="legal-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+    
 
 
 </x-layout>

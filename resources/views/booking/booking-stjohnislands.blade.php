@@ -291,8 +291,26 @@
             }
 
             /* Remove dots for native scroll feel */
+            /* Service Dots for Mobile */
             .service-dots {
-                display: none;
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 15px;
+                padding-bottom: 20px;
+            }
+
+            .service-dot {
+                width: 8px;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transition: 0.3s;
+            }
+
+            .service-dot.active {
+                background: var(--gold);
+                transform: scale(1.2);
             }
         }
 
@@ -611,6 +629,21 @@
             color: var(--white);
             font-weight: bold;
             font-size: 14px;
+        }
+
+        .starts-from {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            font-style: italic;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .tour-card:hover .starts-from {
+            color: var(--gold);
+            transform: translateX(5px);
         }
 
         /* Remove old overlay and border styles */
@@ -954,76 +987,103 @@
             </div>
 
             <!-- SERVICES SECTION (Now Inside Hero) -->
-            <section class="services">
-                <div class="services-viewport">
+            <section class="services" x-data="{
+                activeService: 0,
+                updateActive(el) {
+                    const cardWidth = 215; // 200px width + 15px gap
+                    this.activeService = Math.round(el.scrollLeft / cardWidth);
+                }
+            }">
+                <div class="services-viewport" @scroll.debounce.50ms="updateActive($el)">
                     <div class="services-grid">
                         <!-- Service 1 -->
                         <div class="service-card">
-                            <h1>01</h1>
-                            <h3>Fishing Charter</h3>
-                            <p>Premium fishing experience in the deep blue waters.</p>
+                            <div class="service-card-img" style="background-image: url('{{ asset('images/singapore-johnisland.jpg') }}');"></div>
+                            <div class="service-card-content">
+                                <h3>Fishing Charter</h3>
+                                <p>Deep sea fishing adventure with expert guides.</p>
+                                <span class="price">From SGD 300/pax</span>
+                            </div>
                         </div>
                         <!-- Service 2 -->
                         <div class="service-card">
-                            <h1>02</h1>
-                            <h3>Island Walk</h3>
-                            <p>Scenic trails perfect for nature lovers and families.</p>
+                            <div class="service-card-img" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');"></div>
+                            <div class="service-card-content">
+                                <h3>Island Walk</h3>
+                                <p>Guided nature walks through historical trails.</p>
+                                <span class="price">From SGD 50/pax</span>
+                            </div>
                         </div>
                         <!-- Service 3 -->
                         <div class="service-card">
-                            <h1>03</h1>
-                            <h3>Dolphin Spotting</h3>
-                            <p>Witness these majestic creatures in their natural habitat.</p>
+                            <div class="service-card-img" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');"></div>
+                            <div class="service-card-content">
+                                <h3>Dolphin Spotting</h3>
+                                <p>Witness playful dolphins in their natural habitat.</p>
+                                <span class="price">From SGD 120/pax</span>
+                            </div>
                         </div>
                         <!-- Service 4 -->
                         <div class="service-card">
-                            <h1>04</h1>
-                            <h3>Beach Picnic</h3>
-                            <p>Relax on the sandy shores with a curated picnic basket.</p>
+                            <div class="service-card-img" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
+                            <div class="service-card-content">
+                                <h3>Beach Picnic</h3>
+                                <p>Luxury picnic setup on pristine sandy beaches.</p>
+                                <span class="price">From SGD 180/set</span>
+                            </div>
                         </div>
                         <!-- Service 5 -->
                         <div class="service-card">
-                            <h1>05</h1>
-                            <h3>Lagoon Swim</h3>
-                            <p>Crystal clear waters for a refreshing tropical swim.</p>
+                            <div class="service-card-img" style="background-image: url('{{ asset('images/singapore.jpg') }}');"></div>
+                            <div class="service-card-content">
+                                <h3>Lagoon Swim</h3>
+                                <p>Safe and refreshing swimming in the blue lagoon.</p>
+                                <span class="price">From SGD 30/pax</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Pagination Dots (Mobile Only) -->
+                <div class="service-dots">
+                    <template x-for="i in 5">
+                        <span class="service-dot" :class="{ 'active': activeService === i - 1 }"></span>
+                    </template>
+                </div>
             </section>
-        </div>
 
-        <!-- ================= ABOUT ================= -->
-        <section class="about">
-            <div class="about-wrapper">
+            <!-- ================= ABOUT ================= -->
+            <section class="about">
+                <div class="about-wrapper">
 
-                <div class="about-img">
-                    <img src="{{ asset('images/singapore-johnisland.jpg') }}">
-                    <div class="cross tr"></div>
-                </div>
-
-                <div class="about-content">
-                    <div class="cross center-top"></div>
-                    <h2>About St John's Island</h2>
-                    <p>
-                        Ideally situated south of Singapore, St John's Island is a tranquil escape from the city bustle. Once a quarantine station, it is now a beloved holiday destination known for its lagoons, beaches, and trekking routes. It's the perfect spot for fishing, swimming, or simply soaking up the sun in a pristine environment.
-                    </p>
-                    <div class="about-buttons">
-                        <button class="btn-gold">BOOK NOW</button>
-                        <button class="btn-outline">LEARN MORE</button>
+                    <div class="about-img">
+                        <img src="{{ asset('images/singapore-johnisland.jpg') }}">
+                        <div class="cross tr"></div>
                     </div>
+
+                    <div class="about-content">
+                        <div class="cross center-top"></div>
+                        <h2>About St John's Island</h2>
+                        <p>
+                            Ideally situated south of Singapore, St John's Island is a tranquil escape from the city bustle. Once a quarantine station, it is now a beloved holiday destination known for its lagoons, beaches, and trekking routes. It's the perfect spot for fishing, swimming, or simply soaking up the sun in a pristine environment.
+                        </p>
+                        <div class="about-buttons">
+                            <button class="btn-gold">BOOK NOW</button>
+                            <button class="btn-outline">LEARN MORE</button>
+                        </div>
+                    </div>
+
+                    <div class="about-img">
+                        <img src="{{ asset('images/laut-singapore.jpg') }}">
+                        <div class="cross bl"></div>
+                    </div>
+
                 </div>
-
-                <div class="about-img">
-                    <img src="{{ asset('images/laut-singapore.jpg') }}">
-                    <div class="cross bl"></div>
-                </div>
-
-            </div>
-        </section>
+            </section>
 
 
-        <!-- ================= TOUR PACKAGE SLIDER ================= -->
-        <section class="tour-package" x-data="{
+            <!-- ================= TOUR PACKAGE SLIDER ================= -->
+            <section class="tour-package" x-data="{
                 activeTourSlide: 0,
                 tourItems: [
                     { 
@@ -1080,127 +1140,66 @@
                 }
             }" @resize.window="activeTourSlide = 0">
 
-            <h2 class="section-title">St John's Packages</h2>
+                <h2 class="section-title">St John's Packages</h2>
 
-            <div class="tour-slider-container">
-                <!-- Wrapper -->
-                <div class="tour-track-wrapper">
-                    <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
-                        <template x-for="(item, index) in tourItems" :key="index">
-                            <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
-                                <div class="tour-card">
-                                    <div class="tour-card-img" :style="`background-image: url('${item.img}')`"></div>
-                                    <div class="tour-card-content">
-                                        <div class="tour-info">
-                                            <h3 x-text="item.title"></h3>
-                                            <p x-text="item.desc"></p>
-                                            <span class="price" x-text="item.price"></span>
+                <div class="tour-slider-container">
+                    <!-- Wrapper -->
+                    <div class="tour-track-wrapper">
+                        <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
+                            <template x-for="(item, index) in tourItems" :key="index">
+                                <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
+                                    <div class="tour-card">
+                                        <div class="tour-card-img" :style="`background-image: url('${item.img}')`"></div>
+                                        <div class="tour-card-content">
+                                            <div class="tour-info">
+                                                <h3 x-text="item.title"></h3>
+                                                <p x-text="item.desc"></p>
+                                                <div class="price-container" style="margin-top: 5px;">
+                                                    <span class="starts-from">starts from</span>
+                                                    <span class="price" x-text="item.price"></span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </template>
+                            </template>
+                        </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <!-- Dots (Optional visualization of progress) -->
-            <div class="tour-dots mt-custom">
-                <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
-                    <span class="dot"
-                        :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
-                        @click="activeTourSlide = (i - 1) * visibleTourSlides">
-                    </span>
-                </template>
-            </div>
-
-        </section>
-
-        <!-- ================= TESTIMONY SECTION ================= -->
-        <section class="testimony-section">
-            <div class="testimony-bg" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');"></div>
-            <div class="testimony-overlay"></div>
-            <div class="testimony-content">
-                <h2 class="testimony-title">Testimony</h2>
-                <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
-
-                <div class="quote-container">
-                    <span class="quote-icon left-quote">“</span>
-                    <p class="quote-text">
-                        A perfect weekend getaway! The lagoon was beautiful, and the fishing trip was a highlight for my kids. St John's Island is a hidden gem.
-                    </p>
-                    <span class="quote-icon right-quote">”</span>
+                <!-- Dots (Optional visualization of progress) -->
+                <div class="tour-dots mt-custom">
+                    <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
+                        <span class="dot"
+                            :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
+                            @click="activeTourSlide = (i - 1) * visibleTourSlides">
+                        </span>
+                    </template>
                 </div>
 
-                <div class="testimony-author">- James T. -</div>
-            </div>
-        </section>
+            </section>
 
-        <!-- ================= FOOTER ================= -->
-        <footer class="site-footer">
-            <div class="footer-container">
-                <div class="footer-row">
-                    <!-- Column 1: Brand -->
-                    <div class="footer-col">
-                        <h3 class="footer-logo">WaveShark</h3>
-                        <p class="footer-desc">
-                            Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
+            <!-- ================= TESTIMONY SECTION ================= -->
+            <section class="testimony-section">
+                <div class="testimony-bg" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');"></div>
+                <div class="testimony-overlay"></div>
+                <div class="testimony-content">
+                    <h2 class="testimony-title">Testimony</h2>
+                    <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
+
+                    <div class="quote-container">
+                        <span class="quote-icon left-quote">“</span>
+                        <p class="quote-text">
+                            A perfect weekend getaway! The lagoon was beautiful, and the fishing trip was a highlight for my kids. St John's Island is a hidden gem.
                         </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link">FB</a>
-                            <a href="#" class="social-link">IG</a>
-                            <a href="#" class="social-link">TW</a>
-                        </div>
+                        <span class="quote-icon right-quote">”</span>
                     </div>
 
-                    <!-- Column 2: Quick Links -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 3: Tours -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Top Tours</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Bali, Indonesia</a></li>
-                            <li><a href="#">Singapore</a></li>
-                            <li><a href="#">Sabah, Malaysia</a></li>
-                            <li><a href="#">Marine Park</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 4: Newsletter -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Newsletter</h4>
-                        <p class="footer-desc">Subscribe to get the latest updates and offers.</p>
-                        <form action="#" class="newsletter-form" onsubmit="event.preventDefault();">
-                            <input type="email" placeholder="Enter your email" class="newsletter-input">
-                            <button type="submit" class="newsletter-btn">Subscribe</button>
-                        </form>
-                        <div class="footer-contact mt-4" style="margin-top: 20px;">
-                            <p>info@waveshark.com</p>
-                            <p>+62 812 3456 7890</p>
-                        </div>
-                    </div>
+                    <div class="testimony-author">- James T. -</div>
                 </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2024 WaveShark Ventures. All Rights Reserved.</p>
-                    <div class="legal-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+            </section>
 
+        
 
 </x-layout>

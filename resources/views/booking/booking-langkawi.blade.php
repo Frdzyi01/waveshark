@@ -152,11 +152,12 @@
         }
 
         /* Adjusted Grid for 5 items */
+        /* Adjusted Grid for fewer items */
         .services-grid {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
         }
@@ -169,6 +170,10 @@
             /* Add Glassmorphism */
             aspect-ratio: 4/5;
             /* Slightly taller for elegance */
+            width: 200px;
+            /* Base width */
+            flex: 0 1 200px;
+            /* Don't grow too much */
             text-align: center;
             padding: 30px 20px;
             transition: 0.4s ease;
@@ -218,14 +223,58 @@
             z-index: 2;
         }
 
-        /* MOBILE RESPONSIVENESS */
+        /* Services Slider Structure (Global) */
+        .services-viewport {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .service-track-wrapper {
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+
+        .service-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .service-slide-item {
+            flex-shrink: 0;
+            padding: 0 10px;
+            /* 20px gap total */
+            box-sizing: border-box;
+        }
+
+        .service-card {
+            /* Reset fixed widths */
+            min-width: unset;
+            width: 100%;
+            aspect-ratio: 4/5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            text-align: center;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s ease;
+        }
+
         /* MOBILE RESPONSIVENESS */
         @media (max-width: 900px) {
             .hero {
                 min-height: 100vh;
                 height: auto;
                 padding-top: 120px;
-                /* More space for navbar */
                 padding-bottom: 60px;
                 gap: 40px;
             }
@@ -244,40 +293,81 @@
                 padding: 0;
             }
 
-            .services-viewport {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding: 0 20px 20px 20px;
-                /* Adjusted bottom padding */
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                /* Firefox */
-                -ms-overflow-style: none;
-                /* IE 10+ */
-            }
-
-            .services-viewport::-webkit-scrollbar {
-                display: none;
-                /* Hide scrollbar for cleaner look */
-            }
-
-            .services-grid {
-                display: flex;
-                gap: 20px;
-                width: max-content;
-            }
-
+            /* Mobile Service Card Adjustments */
             .service-card {
-                min-width: 280px;
-                /* Slightly wider for better readability */
-                scroll-snap-align: center;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+                padding: 20px 10px;
+                /* Compact padding */
             }
 
-            /* Remove dots for native scroll feel */
+            .service-card h1 {
+                font-size: 3rem;
+                /* Smaller number */
+            }
+
+            .service-card h3 {
+                font-size: 14px;
+                /* Smaller title */
+            }
+
+            .service-card p {
+                font-size: 11px;
+                /* Smaller desc */
+            }
+
+            /* Mobile Tour Card Adjustments */
+
+            /* Service Dots for Mobile */
             .service-dots {
-                display: none;
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 15px;
+                padding-bottom: 20px;
+            }
+
+            .service-dot {
+                width: 8px;
+                height: 8px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transition: 0.3s;
+            }
+
+            .service-dot.active {
+                background: var(--gold);
+                transform: scale(1.2);
+            }
+
+            /* Mobile Tour Card Adjustments */
+            .tour-card {
+                height: auto;
+                aspect-ratio: auto;
+                background: #1a1a1a;
+                /* Dark background for text area */
+            }
+
+            .tour-card-img {
+                position: relative;
+                height: 180px;
+                /* Fixed height for image */
+                width: 100%;
+            }
+
+            .tour-card-content {
+                padding: 15px;
+                background: transparent;
+                backdrop-filter: none;
+                border-top: none;
+            }
+
+            .tour-info h3 {
+                font-size: 13px !important;
+            }
+
+            .tour-info p {
+                margin-bottom: 0px !important;
+                font-size: 11px;
+                line-height: 1.4;
             }
         }
 
@@ -285,10 +375,6 @@
             .search-title {
                 font-size: 1.8rem;
                 margin-bottom: 1.5rem;
-            }
-
-            .service-card {
-                min-width: 260px;
             }
         }
 
@@ -440,6 +526,15 @@
 
         /* ================= ABOUT MOBILE ================= */
         @media (max-width: 768px) {
+            /* .tour-info p {
+                margin-bottom: -6px !important;
+            }
+
+            .starts-from {
+                margin-bottom: 0px !important;
+
+            } */
+
             .about-wrapper {
                 flex-direction: column;
                 gap: 40px;
@@ -476,6 +571,13 @@
         }
 
         /* ================= TOUR PACKAGE SLIDER ================= */
+        .section-title {
+            color: var(--gold);
+            font-size: 32px;
+            margin-bottom: 50px;
+            text-transform: capitalize;
+        }
+
         .tour-package {
             padding: 100px 40px;
             text-align: center;
@@ -504,14 +606,6 @@
             flex-shrink: 0;
             padding: 0 10px;
             box-sizing: border-box;
-        }
-
-
-        .section-title {
-            color: var(--gold);
-            font-size: 32px;
-            margin-bottom: 50px;
-            text-transform: capitalize;
         }
 
         .tour-card {
@@ -582,6 +676,21 @@
             color: var(--white);
             font-weight: bold;
             font-size: 14px;
+        }
+
+        .starts-from {
+            font-size: 1rem;
+            color: #9ca3af;
+            font-style: italic;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .tour-card:hover .starts-from {
+            color: var(--gold);
+            transform: translateX(5px);
         }
 
         /* Remove old overlay and border styles */
@@ -925,39 +1034,48 @@
             </div>
 
             <!-- SERVICES SECTION (Now Inside Hero) -->
-            <section class="services">
+            <!-- SERVICES SECTION (Now Inside Hero) -->
+            <section class="services" x-data="{
+                serviceItems: [
+                    { id: '01', title: 'Car Rental', desc: 'Explore the island at your own pace with our premium fleet.' },
+                    { id: '02', title: 'Island Hopping', desc: 'Discover hidden gems and pristine beaches across the archipelago.' },
+                    { id: '03', title: 'Jetski Rides', desc: 'Experience the adrenaline rush on the open turquoise waters.' },
+                    { id: '05', title: 'Mangrove Tour', desc: 'Navigate through the ancient geopark and diverse ecosystems.' },
+                    { id: '06', title: 'Dinner Cruise', desc: 'Enjoy a romantic sunset dinner with breathtaking views.' }
+                ],
+                get visibleServiceSlides() {
+                    if (window.innerWidth >= 1024) return 5;
+                    return 2;
+                },
+                get maxServiceSlide() {
+                    return Math.max(0, this.serviceItems.length - this.visibleServiceSlides);
+                },
+                activeServiceSlide: 0
+            }" @resize.window="activeServiceSlide = 0">
                 <div class="services-viewport">
-                    <div class="services-grid">
-                        <!-- Service 1 -->
-                        <div class="service-card">
-                            <h1>01</h1>
-                            <h3>Car Rental</h3>
-                            <p>Explore the island at your own pace with our premium fleet.</p>
+                    <div class="service-track-wrapper">
+                        <div class="service-track"
+                            :style="`transform: translateX(-${activeServiceSlide * (100 / visibleServiceSlides)}%)`">
+                            <template x-for="(item, index) in serviceItems" :key="index">
+                                <div class="service-slide-item" :style="`width: ${100 / visibleServiceSlides}%`">
+                                    <div class="service-card">
+                                        <h1 x-text="item.id"></h1>
+                                        <h3 x-text="item.title"></h3>
+                                        <p x-text="item.desc"></p>
+                                    </div>
+                                </div>
+                            </template>
                         </div>
-                        <!-- Service 2 -->
-                        <div class="service-card">
-                            <h1>02</h1>
-                            <h3>Island Hopping</h3>
-                            <p>Discover hidden gems and pristine beaches across the archipelago.</p>
-                        </div>
-                        <!-- Service 3 -->
-                        <div class="service-card">
-                            <h1>03</h1>
-                            <h3>Jetski Rides</h3>
-                            <p>Experience the adrenaline rush on the open turquoise waters.</p>
-                        </div>
-                        <!-- Service 4 -->
-                        <div class="service-card">
-                            <h1>05</h1>
-                            <h3>Mangrove Tour</h3>
-                            <p>Navigate through the ancient geopark and diverse ecosystems.</p>
-                        </div>
-                        <!-- Service 5 -->
-                        <div class="service-card">
-                            <h1>06</h1>
-                            <h3>Dinner Cruise</h3>
-                            <p>Enjoy a romantic sunset dinner with breathtaking views.</p>
-                        </div>
+                    </div>
+
+                    <!-- Pagination Dots -->
+                    <div class="service-dots">
+                        <template x-for="i in Math.ceil(serviceItems.length / visibleServiceSlides)">
+                            <span class="service-dot"
+                                :class="{ 'active': Math.floor(activeServiceSlide / visibleServiceSlides) === i - 1 }"
+                                @click="activeServiceSlide = (i - 1) * visibleServiceSlides">
+                            </span>
+                        </template>
                     </div>
                 </div>
             </section>
@@ -1065,7 +1183,10 @@
                                         <div class="tour-info">
                                             <h3 x-text="item.title"></h3>
                                             <p x-text="item.desc"></p>
-                                            <span class="price" x-text="item.price"></span>
+                                            <div class="price-container" style="margin-top: 5px;">
+                                                <span class="starts-from">starts from</span>
+                                                <span class="price" x-text="item.price"></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1107,71 +1228,6 @@
                 <div class="testimony-author">- Febrian -</div>
             </div>
         </section>
-
-        <!-- ================= FOOTER ================= -->
-        <footer class="site-footer">
-            <div class="footer-container">
-                <div class="footer-row">
-                    <!-- Column 1: Brand -->
-                    <div class="footer-col">
-                        <h3 class="footer-logo">WaveShark</h3>
-                        <p class="footer-desc">
-                            Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
-                        </p>
-                        <div class="social-links">
-                            <a href="#" class="social-link">FB</a>
-                            <a href="#" class="social-link">IG</a>
-                            <a href="#" class="social-link">TW</a>
-                        </div>
-                    </div>
-
-                    <!-- Column 2: Quick Links -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Quick Links</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Testimonials</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 3: Tours -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Top Tours</h4>
-                        <ul class="footer-links">
-                            <li><a href="#">Bali, Indonesia</a></li>
-                            <li><a href="#">Singapore</a></li>
-                            <li><a href="#">Sabah, Malaysia</a></li>
-                            <li><a href="#">Marine Park</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 4: Newsletter -->
-                    <div class="footer-col">
-                        <h4 class="footer-title">Newsletter</h4>
-                        <p class="footer-desc">Subscribe to get the latest updates and offers.</p>
-                        <form action="#" class="newsletter-form" onsubmit="event.preventDefault();">
-                            <input type="email" placeholder="Enter your email" class="newsletter-input">
-                            <button type="submit" class="newsletter-btn">Subscribe</button>
-                        </form>
-                        <div class="footer-contact mt-4" style="margin-top: 20px;">
-                            <p>info@waveshark.com</p>
-                            <p>+62 812 3456 7890</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-bottom-content">
-                    <p>&copy; 2024 WaveShark Ventures. All Rights Reserved.</p>
-                    <div class="legal-links">
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
 
 
 </x-layout>

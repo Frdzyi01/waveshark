@@ -151,6 +151,7 @@
             width: 100%;
         }
 
+        /* Adjusted Grid for 5 items */
         /* Adjusted Grid for fewer items */
         .services-grid {
             max-width: 1200px;
@@ -222,13 +223,58 @@
             z-index: 2;
         }
 
+        /* Services Slider Structure (Global) */
+        .services-viewport {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .service-track-wrapper {
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+
+        .service-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .service-slide-item {
+            flex-shrink: 0;
+            padding: 0 10px;
+            /* 20px gap total */
+            box-sizing: border-box;
+        }
+
+        .service-card {
+            /* Reset fixed widths */
+            min-width: unset;
+            width: 100%;
+            aspect-ratio: 4/5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            text-align: center;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s ease;
+        }
+
         /* MOBILE RESPONSIVENESS */
         @media (max-width: 900px) {
             .hero {
                 min-height: 100vh;
                 height: auto;
                 padding-top: 120px;
-                /* More space for navbar */
                 padding-bottom: 60px;
                 gap: 40px;
             }
@@ -247,38 +293,10 @@
                 padding: 0;
             }
 
-            .services-viewport {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding: 0 20px 20px 20px;
-                /* Adjusted bottom padding */
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                /* Firefox */
-                -ms-overflow-style: none;
-                /* IE 10+ */
-            }
-
-            .services-viewport::-webkit-scrollbar {
-                display: none;
-                /* Hide scrollbar for cleaner look */
-            }
-
-            .services-grid {
-                display: flex;
-                gap: 15px;
-                /* Reduced gap */
-                width: max-content;
-            }
-
+            /* Mobile Service Card Adjustments */
             .service-card {
-                min-width: 200px;
-                /* Reduced from 280px */
-                padding: 20px 15px;
-                /* Reduced padding */
-                scroll-snap-align: center;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+                padding: 20px 10px;
+                /* Compact padding */
             }
 
             .service-card h1 {
@@ -287,10 +305,17 @@
             }
 
             .service-card h3 {
-                font-size: 1rem;
+                font-size: 14px;
+                /* Smaller title */
             }
 
-            /* Remove dots for native scroll feel */
+            .service-card p {
+                font-size: 11px;
+                /* Smaller desc */
+            }
+
+            /* Mobile Tour Card Adjustments */
+
             /* Service Dots for Mobile */
             .service-dots {
                 display: flex;
@@ -312,30 +337,44 @@
                 background: var(--gold);
                 transform: scale(1.2);
             }
+
+            /* Mobile Tour Card Adjustments */
+            .tour-card {
+                height: auto;
+                aspect-ratio: auto;
+                background: #1a1a1a;
+                /* Dark background for text area */
+            }
+
+            .tour-card-img {
+                position: relative;
+                height: 180px;
+                /* Fixed height for image */
+                width: 100%;
+            }
+
+            .tour-card-content {
+                padding: 15px;
+                background: transparent;
+                backdrop-filter: none;
+                border-top: none;
+            }
+
+            .tour-info h3 {
+                font-size: 13px !important;
+            }
+
+            .tour-info p {
+                margin-bottom: 0px !important;
+                font-size: 11px;
+                line-height: 1.4;
+            }
         }
 
         @media (max-width: 480px) {
             .search-title {
                 font-size: 1.8rem;
                 margin-bottom: 1.5rem;
-            }
-
-            .service-card {
-                min-width: 160px;
-                /* Reduced from 260px */
-            }
-
-            .service-card h1 {
-                font-size: 2.5rem;
-            }
-
-            .service-card h3 {
-                font-size: 0.9rem;
-            }
-
-            .service-card p {
-                font-size: 0.75rem;
-                /* Smaller text */
             }
         }
 
@@ -487,6 +526,15 @@
 
         /* ================= ABOUT MOBILE ================= */
         @media (max-width: 768px) {
+            /* .tour-info p {
+                margin-bottom: -6px !important;
+            }
+
+            .starts-from {
+                margin-bottom: 0px !important;
+
+            } */
+
             .about-wrapper {
                 flex-direction: column;
                 gap: 40px;
@@ -529,7 +577,6 @@
             margin-bottom: 50px;
             text-transform: capitalize;
         }
-
 
         .tour-package {
             padding: 100px 40px;
@@ -632,7 +679,7 @@
         }
 
         .starts-from {
-            font-size: 0.75rem;
+            font-size: 1rem;
             color: #9ca3af;
             font-style: italic;
             font-weight: 400;
@@ -962,7 +1009,7 @@
     <div class="booking-page-font bg-black">
 
         <!-- Back Button -->
-        <a href="{{ url('/') }}" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
+        <a href="http://127.0.0.1:8000" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
     margin-top: 7rem;
     margin-left: 1rem;
 ">
@@ -976,10 +1023,10 @@
 
             <!-- Search Content -->
             <div class="search-container">
-                <h1 class="search-title">Discover St John's Island</h1>
+                <h1 class="search-title">Discover St John's Islands</h1>
 
                 <div class="search-box">
-                    <input type="text" class="search-input" placeholder="Search activities (e.g., Fishing, Picnic)...">
+                    <input type="text" class="search-input" placeholder="Search activities (e.g., Jetski, Mangrove Tour)...">
                     <button class="search-btn">
                         <i class="ri-search-line"></i>
                     </button>
@@ -987,134 +1034,116 @@
             </div>
 
             <!-- SERVICES SECTION (Now Inside Hero) -->
+            <!-- SERVICES SECTION (Now Inside Hero) -->
             <section class="services" x-data="{
-                activeService: 0,
-                updateActive(el) {
-                    const cardWidth = 215; // 200px width + 15px gap
-                    this.activeService = Math.round(el.scrollLeft / cardWidth);
-                }
-            }">
-                <div class="services-viewport" @scroll.debounce.50ms="updateActive($el)">
-                    <div class="services-grid">
-                        <!-- Service 1 -->
-                        <div class="service-card">
-                            <div class="service-card-img" style="background-image: url('{{ asset('images/singapore-johnisland.jpg') }}');"></div>
-                            <div class="service-card-content">
-                                <h3>Fishing Charter</h3>
-                                <p>Deep sea fishing adventure with expert guides.</p>
-                                <span class="price">From SGD 300/pax</span>
-                            </div>
-                        </div>
-                        <!-- Service 2 -->
-                        <div class="service-card">
-                            <div class="service-card-img" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');"></div>
-                            <div class="service-card-content">
-                                <h3>Island Walk</h3>
-                                <p>Guided nature walks through historical trails.</p>
-                                <span class="price">From SGD 50/pax</span>
-                            </div>
-                        </div>
-                        <!-- Service 3 -->
-                        <div class="service-card">
-                            <div class="service-card-img" style="background-image: url('{{ asset('images/laut-singapore2.jpg') }}');"></div>
-                            <div class="service-card-content">
-                                <h3>Dolphin Spotting</h3>
-                                <p>Witness playful dolphins in their natural habitat.</p>
-                                <span class="price">From SGD 120/pax</span>
-                            </div>
-                        </div>
-                        <!-- Service 4 -->
-                        <div class="service-card">
-                            <div class="service-card-img" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
-                            <div class="service-card-content">
-                                <h3>Beach Picnic</h3>
-                                <p>Luxury picnic setup on pristine sandy beaches.</p>
-                                <span class="price">From SGD 180/set</span>
-                            </div>
-                        </div>
-                        <!-- Service 5 -->
-                        <div class="service-card">
-                            <div class="service-card-img" style="background-image: url('{{ asset('images/singapore.jpg') }}');"></div>
-                            <div class="service-card-content">
-                                <h3>Lagoon Swim</h3>
-                                <p>Safe and refreshing swimming in the blue lagoon.</p>
-                                <span class="price">From SGD 30/pax</span>
-                            </div>
+                serviceItems: [
+                    { id: '01', title: 'Car Rental', desc: 'Explore the island at your own pace with our premium fleet.' },
+                    { id: '02', title: 'Island Hopping', desc: 'Discover hidden gems and pristine beaches across the archipelago.' },
+                    { id: '03', title: 'Jetski Rides', desc: 'Experience the adrenaline rush on the open turquoise waters.' },
+                    { id: '05', title: 'Mangrove Tour', desc: 'Navigate through the ancient geopark and diverse ecosystems.' },
+                    { id: '06', title: 'Dinner Cruise', desc: 'Enjoy a romantic sunset dinner with breathtaking views.' }
+                ],
+                get visibleServiceSlides() {
+                    if (window.innerWidth >= 1024) return 5;
+                    return 2;
+                },
+                get maxServiceSlide() {
+                    return Math.max(0, this.serviceItems.length - this.visibleServiceSlides);
+                },
+                activeServiceSlide: 0
+            }" @resize.window="activeServiceSlide = 0">
+                <div class="services-viewport">
+                    <div class="service-track-wrapper">
+                        <div class="service-track"
+                            :style="`transform: translateX(-${activeServiceSlide * (100 / visibleServiceSlides)}%)`">
+                            <template x-for="(item, index) in serviceItems" :key="index">
+                                <div class="service-slide-item" :style="`width: ${100 / visibleServiceSlides}%`">
+                                    <div class="service-card">
+                                        <h1 x-text="item.id"></h1>
+                                        <h3 x-text="item.title"></h3>
+                                        <p x-text="item.desc"></p>
+                                    </div>
+                                </div>
+                            </template>
                         </div>
                     </div>
-                </div>
 
-                <!-- Pagination Dots (Mobile Only) -->
-                <div class="service-dots">
-                    <template x-for="i in 5">
-                        <span class="service-dot" :class="{ 'active': activeService === i - 1 }"></span>
-                    </template>
+                    <!-- Pagination Dots -->
+                    <div class="service-dots">
+                        <template x-for="i in Math.ceil(serviceItems.length / visibleServiceSlides)">
+                            <span class="service-dot"
+                                :class="{ 'active': Math.floor(activeServiceSlide / visibleServiceSlides) === i - 1 }"
+                                @click="activeServiceSlide = (i - 1) * visibleServiceSlides">
+                            </span>
+                        </template>
+                    </div>
                 </div>
             </section>
+        </div>
 
-            <!-- ================= ABOUT ================= -->
-            <section class="about">
-                <div class="about-wrapper">
+        <!-- ================= ABOUT ================= -->
+        <section class="about">
+            <div class="about-wrapper">
 
-                    <div class="about-img">
-                        <img src="{{ asset('images/singapore-johnisland.jpg') }}">
-                        <div class="cross tr"></div>
-                    </div>
-
-                    <div class="about-content">
-                        <div class="cross center-top"></div>
-                        <h2>About St John's Island</h2>
-                        <p>
-                            Ideally situated south of Singapore, St John's Island is a tranquil escape from the city bustle. Once a quarantine station, it is now a beloved holiday destination known for its lagoons, beaches, and trekking routes. It's the perfect spot for fishing, swimming, or simply soaking up the sun in a pristine environment.
-                        </p>
-                        <div class="about-buttons">
-                            <button class="btn-gold">BOOK NOW</button>
-                            <button class="btn-outline">LEARN MORE</button>
-                        </div>
-                    </div>
-
-                    <div class="about-img">
-                        <img src="{{ asset('images/laut-singapore.jpg') }}">
-                        <div class="cross bl"></div>
-                    </div>
-
+                <div class="about-img">
+                    <img src="{{ asset('images/laut-malay.jpg') }}">
+                    <div class="cross tr"></div>
                 </div>
-            </section>
+
+                <div class="about-content">
+                    <div class="cross center-top"></div>
+                    <h2>About St John's Islands</h2>
+                    <p>
+                        St John's Islands, also known as Pulau St John, is a stunning archipelago of 99 islands on Malaysia's west coast. Famous for its turquoise waters, limestone cliffs, and ancient rainforests, it offers a perfect blend of relaxation and adventure. Experience the thrill of jetski rides, explore the mangroves, or enjoy a romantic sunset dinner cruise. St John's Islands is the ultimate tropical escape.
+                    </p>
+                    <div class="about-buttons">
+                        <button class="btn-gold">BOOK NOW</button>
+                        <button class="btn-outline">LEARN MORE</button>
+                    </div>
+                </div>
+
+                <div class="about-img">
+                    <img src="{{ asset('images/singapore-johnisland.jpg') }}">
+                    <div class="cross bl"></div>
+                </div>
+
+            </div>
+        </section>
 
 
-            <!-- ================= TOUR PACKAGE SLIDER ================= -->
-            <section class="tour-package" x-data="{
+        <!-- ================= TOUR PACKAGE SLIDER ================= -->
+        <section class="tour-package" x-data="{
                 activeTourSlide: 0,
                 tourItems: [
                     { 
+                        img: '{{ asset('images/laut-malay.jpg') }}', 
+                        title: 'Car Rental', 
+                        desc: 'Self-drive adventure', 
+                        price: 'RM 150/day' 
+                    },
+                    { 
                         img: '{{ asset('images/singapore-johnisland.jpg') }}', 
-                        title: 'Fishing Trip', 
-                        desc: 'Guided Fishing', 
-                        price: 'SGD 120' 
+                        title: 'Island Hopping', 
+                        desc: '3-island tour by boat', 
+                        price: 'RM 350' 
                     },
                     { 
                         img: '{{ asset('images/laut-singapore.jpg') }}', 
-                        title: 'Island Hopping', 
-                        desc: 'Visit Lazarus & Seringat', 
-                        price: 'SGD 80' 
+                        title: 'Jetski Rides', 
+                        desc: 'Thrilling water action', 
+                        price: 'RM 450' 
                     },
                     { 
-                        img: '{{ asset('images/pangkalan-islands.jpg') }}', 
-                        title: 'Lagoon Kayaking', 
-                        desc: 'Water Adventure', 
-                        price: 'SGD 60' 
+                        img: '{{ asset('images/sabah.jpg') }}', 
+                        title: 'Mangrove Tour', 
+                        desc: 'Eco-adventure in Kilim', 
+                        price: 'RM 250' 
                     },
                     { 
                         img: '{{ asset('images/laut-singapore2.jpg') }}', 
-                        title: 'Nature Walk', 
-                        desc: 'Guided Eco Tour', 
-                        price: 'SGD 45' 
-                    },
-                    { 
-                        img: '{{ asset('images/singapore.jpg') }}', 
-                        title: 'Overnight Camp', 
-                        desc: 'Camping Experience', 
-                        price: 'SGD 150' 
+                        title: 'Sunset Dinner Cruise', 
+                        desc: 'Romance at sea', 
+                        price: 'RM 500' 
                     }
                 ],
                 get visibleTourSlides() {
@@ -1140,66 +1169,65 @@
                 }
             }" @resize.window="activeTourSlide = 0">
 
-                <h2 class="section-title">St John's Packages</h2>
+            <h2 class="section-title">Tour Package</h2>
 
-                <div class="tour-slider-container">
-                    <!-- Wrapper -->
-                    <div class="tour-track-wrapper">
-                        <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
-                            <template x-for="(item, index) in tourItems" :key="index">
-                                <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
-                                    <div class="tour-card">
-                                        <div class="tour-card-img" :style="`background-image: url('${item.img}')`"></div>
-                                        <div class="tour-card-content">
-                                            <div class="tour-info">
-                                                <h3 x-text="item.title"></h3>
-                                                <p x-text="item.desc"></p>
-                                                <div class="price-container" style="margin-top: 5px;">
-                                                    <span class="starts-from">starts from</span>
-                                                    <span class="price" x-text="item.price"></span>
-                                                </div>
+            <div class="tour-slider-container">
+                <!-- Wrapper -->
+                <div class="tour-track-wrapper">
+                    <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
+                        <template x-for="(item, index) in tourItems" :key="index">
+                            <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
+                                <div class="tour-card">
+                                    <div class="tour-card-img" :style="`background-image: url('${item.img}')`"></div>
+                                    <div class="tour-card-content">
+                                        <div class="tour-info">
+                                            <h3 x-text="item.title"></h3>
+                                            <p x-text="item.desc"></p>
+                                            <div class="price-container" style="margin-top: 5px;">
+                                                <span class="starts-from">starts from</span>
+                                                <span class="price" x-text="item.price"></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </template>
-                        </div>
+                            </div>
+                        </template>
                     </div>
-
                 </div>
 
-                <!-- Dots (Optional visualization of progress) -->
-                <div class="tour-dots mt-custom">
-                    <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
-                        <span class="dot"
-                            :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
-                            @click="activeTourSlide = (i - 1) * visibleTourSlides">
-                        </span>
-                    </template>
+            </div>
+
+            <!-- Dots (Optional visualization of progress) -->
+            <div class="tour-dots mt-custom">
+                <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
+                    <span class="dot"
+                        :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
+                        @click="activeTourSlide = (i - 1) * visibleTourSlides">
+                    </span>
+                </template>
+            </div>
+
+        </section>
+
+        <!-- ================= TESTIMONY SECTION ================= -->
+        <section class="testimony-section">
+            <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
+            <div class="testimony-overlay"></div>
+            <div class="testimony-content">
+                <h2 class="testimony-title">Testimony</h2>
+                <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
+
+                <div class="quote-container">
+                    <span class="quote-icon left-quote">“</span>
+                    <p class="quote-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    </p>
+                    <span class="quote-icon right-quote">”</span>
                 </div>
 
-            </section>
+                <div class="testimony-author">- Febrian -</div>
+            </div>
+        </section>
 
-            <!-- ================= TESTIMONY SECTION ================= -->
-            <section class="testimony-section">
-                <div class="testimony-bg" style="background-image: url('{{ asset('images/laut-singapore.jpg') }}');"></div>
-                <div class="testimony-overlay"></div>
-                <div class="testimony-content">
-                    <h2 class="testimony-title">Testimony</h2>
-                    <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
-
-                    <div class="quote-container">
-                        <span class="quote-icon left-quote">“</span>
-                        <p class="quote-text">
-                            A perfect weekend getaway! The lagoon was beautiful, and the fishing trip was a highlight for my kids. St John's Island is a hidden gem.
-                        </p>
-                        <span class="quote-icon right-quote">”</span>
-                    </div>
-
-                    <div class="testimony-author">- James T. -</div>
-                </div>
-            </section>
-
-        
 
 </x-layout>

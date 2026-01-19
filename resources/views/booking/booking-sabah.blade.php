@@ -223,13 +223,58 @@
             z-index: 2;
         }
 
+        /* Services Slider Structure (Global) */
+        .services-viewport {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .service-track-wrapper {
+            overflow: hidden;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
+
+        .service-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .service-slide-item {
+            flex-shrink: 0;
+            padding: 0 10px;
+            /* 20px gap total */
+            box-sizing: border-box;
+        }
+
+        .service-card {
+            /* Reset fixed widths */
+            min-width: unset;
+            width: 100%;
+            aspect-ratio: 4/5;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            text-align: center;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s ease;
+        }
+
         /* MOBILE RESPONSIVENESS */
         @media (max-width: 900px) {
             .hero {
                 min-height: 100vh;
                 height: auto;
                 padding-top: 120px;
-                /* More space for navbar */
                 padding-bottom: 60px;
                 gap: 40px;
             }
@@ -248,36 +293,28 @@
                 padding: 0;
             }
 
-            .services-viewport {
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                padding: 0 20px 20px 20px;
-                /* Adjusted bottom padding */
-                scroll-snap-type: x mandatory;
-                scrollbar-width: none;
-                /* Firefox */
-                -ms-overflow-style: none;
-                /* IE 10+ */
-            }
-
-            .services-viewport::-webkit-scrollbar {
-                display: none;
-                /* Hide scrollbar for cleaner look */
-            }
-
-            .services-grid {
-                display: flex;
-                gap: 20px;
-                width: max-content;
-            }
-
+            /* Mobile Service Card Adjustments */
             .service-card {
-                min-width: 280px;
-                /* Slightly wider for better readability */
-                scroll-snap-align: center;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+                padding: 20px 10px;
+                /* Compact padding */
             }
+
+            .service-card h1 {
+                font-size: 3rem;
+                /* Smaller number */
+            }
+
+            .service-card h3 {
+                font-size: 14px;
+                /* Smaller title */
+            }
+
+            .service-card p {
+                font-size: 11px;
+                /* Smaller desc */
+            }
+
+            /* Mobile Tour Card Adjustments */
 
             /* Service Dots for Mobile */
             .service-dots {
@@ -300,16 +337,44 @@
                 background: var(--gold);
                 transform: scale(1.2);
             }
+
+            /* Mobile Tour Card Adjustments */
+            .tour-card {
+                height: auto;
+                aspect-ratio: auto;
+                background: #1a1a1a;
+                /* Dark background for text area */
+            }
+
+            .tour-card-img {
+                position: relative;
+                height: 180px;
+                /* Fixed height for image */
+                width: 100%;
+            }
+
+            .tour-card-content {
+                padding: 15px;
+                background: transparent;
+                backdrop-filter: none;
+                border-top: none;
+            }
+
+            .tour-info h3 {
+                font-size: 13px !important;
+            }
+
+            .tour-info p {
+                margin-bottom: 0px !important;
+                font-size: 11px;
+                line-height: 1.4;
+            }
         }
 
         @media (max-width: 480px) {
             .search-title {
                 font-size: 1.8rem;
                 margin-bottom: 1.5rem;
-            }
-
-            .service-card {
-                min-width: 260px;
             }
         }
 
@@ -461,6 +526,15 @@
 
         /* ================= ABOUT MOBILE ================= */
         @media (max-width: 768px) {
+            /* .tour-info p {
+                margin-bottom: -6px !important;
+            }
+
+            .starts-from {
+                margin-bottom: 0px !important;
+
+            } */
+
             .about-wrapper {
                 flex-direction: column;
                 gap: 40px;
@@ -960,42 +1034,47 @@
             </div>
 
             <!-- SERVICES SECTION (Now Inside Hero) -->
-            <section class="services" x-data="{ 
-                activeService: 0, 
-                updateActive(el) {
-                    const cardWidth = 300; // 280px width + 20px gap approx
-                    this.activeService = Math.round(el.scrollLeft / cardWidth);
-                }
-            }">
-                <div class="services-viewport" @scroll.debounce.50ms="updateActive($el)">
-                    <div class="services-grid">
-                        <!-- Service 1 -->
-                        <div class="service-card">
-                            <h1>01</h1>
-                            <h3>Sunset dinner cruise </h3>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
+            <!-- SERVICES SECTION (Now Inside Hero) -->
+            <section class="services" x-data="{
+                serviceItems: [
+                    { id: '01', title: 'Sunset dinner cruise', desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing.' },
+                    { id: '02', title: 'Fishing charter', desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing.' },
+                    { id: '03', title: 'Mount climbing', desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing.' }
+                ],
+                get visibleServiceSlides() {
+                    if (window.innerWidth >= 1024) return 3; /* Adjusted to 3 for Sabah since there are only 3 items */
+                    return 2;
+                },
+                get maxServiceSlide() {
+                    return Math.max(0, this.serviceItems.length - this.visibleServiceSlides);
+                },
+                activeServiceSlide: 0
+            }" @resize.window="activeServiceSlide = 0">
+                <div class="services-viewport">
+                    <div class="service-track-wrapper">
+                        <div class="service-track"
+                            :style="`transform: translateX(-${activeServiceSlide * (100 / visibleServiceSlides)}%)`">
+                            <template x-for="(item, index) in serviceItems" :key="index">
+                                <div class="service-slide-item" :style="`width: ${100 / visibleServiceSlides}%`">
+                                    <div class="service-card">
+                                        <h1 x-text="item.id"></h1>
+                                        <h3 x-text="item.title"></h3>
+                                        <p x-text="item.desc"></p>
+                                    </div>
+                                </div>
+                            </template>
                         </div>
-                        <!-- Service 2 -->
-                        <div class="service-card">
-                            <h1>02</h1>
-                            <h3>Fishing charter </h3>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-                        </div>
-                        <!-- Service 3 -->
-                        <div class="service-card">
-                            <h1>03</h1>
-                            <h3>Mount climbing</h3>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
-                        </div>
-
                     </div>
-                </div>
 
-                <!-- Pagination Dots (Mobile Only) -->
-                <div class="service-dots">
-                    <template x-for="i in 3">
-                        <span class="service-dot" :class="{ 'active': activeService === i - 1 }"></span>
-                    </template>
+                    <!-- Pagination Dots -->
+                    <div class="service-dots">
+                        <template x-for="i in Math.ceil(serviceItems.length / visibleServiceSlides)">
+                            <span class="service-dot"
+                                :class="{ 'active': Math.floor(activeServiceSlide / visibleServiceSlides) === i - 1 }"
+                                @click="activeServiceSlide = (i - 1) * visibleServiceSlides">
+                            </span>
+                        </template>
+                    </div>
                 </div>
             </section>
         </div>
@@ -1148,7 +1227,7 @@
             </div>
         </section>
 
-    
+
 
 
 </x-layout>

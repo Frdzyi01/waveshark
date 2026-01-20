@@ -1009,7 +1009,7 @@
     <div class="booking-page-font bg-black">
 
         <!-- Back Button -->
-        <a href="{{ url('/') }}" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
+        <a href="http://127.0.0.1:8000" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
     margin-top: 7rem;
     margin-left: 1rem;
 ">
@@ -1017,16 +1017,16 @@
         </a>
 
         <!-- HERO SECTION (Contains Search + Services) -->
-        <div class="hero" style="background-image: url('{{ asset('images/sabah.jpg') }}');">
+        <div class="hero" style="background-image: url('{{ asset('images/laut-malay.jpg') }}');">
             <div class="hero-overlay"></div>
 
 
             <!-- Search Content -->
             <div class="search-container">
-                <h1 class="search-title">Discover Sabah</h1>
+                <h1 class="search-title">Discover Langkawi</h1>
 
                 <div class="search-box">
-                    <input type="text" class="search-input" placeholder="Search activities (e.g., Mount Kinabalu, Sipadan)...">
+                    <input type="text" class="search-input" placeholder="Search activities (e.g., Jetski, Mangrove Tour)...">
                     <button class="search-btn">
                         <i class="ri-search-line"></i>
                     </button>
@@ -1035,21 +1035,21 @@
 
             <!-- SERVICES SECTION (Now Inside Hero) -->
             <!-- SERVICES SECTION (Now Inside Hero) -->
-            <section class="services" x-data="{
+            <section class="services" x-data='{
                 serviceItems: [
-                    { id: '01', title: 'Sunset dinner cruise', desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing.' },
-                    { id: '02', title: 'Fishing charter', desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing.' },
-                    { id: '03', title: 'Mount climbing', desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing.' }
+                    @foreach($services as $service)
+                        { id: "{{ $service->number }}", title: {!! json_encode($service->title, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, desc: {!! json_encode($service->description, JSON_HEX_APOS | JSON_HEX_QUOT) !!} },
+                    @endforeach
                 ],
-                get visibleServiceSlides() {
-                    if (window.innerWidth >= 1024) return 3; /* Adjusted to 3 for Sabah since there are only 3 items */
+              get visibleServiceSlides() {
+                    if (window.innerWidth >= 1024) return 5;
                     return 2;
                 },
                 get maxServiceSlide() {
                     return Math.max(0, this.serviceItems.length - this.visibleServiceSlides);
                 },
                 activeServiceSlide: 0
-            }" @resize.window="activeServiceSlide = 0">
+            }' @resize.window="activeServiceSlide = 0">
                 <div class="services-viewport">
                     <div class="service-track-wrapper">
                         <div class="service-track"
@@ -1110,39 +1110,17 @@
 
 
         <!-- ================= TOUR PACKAGE SLIDER ================= -->
-        <section class="tour-package" x-data="{
+        <section class="tour-package" x-data='{
                 activeTourSlide: 0,
                 tourItems: [
-                    { 
-                        img: '{{ asset('images/sabah.jpg') }}', 
-                        title: 'Mount Kinabalu', 
-                        desc: 'Mountain Expedition', 
-                        price: 'RM 1250' 
-                    },
-                    { 
-                        img: '{{ asset('images/pangkalan-islands.jpg') }}', 
-                        title: 'Tunku Abdul Rahman', 
-                        desc: 'Island Hopping', 
-                        price: 'RM 250' 
-                    },
-                    { 
-                        img: '{{ asset('images/laut-malay.jpg') }}', 
-                        title: 'Sipadan Dive', 
-                        desc: 'Scuba Diving', 
-                        price: 'RM 850' 
-                    },
-                    { 
-                        img: '{{ asset('images/sabah.jpg') }}', 
-                        title: 'Kinabatangan River', 
-                        desc: 'Wildlife Safari', 
-                        price: 'RM 350' 
-                    },
-                    { 
-                        img: '{{ asset('images/laut-singapore.jpg') }}', 
-                        title: 'North Borneo Cruise', 
-                        desc: 'Sunset Dinner', 
-                        price: 'RM 200' 
-                    }
+                    @foreach($tourPackages as $package)
+                        { 
+                            img: "{{ $package->image_path ? asset('storage/' . $package->image_path) : asset('images/default.jpg') }}", 
+                            title: {!! json_encode($package->title, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, 
+                            desc: {!! json_encode($package->description, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, 
+                            price: {!! json_encode($package->price, JSON_HEX_APOS | JSON_HEX_QUOT) !!} 
+                        },
+                    @endforeach
                 ],
                 get visibleTourSlides() {
                     if (window.innerWidth >= 1024) return 4;
@@ -1165,7 +1143,7 @@
                         this.activeTourSlide = this.maxTourSlide;
                     }
                 }
-            }" @resize.window="activeTourSlide = 0">
+            }' @resize.window="activeTourSlide = 0">
 
             <h2 class="section-title">Sabah Tour Package</h2>
 

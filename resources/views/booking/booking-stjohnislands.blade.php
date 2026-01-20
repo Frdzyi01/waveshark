@@ -1035,13 +1035,11 @@
 
             <!-- SERVICES SECTION (Now Inside Hero) -->
             <!-- SERVICES SECTION (Now Inside Hero) -->
-            <section class="services" x-data="{
+            <section class="services" x-data='{
                 serviceItems: [
-                    { id: '01', title: 'Car Rental', desc: 'Explore the island at your own pace with our premium fleet.' },
-                    { id: '02', title: 'Island Hopping', desc: 'Discover hidden gems and pristine beaches across the archipelago.' },
-                    { id: '03', title: 'Jetski Rides', desc: 'Experience the adrenaline rush on the open turquoise waters.' },
-                    { id: '05', title: 'Mangrove Tour', desc: 'Navigate through the ancient geopark and diverse ecosystems.' },
-                    { id: '06', title: 'Dinner Cruise', desc: 'Enjoy a romantic sunset dinner with breathtaking views.' }
+                    @foreach($services as $service)
+                        { id: "{{ $service->number }}", title: {!! json_encode($service->title, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, desc: {!! json_encode($service->description, JSON_HEX_APOS | JSON_HEX_QUOT) !!} },
+                    @endforeach
                 ],
                 get visibleServiceSlides() {
                     if (window.innerWidth >= 1024) return 5;
@@ -1051,7 +1049,7 @@
                     return Math.max(0, this.serviceItems.length - this.visibleServiceSlides);
                 },
                 activeServiceSlide: 0
-            }" @resize.window="activeServiceSlide = 0">
+            }' @resize.window="activeServiceSlide = 0">
                 <div class="services-viewport">
                     <div class="service-track-wrapper">
                         <div class="service-track"
@@ -1112,39 +1110,17 @@
 
 
         <!-- ================= TOUR PACKAGE SLIDER ================= -->
-        <section class="tour-package" x-data="{
+        <section class="tour-package" x-data='{
                 activeTourSlide: 0,
                 tourItems: [
-                    { 
-                        img: '{{ asset('images/laut-malay.jpg') }}', 
-                        title: 'Car Rental', 
-                        desc: 'Self-drive adventure', 
-                        price: 'RM 150/day' 
-                    },
-                    { 
-                        img: '{{ asset('images/singapore-johnisland.jpg') }}', 
-                        title: 'Island Hopping', 
-                        desc: '3-island tour by boat', 
-                        price: 'RM 350' 
-                    },
-                    { 
-                        img: '{{ asset('images/laut-singapore.jpg') }}', 
-                        title: 'Jetski Rides', 
-                        desc: 'Thrilling water action', 
-                        price: 'RM 450' 
-                    },
-                    { 
-                        img: '{{ asset('images/sabah.jpg') }}', 
-                        title: 'Mangrove Tour', 
-                        desc: 'Eco-adventure in Kilim', 
-                        price: 'RM 250' 
-                    },
-                    { 
-                        img: '{{ asset('images/laut-singapore2.jpg') }}', 
-                        title: 'Sunset Dinner Cruise', 
-                        desc: 'Romance at sea', 
-                        price: 'RM 500' 
-                    }
+                    @foreach($tourPackages as $package)
+                        { 
+                            img: "{{ $package->image_path ? asset('storage/' . $package->image_path) : asset('images/default.jpg') }}", 
+                            title: {!! json_encode($package->title, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, 
+                            desc: {!! json_encode($package->description, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, 
+                            price: {!! json_encode($package->price, JSON_HEX_APOS | JSON_HEX_QUOT) !!} 
+                        },
+                    @endforeach
                 ],
                 get visibleTourSlides() {
                     if (window.innerWidth >= 1024) return 4;
@@ -1167,7 +1143,7 @@
                         this.activeTourSlide = this.maxTourSlide;
                     }
                 }
-            }" @resize.window="activeTourSlide = 0">
+            }' @resize.window="activeTourSlide = 0">
 
             <h2 class="section-title">Tour Package</h2>
 

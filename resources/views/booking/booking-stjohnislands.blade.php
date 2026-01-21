@@ -20,6 +20,10 @@
             font-family: "Poppins", sans-serif;
         }
 
+        [x-cloak] {
+            display: none !important;
+        }
+
         /* HERO SECTION */
         .hero {
             position: relative;
@@ -529,10 +533,10 @@
             /* .tour-info p {
                 margin-bottom: -6px !important;
             }
-
+ 
             .starts-from {
                 margin-bottom: 0px !important;
-
+ 
             } */
 
             .about-wrapper {
@@ -642,7 +646,7 @@
         /* Content Section */
         .tour-card-content {
             position: relative;
-            z-index: 2;
+            z-index: 20;
             width: 100%;
             background: rgba(0, 0, 0, 0.7);
             /* Darker background for text */
@@ -679,8 +683,8 @@
         }
 
         .starts-from {
-            font-size: 1rem;
-            color: #9ca3af;
+            font-size: 0.9rem;
+            color: var(--gold);
             font-style: italic;
             font-weight: 400;
             transition: all 0.3s ease;
@@ -730,6 +734,265 @@
 
             .tour-package {
                 padding: 60px 10px;
+            }
+        }
+
+        /* ================= BOOKING MODAL & BUTTONS ================= */
+        .btn-book-now {
+            width: 100%;
+            padding: 10px 0;
+            background: var(--gold);
+            color: black;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            border: none;
+            border-radius: 6px;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* Make fully visible and clickable */
+            opacity: 1;
+            transform: translateY(0);
+            position: relative;
+            z-index: 500;
+            pointer-events: auto;
+        }
+
+        .btn-book-now:hover {
+            background: white;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        /* Modal Styles */
+        .booking-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            /* transitions managed by Alpine x-transition */
+        }
+
+        .booking-modal {
+            background: #111;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Custom Scrollbar for Modal */
+        .booking-modal::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .booking-modal::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        .booking-modal::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        .booking-modal::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        .modal-header {
+            padding: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: #111;
+            z-index: 10;
+        }
+
+        .modal-title {
+            color: var(--gold);
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .close-modal-btn {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-modal-btn:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .form-section-title {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section-title::after {
+            content: '';
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            flex: 1;
+        }
+
+        /* Package Selection */
+        .selected-package-display {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .selected-package-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            object-fit: cover;
+        }
+
+        .additional-packages-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .checkbox-wrapper:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            accent-color: var(--gold);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            color: #94a3b8;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: white;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+        }
+
+        /* Action Buttons */
+        .modal-footer {
+            padding: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 15px;
+            background: #111;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.3s;
+            border: none;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1FB855;
+        }
+
+        .btn-email {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-email:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 600px) {
+            .additional-packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-footer {
+                flex-direction: column;
             }
         }
 
@@ -1004,6 +1267,12 @@
                 margin-top: 27rem;
             }
         }
+
+        /* Date Input Icon Invert */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            cursor: pointer;
+        }
     </style>
 
     <div class="booking-page-font bg-black">
@@ -1110,11 +1379,13 @@
 
 
         <!-- ================= TOUR PACKAGE SLIDER ================= -->
+        <!-- ================= TOUR PACKAGE SLIDER ================= -->
         <section class="tour-package" x-data='{
                 activeTourSlide: 0,
                 tourItems: [
                     @foreach($tourPackages as $package)
                         { 
+                            id: "{{ $package->id ?? $loop->index }}",
                             img: "{{ $package->image_path ? asset('storage/' . $package->image_path) : asset('images/default.jpg') }}", 
                             title: {!! json_encode($package->title, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, 
                             desc: {!! json_encode($package->description, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, 
@@ -1122,12 +1393,87 @@
                         },
                     @endforeach
                 ],
+                isModalOpen: false,
+                selectedMainPackage: null,
+                additionalPackages: [], 
+                bookingForm: {
+                    name: "",
+                    email: "",
+                    whatsapp: "",
+                    date: ""
+                },
+                
+                openModal(item) {
+                    this.selectedMainPackage = item;
+                    this.additionalPackages = [];
+                    this.isModalOpen = true;
+                    document.body.style.overflow = "hidden"; 
+                },
+                
+                closeModal() {
+                    this.isModalOpen = false;
+                    document.body.style.overflow = "";
+                },
+
+                toggleAdditionalPackage(packageTitle) {
+                    if (this.additionalPackages.includes(packageTitle)) {
+                        this.additionalPackages = this.additionalPackages.filter(p => p !== packageTitle);
+                    } else {
+                        this.additionalPackages.push(packageTitle);
+                    }
+                },
+
+                submitWhatsApp() {
+                    const phone = "+97338404239"; // Replace with actual admin number
+                    const mainPkg = this.selectedMainPackage ? this.selectedMainPackage.title : "None";
+                    const others = this.additionalPackages.length > 0 ? this.additionalPackages.join(", ") : "-";
+                    
+                    const message = `Hello, I would like to book a tour!
+                    
+Name: ${this.bookingForm.name}
+Email: ${this.bookingForm.email}
+WhatsApp: ${this.bookingForm.whatsapp}
+Preferred Date: ${this.bookingForm.date}
+
+Main Package: *${mainPkg}*
+Additional Packages: ${others}
+
+Please confirm availability. Thank you!`;
+
+                    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+                    window.open(url, "_blank");
+                },
+
+                submitEmail() {
+                    const to = "marketing@inovasisoftware.tech"; // Replace with actual email
+                    const mainPkg = this.selectedMainPackage ? this.selectedMainPackage.title : "None";
+                    const others = this.additionalPackages.length > 0 ? this.additionalPackages.join(", ") : "-";
+                    const price = this.selectedMainPackage ? this.selectedMainPackage.price : "-";
+                    
+                    const subject = `Tour Booking Request - ${this.bookingForm.name}`;
+                    const body = `Hello, I would like to book a tour!
+                    
+Name: ${this.bookingForm.name}
+Email: ${this.bookingForm.email}
+WhatsApp: ${this.bookingForm.whatsapp}
+Preferred Date: ${this.bookingForm.date}
+
+Main Package: ${mainPkg}
+Total Price: ${price}
+Additional Packages: ${others}
+
+Please confirm availability.`;
+
+                    const url = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    window.location.href = url;
+                },
+
                 get visibleTourSlides() {
                     if (window.innerWidth >= 1024) return 4;
                     return 2;
                 },
                 get maxTourSlide() {
-                    return this.tourItems.length - this.visibleTourSlides;
+                    return Math.max(0, this.tourItems.length - this.visibleTourSlides);
                 },
                 nextTour() {
                     if (this.activeTourSlide < this.maxTourSlide) {
@@ -1142,13 +1488,39 @@
                     } else {
                         this.activeTourSlide = this.maxTourSlide;
                     }
-                }
+                },
+                
+                parsePrice(priceStr) {
+                    if (!priceStr) return 0;
+
+            return parseInt(priceStr.replace(/[^0-9]/g, "" )) || 0;
+            },
+
+            formatPrice(amount) {
+            return "Rp " + amount.toLocaleString("id-ID");
+            },
+
+            get totalPriceDisplay() {
+            if (!this.selectedMainPackage) return "-" ;
+
+            let total=this.parsePrice(this.selectedMainPackage.price);
+
+            // Add additional packages
+            this.additionalPackages.forEach(title=> {
+            const pkg = this.tourItems.find(p => p.title === title);
+            if (pkg) {
+            total += this.parsePrice(pkg.price);
+            }
+            });
+
+            return this.formatPrice(total);
+            }
             }' @resize.window="activeTourSlide = 0">
 
             <h2 class="section-title">Tour Package</h2>
 
+            <!-- Slider Container -->
             <div class="tour-slider-container">
-                <!-- Wrapper -->
                 <div class="tour-track-wrapper">
                     <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
                         <template x-for="(item, index) in tourItems" :key="index">
@@ -1163,6 +1535,10 @@
                                                 <span class="starts-from">starts from</span>
                                                 <span class="price" x-text="item.price"></span>
                                             </div>
+                                            <!-- BOOK NOW BUTTON -->
+                                            <button class="btn-book-now" @click.stop="openModal(item)">
+                                                Book Now
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -1170,10 +1546,9 @@
                         </template>
                     </div>
                 </div>
-
             </div>
 
-            <!-- Dots (Optional visualization of progress) -->
+            <!-- Dots -->
             <div class="tour-dots mt-custom">
                 <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
                     <span class="dot"
@@ -1181,6 +1556,97 @@
                         @click="activeTourSlide = (i - 1) * visibleTourSlides">
                     </span>
                 </template>
+            </div>
+
+            <!-- ================= BOOKING MODAL ================= -->
+            <div x-show="isModalOpen"
+                x-transition.opacity
+                x-cloak
+                class="booking-modal-overlay"
+                @click="closeModal()">
+
+                <div class="booking-modal" @click.stop>
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h3 class="modal-title">Complete Your Booking</h3>
+                        <button class="close-modal-btn" @click="closeModal()"><i class="ri-close-line"></i></button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+
+                        <!-- Selected Package Summary -->
+                        <template x-if="selectedMainPackage">
+                            <div class="selected-package-display">
+                                <img :src="selectedMainPackage.img" class="selected-package-img">
+                                <div>
+                                    <div style="font-size: 10px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px;">Selected Package</div>
+                                    <div style="font-size: 16px; font-weight: bold; color: white;" x-text="selectedMainPackage.title"></div>
+                                    <div style="font-size: 14px; color: var(--gold);" x-text="selectedMainPackage.price"></div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Additional Packages (Optional) -->
+                        <div class="form-section-title">
+                            <span>Add Other Packages (Optional)</span>
+                        </div>
+                        <div class="additional-packages-grid">
+                            <template x-for="pkg in tourItems" :key="pkg.title">
+                                <div class="checkbox-wrapper" x-show="pkg.title !== (selectedMainPackage?.title)" @click="toggleAdditionalPackage(pkg.title)">
+                                    <input type="checkbox" :checked="additionalPackages.includes(pkg.title)">
+                                    <span style="font-size: 12px; color: #ccc;" x-text="pkg.title"></span>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- User Data Form -->
+                        <div class="form-section-title">
+                            <span>Your Details</span>
+                        </div>
+
+                        <form @submit.prevent>
+                            <div class="form-group">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-input" x-model="bookingForm.name" placeholder="Enter your full name">
+                            </div>
+
+                            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <div>
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-input" x-model="bookingForm.email" placeholder="example@mail.com">
+                                </div>
+                                <div>
+                                    <label class="form-label">WhatsApp Number</label>
+                                    <input type="tel" class="form-input" x-model="bookingForm.whatsapp" placeholder="+62 812 345 678">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Preferred Tour Date</label>
+                                <input type="date" class="form-input" x-model="bookingForm.date">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Total Price (Main Package)</label>
+                                <input type="text" class="form-input" :value="totalPriceDisplay" readonly style="background: rgba(255, 255, 255, 0.1); cursor: not-allowed; color: var(--gold); font-weight: bold;">
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Modal Footer (Actions) -->
+                    <div class="modal-footer">
+                        <button class="btn-action btn-email" @click="submitEmail()">
+                            <i class="ri-mail-send-line"></i> Submit via Email
+                        </button>
+                        <button class="btn-action btn-whatsapp" @click="submitWhatsApp()">
+                            <i class="ri-whatsapp-line"></i> Submit via WhatsApp
+                        </button>
+                    </div>
+
+                </div>
             </div>
 
         </section>

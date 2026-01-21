@@ -533,10 +533,10 @@
             /* .tour-info p {
                 margin-bottom: -6px !important;
             }
-
+ 
             .starts-from {
                 margin-bottom: 0px !important;
-
+ 
             } */
 
             .about-wrapper {
@@ -1424,7 +1424,7 @@
                 },
 
                 submitWhatsApp() {
-                    const phone = "628123456789"; // Replace with actual admin number
+                    const phone = "+97338404239"; // Replace with actual admin number
                     const mainPkg = this.selectedMainPackage ? this.selectedMainPackage.title : "None";
                     const others = this.additionalPackages.length > 0 ? this.additionalPackages.join(", ") : "-";
                     
@@ -1445,7 +1445,7 @@ Please confirm availability. Thank you!`;
                 },
 
                 submitEmail() {
-                    const to = "admin@waveshark.com"; // Replace with actual email
+                    const to = "marketing@inovasisoftware.tech"; // Replace with actual email
                     const mainPkg = this.selectedMainPackage ? this.selectedMainPackage.title : "None";
                     const others = this.additionalPackages.length > 0 ? this.additionalPackages.join(", ") : "-";
                     const price = this.selectedMainPackage ? this.selectedMainPackage.price : "-";
@@ -1489,9 +1489,32 @@ Please confirm availability.`;
                         this.activeTourSlide = this.maxTourSlide;
                     }
                 },
-                get totalPriceDisplay() {
-                    return this.selectedMainPackage ? this.selectedMainPackage.price : "-";
-                }
+                
+                parsePrice(priceStr) {
+                    if (!priceStr) return 0;
+
+            return parseInt(priceStr.replace(/[^0-9]/g, "" )) || 0;
+            },
+
+            formatPrice(amount) {
+            return "Rp " + amount.toLocaleString("id-ID");
+            },
+
+            get totalPriceDisplay() {
+            if (!this.selectedMainPackage) return "-" ;
+
+            let total=this.parsePrice(this.selectedMainPackage.price);
+
+            // Add additional packages
+            this.additionalPackages.forEach(title=> {
+            const pkg = this.tourItems.find(p => p.title === title);
+            if (pkg) {
+            total += this.parsePrice(pkg.price);
+            }
+            });
+
+            return this.formatPrice(total);
+            }
             }' @resize.window="activeTourSlide = 0">
 
             <h2 class="section-title">Tour Package</h2>

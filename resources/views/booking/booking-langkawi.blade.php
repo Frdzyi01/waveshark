@@ -1448,6 +1448,7 @@ Please confirm availability. Thank you!`;
                     const to = "admin@waveshark.com"; // Replace with actual email
                     const mainPkg = this.selectedMainPackage ? this.selectedMainPackage.title : "None";
                     const others = this.additionalPackages.length > 0 ? this.additionalPackages.join(", ") : "-";
+                    const price = this.selectedMainPackage ? this.selectedMainPackage.price : "-";
                     
                     const subject = `Tour Booking Request - ${this.bookingForm.name}`;
                     const body = `Hello, I would like to book a tour!
@@ -1458,6 +1459,7 @@ WhatsApp: ${this.bookingForm.whatsapp}
 Preferred Date: ${this.bookingForm.date}
 
 Main Package: ${mainPkg}
+Total Price: ${price}
 Additional Packages: ${others}
 
 Please confirm availability.`;
@@ -1486,6 +1488,9 @@ Please confirm availability.`;
                     } else {
                         this.activeTourSlide = this.maxTourSlide;
                     }
+                },
+                get totalPriceDisplay() {
+                    return this.selectedMainPackage ? this.selectedMainPackage.price : "-";
                 }
             }' @resize.window="activeTourSlide = 0">
 
@@ -1598,6 +1603,11 @@ Please confirm availability.`;
                             <div class="form-group">
                                 <label class="form-label">Preferred Tour Date</label>
                                 <input type="date" class="form-input" x-model="bookingForm.date">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Total Price (Main Package)</label>
+                                <input type="text" class="form-input" :value="totalPriceDisplay" readonly style="background: rgba(255, 255, 255, 0.1); cursor: not-allowed; color: var(--gold); font-weight: bold;">
                             </div>
                         </form>
 

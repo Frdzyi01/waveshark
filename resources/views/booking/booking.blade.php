@@ -1038,7 +1038,7 @@
             </div>
 
             <div class="about-img">
-                <img src="images/laut-malay.jpg">
+                <img src="images/laut-malay-new.jpg">
                 <div class="cross bl"></div>
             </div>
 
@@ -1052,7 +1052,7 @@
                     { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Pangkalan Islands' },
                     { img: '{{ asset('images/laut-singapore.jpg') }}', title: 'Singapore Coast' },
                     { img: '{{ asset('images/sabah.jpg') }}', title: 'Sabah Nature' },
-                    { img: '{{ asset('images/laut-malay.jpg') }}', title: 'Malay Coast' },
+                    { img: '{{ asset('images/laut-malay-new.jpg') }}', title: 'Malay Coast' },
                     { img: '{{ asset('images/singapore.jpg') }}', title: 'Gardens by the Bay' },
                     { img: '{{ asset('images/laut-singapore2.jpg') }}', title: 'Sentosa Island' },
                     { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Hidden Gems' },

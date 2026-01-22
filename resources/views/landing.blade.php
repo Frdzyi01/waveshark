@@ -34,8 +34,8 @@
                 {
                     name: 'Langkawi',
                     description: 'The Jewel of Kedah. Turqouise waters, limestone cliffs, and ancient rainforests.',
-                    image: '{{ asset('images/laut-malay.jpg') }}',
-                    thumbnail: '{{ asset('images/laut-malay.jpg') }}'
+                    image: '{{ asset('images/laut-malay-new.jpg') }}',
+                    thumbnail: '{{ asset('images/laut-malay-new.jpg') }}'
                 },
                 {
                     name: 'Sabah',
@@ -207,7 +207,7 @@
                 <div
                     class="absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out"
                     :style="`
-                        background-image: url('${expanded === 'malaysia' ? malaysiaDestinations[activeDestination].image : '{{ asset('images/laut-malay.jpg') }}'}');
+                        background-image: url('${expanded === 'malaysia' ? malaysiaDestinations[activeDestination].image : '{{ asset('images/laut-malay-new.jpg') }}'}');
                         transform: ${
                             !expanded && hovered === 'malaysia'
                                 ? 'scale(1.02)'
@@ -408,83 +408,13 @@
                     </div>
 
                     <div class="about-img">
-                        <img src="images/laut-malay.jpg">
+                        <img src="images/laut-malay-new.jpg">
                         <div class="cross bl"></div>
                     </div>
 
                 </div>
             </section>
 
-            <!-- ================= TOUR PACKAGE SLIDER ================= -->
-            <section class="tour-package" x-data="{
-                activeTourSlide: 0,
-                tourItems: [
-                    { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Pangkalan Islands' },
-                    { img: '{{ asset('images/laut-singapore.jpg') }}', title: 'Singapore Coast' },
-                    { img: '{{ asset('images/sabah.jpg') }}', title: 'Sabah Nature' },
-                    { img: '{{ asset('images/laut-malay.jpg') }}', title: 'Malay Coast' },
-                    { img: '{{ asset('images/singapore.jpg') }}', title: 'Gardens by the Bay' },
-                    { img: '{{ asset('images/laut-singapore2.jpg') }}', title: 'Sentosa Island' },
-                    { img: '{{ asset('images/pangkalan-islands.jpg') }}', title: 'Hidden Gems' },
-                    { img: '{{ asset('images/sabah.jpg') }}', title: 'Borneo Wild' }
-                ],
-                get visibleTourSlides() {
-                    if (window.innerWidth >= 1024) return 4;
-                    return 2;
-                },
-                get maxTourSlide() {
-                    return this.tourItems.length - this.visibleTourSlides;
-                },
-                nextTour() {
-                    if (this.activeTourSlide < this.maxTourSlide) {
-                        this.activeTourSlide++;
-                    } else {
-                        this.activeTourSlide = 0;
-                    }
-                },
-                prevTour() {
-                    if (this.activeTourSlide > 0) {
-                        this.activeTourSlide--;
-                    } else {
-                        this.activeTourSlide = this.maxTourSlide;
-                    }
-                }
-            }" @resize.window="activeTourSlide = 0">
-
-                <h2 class="section-title">Tour Package</h2>
-
-                <div class="tour-slider-container">
-                    <!-- Wrapper -->
-                    <div class="tour-track-wrapper">
-                        <div class="tour-track" :style="`transform: translateX(-${activeTourSlide * (100 / visibleTourSlides)}%)`">
-                            <template x-for="(item, index) in tourItems" :key="index">
-                                <div class="tour-slide-item" :style="`width: ${100 / visibleTourSlides}%`">
-                                    <div class="tour-card" :style="`background-image: url('${item.img}')`">
-                                        <div class="tour-overlay">
-                                            <div class="tour-info">
-                                                <h3 x-text="item.title"></h3>
-                                            </div>
-                                        </div>
-                                        <div class="tour-border"></div>
-                                    </div>
-                                </div>
-                            </template>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Dots (Optional visualization of progress) -->
-                <div class="tour-dots mt-custom">
-                    <template x-for="i in Math.ceil(tourItems.length / visibleTourSlides)">
-                        <span class="dot"
-                            :class="{ 'active': Math.floor(activeTourSlide / visibleTourSlides) === i - 1 }"
-                            @click="activeTourSlide = (i - 1) * visibleTourSlides">
-                        </span>
-                    </template>
-                </div>
-
-            </section>
 
             <!-- ================= TESTIMONY SECTION ================= -->
             <section class="testimony-section">

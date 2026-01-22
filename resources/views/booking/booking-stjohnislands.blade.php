@@ -1348,36 +1348,6 @@
             </section>
         </div>
 
-        <!-- ================= ABOUT ================= -->
-        <section class="about">
-            <div class="about-wrapper">
-
-                <div class="about-img">
-                    <img src="{{ asset('images/laut-malay.jpg') }}">
-                    <div class="cross tr"></div>
-                </div>
-
-                <div class="about-content">
-                    <div class="cross center-top"></div>
-                    <h2>About St John's Islands</h2>
-                    <p>
-                        St John's Islands, also known as Pulau St John, is a stunning archipelago of 99 islands on Malaysia's west coast. Famous for its turquoise waters, limestone cliffs, and ancient rainforests, it offers a perfect blend of relaxation and adventure. Experience the thrill of jetski rides, explore the mangroves, or enjoy a romantic sunset dinner cruise. St John's Islands is the ultimate tropical escape.
-                    </p>
-                    <div class="about-buttons">
-                        <button class="btn-gold">BOOK NOW</button>
-                        <button class="btn-outline">LEARN MORE</button>
-                    </div>
-                </div>
-
-                <div class="about-img">
-                    <img src="{{ asset('images/singapore-johnisland.jpg') }}">
-                    <div class="cross bl"></div>
-                </div>
-
-            </div>
-        </section>
-
-
         <!-- ================= TOUR PACKAGE SLIDER ================= -->
         <!-- ================= TOUR PACKAGE SLIDER ================= -->
         <section class="tour-package" x-data='{
@@ -1649,26 +1619,6 @@ Please confirm availability.`;
                 </div>
             </div>
 
-        </section>
-
-        <!-- ================= TESTIMONY SECTION ================= -->
-        <section class="testimony-section">
-            <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
-            <div class="testimony-overlay"></div>
-            <div class="testimony-content">
-                <h2 class="testimony-title">Testimony</h2>
-                <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
-
-                <div class="quote-container">
-                    <span class="quote-icon left-quote">“</span>
-                    <p class="quote-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                    </p>
-                    <span class="quote-icon right-quote">”</span>
-                </div>
-
-                <div class="testimony-author">- Febrian -</div>
-            </div>
         </section>
 
 

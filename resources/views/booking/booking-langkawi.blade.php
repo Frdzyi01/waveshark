@@ -48,17 +48,16 @@
         }
 
         /* GRADIENT OVERLAY */
+        /* GRADIENT OVERLAY (Stronger Bottom) */
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(to bottom,
-                    rgba(0, 0, 0, 0.4) 0%,
-                    /* Darker top for navbar visibility */
-                    rgba(0, 0, 0, 0.2) 40%,
-                    /* Lighter middle */
-                    rgba(0, 0, 0, 0.9) 100%
-                    /* Dark bottom for contrast with search/services */
-                );
+                    rgba(0, 0, 0, 0.3) 0%,
+                    rgba(0, 0, 0, 0.1) 40%,
+                    rgba(0, 0, 0, 0.6) 70%,
+                    rgba(0, 0, 0, 0.95) 90%,
+                    #000000 100%);
             z-index: 1;
         }
 
@@ -81,26 +80,58 @@
             letter-spacing: 1px;
         }
 
-        /* GLASSMORPHISM SEARCH BAR */
+        /* GLASSMORPHISM SEARCH BAR - REDESIGNED */
         .search-box {
             position: relative;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50px;
-            padding: 8px 8px 8px 25px;
+            padding: 10px 10px 10px 30px;
             display: flex;
             align-items: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            justify-content: space-between;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 850px;
+            margin: 0 auto;
+            gap: 15px;
         }
 
-        .search-box:focus-within {
-            background: rgba(255, 255, 255, 0.25);
-            border-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transform: translateY(-2px);
+        .search-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            position: relative;
+            padding-right: 15px;
+            border-right: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .search-group:last-of-type {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .search-group i {
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .search-label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .search-input {
@@ -109,39 +140,204 @@
             border: none;
             outline: none;
             color: var(--white);
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0;
+            appearance: none;
+            /* Remove default arrow for select */
+            -webkit-appearance: none;
+        }
+
+        /* Specific fix for select dropdown arrow if needed, but keeping it clean for now */
+        select.search-input option {
+            background: #111;
+            color: white;
+            padding: 10px;
         }
 
         .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.4);
             font-weight: 400;
         }
 
+        /* Date Input Specifics */
+        input[type="date"] {
+            color-scheme: dark;
+        }
+
         .search-btn {
-            background: var(--white);
-            color: var(--primary-color);
-            width: 50px;
+            background: var(--gold);
+            color: black;
+            font-weight: 700;
+            width: auto;
             height: 50px;
-            border-radius: 50%;
+            padding: 0 25px;
+            border-radius: 40px;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
+            gap: 10px;
             cursor: pointer;
             transition: 0.3s;
-            margin-left: 10px;
+            flex-shrink: 0;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
 
         .search-btn:hover {
-            background: var(--gold);
-            color: #000;
-            transform: scale(1.1) rotate(90deg);
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
         }
 
-        .search-btn i {
-            font-size: 1.2rem;
+        /* Mobile Responsive Search */
+        @media (max-width: 900px) {
+            .search-box {
+                flex-direction: column;
+                border-radius: 20px;
+                padding: 20px;
+                gap: 20px;
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+            .search-group {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                padding-bottom: 15px;
+                padding-right: 0;
+            }
+
+            .search-group:last-of-type {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .search-btn {
+                width: 100%;
+                margin: 10px 0 0 0;
+            }
+        }
+
+        /* TOUR GRID SECTION */
+        .tour-grid-section {
+            background-color: #000000;
+            padding: 80px 40px;
+            position: relative;
+        }
+
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .tour-grid-card {
+            background: #111;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .tour-grid-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tg-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .tg-content {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tg-title {
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .tg-desc {
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tg-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
+        }
+
+        .tg-price-label {
+            font-size: 11px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+        }
+
+        .tg-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .tg-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .tg-btn:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        @media (max-width: 1024px) {
+            .tour-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .tour-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tour-grid-section {
+                padding: 40px 20px;
+            }
         }
 
         /* SERVICES SECTION */
@@ -1273,109 +1469,331 @@
             filter: invert(1);
             cursor: pointer;
         }
+
+        .tour-grid-section {
+            background: #000;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .tour-slider-wrapper {
+            position: relative;
+        }
+
+        .tour-grid {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 0 60px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tour-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tour-grid-card {
+            min-width: 300px;
+            max-width: 300px;
+            background: #111;
+            border-radius: 16px;
+            overflow: hidden;
+            scroll-snap-align: start;
+            transition: transform .3s ease;
+        }
+
+        .tour-grid-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .tg-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .tg-content {
+            padding: 16px;
+            color: #fff;
+        }
+
+        .tg-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .tg-desc {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Slider Buttons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, .7);
+            color: #fff;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .slider-btn.prev {
+            left: 10px;
+        }
+
+        .slider-btn.next {
+            right: 10px;
+        }
+
+        .slider-btn:hover {
+            background: rgba(255, 255, 255, .15);
+        }
+
+        /* Slider Controls */
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .slider-arrow {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #000;
+            /* hitam default */
+            color: #fff;
+            /* icon putih */
+            border: 2px solid #000;
+            /* garis luar hitam */
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* HOVER & ACTIVE */
+        .slider-arrow:hover,
+        .slider-arrow:active {
+            background: orange;
+            /* orange saat hover */
+            border-color: orange;
+            color: #fff;
+            /* icon tetap putih */
+        }
+
+        /* OPTIONAL: lebih kelihatan di bg hitam */
+        .slider-arrow:focus {
+            outline: none;
+        }
+
+      .hero {
+    position: relative;
+}
+
+/* SEARCH BOX WRAPPER */
+.hero-search-box {
+    position: absolute;
+    left: 50%;
+    bottom: -25rem;
+    transform: translateX(-50%);
+    width: 85%;
+    max-width: 1300px;
+    z-index: 10;
+}
+
+/* FORM CONTAINER – LEBIH BESAR & TERANG */
+.hero-search-box form {
+    display: grid;
+    grid-template-columns: 2.2fr 1.2fr 1.2fr 1.6fr auto;
+    align-items: center;
+
+    padding: 25px;                /* 🔥 LEBIH BESAR */
+    border-radius: 18px;
+
+    /* GLASS PANEL TERANG */
+    background: rgba(230, 230, 230, 0.85);
+    backdrop-filter: blur(18px);
+
+    /* DEPTH */
+    box-shadow:
+        0 40px 90px rgba(0,0,0,0.45),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+/* INPUT & SELECT – JANGAN REDUP */
+.hero-search-box input,
+.hero-search-box select {
+    height: 60px;
+    padding: 0 20px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+
+    background: #ffffff;          /* PUTIH, JELAS */
+    color: #111;
+
+    border-radius: 8px;
+}
+
+/* DIVIDER HALUS */
+.hero-search-box input:not(:last-child),
+.hero-search-box select {
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+/* PLACEHOLDER */
+.hero-search-box input::placeholder {
+    color: #555;
+}
+
+/* CTA BUTTON – TETAP DOMINAN */
+.hero-search-box button {
+    height: 60px;
+    padding: 0 36px;
+
+    background: linear-gradient(135deg, #ffb703, #ff9800);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+
+    font-weight: 600;
+    font-size: 15px;
+
+    cursor: pointer;
+    transition: all .25s ease;
+
+    box-shadow: 0 14px 35px rgba(255,152,0,0.5);
+}
+
+.hero-search-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 45px rgba(255,152,0,0.65);
+}
+
     </style>
 
     <div class="booking-page-font bg-black">
 
         <!-- Back Button -->
         <a href="http://127.0.0.1:8000" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
-    margin-top: 7rem;
-    margin-left: 1rem;
-">
+            margin-top: 7rem;
+            margin-left: 1rem;
+            ">
             <i class="ri-close-line text-xl"></i>
         </a>
 
-        <!-- HERO SECTION (Contains Search + Services) -->
-        <div class="hero" style="background-image: url('{{ asset('images/laut-malay.jpg') }}');">
+        <!-- HERO SECTION (Contains Search) -->
+        <div class="hero" style="background-image: url('{{ asset('images/langkawi.jpg') }}');">
             <div class="hero-overlay"></div>
 
-
             <!-- Search Content -->
-            <div class="search-container">
-                <h1 class="search-title">Discover Langkawi</h1>
+            <div class="search-container" style="max-width: 1400px;">
 
-                <div class="search-box">
-                    <input type="text" class="search-input" placeholder="Search activities (e.g., Jetski, Mangrove Tour)...">
-                    <button class="search-btn">
-                        <i class="ri-search-line"></i>
-                    </button>
+                <!-- HERO SEARCH BOX -->
+                <div class="hero-search-box">
+                    <form id="waBookingForm">
+                        <input type="text" id="destination" placeholder="Destination or activity" required>
+
+                        <input type="date" id="date" required>
+
+                        <input type="number" id="pax" min="1" placeholder="Number of pax" required>
+
+                        <select id="service" required>
+                            <option value="">Select service</option>
+                            <option value="Car Rental">Car Rental</option>
+                            <option value="Island Hopping">Island Hopping</option>
+                            <option value="Airport Transfer">Airport Transfer</option>
+                            <option value="Mangrove Tour">Mangrove Tour</option>
+                            <option value="JetSki">JetSki</option>
+                            <option value="Sunset Cruise">Sunset Cruise</option>
+                        </select>
+
+                        <button type="submit">Book via WhatsApp</button>
+                    </form>
                 </div>
-            </div>
 
-            <!-- SERVICES SECTION (Now Inside Hero) -->
-            <!-- SERVICES SECTION (Now Inside Hero) -->
-            <section class="services" x-data='{
-                serviceItems: [
-                    @foreach($services as $service)
-                        { id: "{{ $service->number }}", title: {!! json_encode($service->title, JSON_HEX_APOS | JSON_HEX_QUOT) !!}, desc: {!! json_encode($service->description, JSON_HEX_APOS | JSON_HEX_QUOT) !!} },
-                    @endforeach
-                ],
-                get visibleServiceSlides() {
-                    if (window.innerWidth >= 1024) return 5;
-                    return 2;
-                },
-                get maxServiceSlide() {
-                    return Math.max(0, this.serviceItems.length - this.visibleServiceSlides);
-                },
-                activeServiceSlide: 0
-            }' @resize.window="activeServiceSlide = 0">
-                <div class="services-viewport">
-                    <div class="service-track-wrapper">
-                        <div class="service-track"
-                            :style="`transform: translateX(-${activeServiceSlide * (100 / visibleServiceSlides)}%)`">
-                            <template x-for="(item, index) in serviceItems" :key="index">
-                                <div class="service-slide-item" :style="`width: ${100 / visibleServiceSlides}%`">
-                                    <div class="service-card">
-                                        <h1 x-text="item.id"></h1>
-                                        <h3 x-text="item.title"></h3>
-                                        <p x-text="item.desc"></p>
-                                    </div>
-                                </div>
-                            </template>
+            </div>
+        </div>
+
+        <!-- SERVICE CARDS SECTION (SLIDER) -->
+        <div class="tour-grid-section">
+            <div class="tour-slider-wrapper">
+
+                <div class="tour-grid">
+                    <!-- Service Card 1 -->
+                    <div class="tour-grid-card">
+                        <div class="tg-image" style="background-image: url('{{ asset('images/car-rental.jpeg') }}');"></div>
+                        <div class="tg-content">
+                            <h3 class="tg-title">Car Rental</h3>
+                            <p class="tg-desc">Rent a car and explore Langkawi's islands and attractions.</p>
                         </div>
                     </div>
 
-                    <!-- Pagination Dots -->
-                    <div class="service-dots">
-                        <template x-for="i in Math.ceil(serviceItems.length / visibleServiceSlides)">
-                            <span class="service-dot"
-                                :class="{ 'active': Math.floor(activeServiceSlide / visibleServiceSlides) === i - 1 }"
-                                @click="activeServiceSlide = (i - 1) * visibleServiceSlides">
-                            </span>
-                        </template>
+                    <!-- Service Card 2 -->
+                    <div class="tour-grid-card">
+                        <div class="tg-image" style="background-image: url('{{ asset('images/islands-hopping.jpg') }}');"></div>
+                        <div class="tg-content">
+                            <h3 class="tg-title">Islands Hopping</h3>
+                            <p class="tg-desc">Explore Langkawi's islands and attractions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3 -->
+                    <div class="tour-grid-card">
+                        <div class="tg-image" style="background-image: url('{{ asset('images/airport-transfer.jpg') }}');"></div>
+                        <div class="tg-content">
+                            <h3 class="tg-title">Airport Transfer</h3>
+                            <p class="tg-desc">Experience a comfortable airport pickup service.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 4 -->
+                    <div class="tour-grid-card">
+                        <div class="tg-image" style="background-image: url('{{ asset('images/mangrove-tour.jpg') }}');"></div>
+                        <div class="tg-content">
+                            <h3 class="tg-title">Mangrove Tour</h3>
+                            <p class="tg-desc">Explore Langkawi's mangrove forests and wildlife.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 5 -->
+                    <div class="tour-grid-card">
+                        <div class="tg-image" style="background-image: url('{{ asset('images/jetski.jpg') }}');"></div>
+                        <div class="tg-content">
+                            <h3 class="tg-title">JetSki</h3>
+                            <p class="tg-desc">Experience the thrill of jet skiing in Langkawi.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 6 -->
+                    <div class="tour-grid-card">
+                        <div class="tg-image" style="background-image: url('{{ asset('images/sunset.jpg') }}');"></div>
+                        <div class="tg-content">
+                            <h3 class="tg-title">Sunset Cruise</h3>
+                            <p class="tg-desc">Enjoy a beautiful sunset cruise experience.</p>
+                        </div>
                     </div>
                 </div>
-            </section>
-        </div>
 
-        <!-- ================= ABOUT ================= -->
-        <section class="about">
-            <div class="about-wrapper">
-
-                <div class="about-img">
-                    <img src="{{ asset('images/laut-malay.jpg') }}">
-                    <div class="cross tr"></div>
-                </div>
-
-                <div class="about-content">
-                    <div class="cross center-top"></div>
-                    <h2>About Langkawi</h2>
-                    <p>
-                        Langkawi, known as the "Jewel of Kedah", is a stunning archipelago of 99 islands on Malaysia's west coast. Famous for its turquoise waters, limestone cliffs, and ancient rainforests, it offers a perfect blend of relaxation and adventure. Experience the thrill of jetski rides, explore the mangroves, or enjoy a romantic sunset dinner cruise. Langkawi is the ultimate tropical escape.
-                    </p>
-                    <div class="about-buttons">
-                        <button class="btn-gold">BOOK NOW</button>
-                        <button class="btn-outline">LEARN MORE</button>
-                    </div>
-                </div>
-
-                <div class="about-img">
-                    <img src="{{ asset('images/pangkalan-islands.jpg') }}">
-                    <div class="cross bl"></div>
+                <!-- CENTER BOTTOM ARROWS -->
+                <div class="slider-controls">
+                    <button class="slider-arrow prev">&lt;</button>
+                    <button class="slider-arrow next">&gt;</button>
                 </div>
 
             </div>
-        </section>
+        </div>
 
 
         <!-- ================= TOUR PACKAGE SLIDER ================= -->
@@ -1651,25 +2069,50 @@ Please confirm availability.`;
 
         </section>
 
-        <!-- ================= TESTIMONY SECTION ================= -->
-        <section class="testimony-section">
-            <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
-            <div class="testimony-overlay"></div>
-            <div class="testimony-content">
-                <h2 class="testimony-title">Testimony</h2>
-                <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const grid = document.querySelector('.tour-grid');
+                const nextBtn = document.querySelector('.slider-arrow.next');
+                const prevBtn = document.querySelector('.slider-arrow.prev');
 
-                <div class="quote-container">
-                    <span class="quote-icon left-quote">“</span>
-                    <p class="quote-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                    </p>
-                    <span class="quote-icon right-quote">”</span>
-                </div>
+                nextBtn.addEventListener('click', () => {
+                    grid.scrollBy({
+                        left: 320,
+                        behavior: 'smooth'
+                    });
+                });
 
-                <div class="testimony-author">- Febrian -</div>
-            </div>
-        </section>
+                prevBtn.addEventListener('click', () => {
+                    grid.scrollBy({
+                        left: -320,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+        <script>
+            document.getElementById('waBookingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const destination = document.getElementById('destination').value;
+                const date = document.getElementById('date').value;
+                const pax = document.getElementById('pax').value;
+                const service = document.getElementById('service').value;
+
+                const message =
+                    `Hello, I would like to make a booking:%0A` +
+                    `Destination / Activity: ${destination}%0A` +
+                    `Date: ${date}%0A` +
+                    `Pax: ${pax}%0A` +
+                    `Service: ${service}`;
+
+                const phone = '6281219110199'; // WA format internasional
+                const url = `https://wa.me/${phone}?text=${message}`;
+
+                window.open(url, '_blank');
+            });
+        </script>
+
 
 
 </x-layout>

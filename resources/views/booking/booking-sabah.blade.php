@@ -1286,7 +1286,7 @@
         </a>
 
         <!-- HERO SECTION (Contains Search + Services) -->
-        <div class="hero" style="background-image: url('{{ asset('images/laut-malay.jpg') }}');">
+        <div class="hero" style="background-image: url('{{ asset('images/laut-malay-new.jpg') }}');">
             <div class="hero-overlay"></div>
 
 
@@ -1347,36 +1347,6 @@
                 </div>
             </section>
         </div>
-
-        <!-- ================= ABOUT ================= -->
-        <section class="about">
-            <div class="about-wrapper">
-
-                <div class="about-img">
-                    <img src="{{ asset('images/sabah.jpg') }}">
-                    <div class="cross tr"></div>
-                </div>
-
-                <div class="about-content">
-                    <div class="cross center-top"></div>
-                    <h2>About Sabah</h2>
-                    <p>
-                        Sabah, known as the 'Land Below The Wind', offers a rich tapestry of nature and culture. From the majestic Mount Kinabalu to the depths of the Sipadan diving paradise, it is a haven for adventurers and nature lovers alike. Explore ancient rainforests, meet the orangutans, or unwind on diverse islands.
-                    </p>
-                    <div class="about-buttons">
-                        <button class="btn-gold">BOOK NOW</button>
-                        <button class="btn-outline">LEARN MORE</button>
-                    </div>
-                </div>
-
-                <div class="about-img">
-                    <img src="{{ asset('images/pangkalan-islands.jpg') }}">
-                    <div class="cross bl"></div>
-                </div>
-
-            </div>
-        </section>
-
 
         <!-- ================= TOUR PACKAGE SLIDER ================= -->
         <!-- ================= TOUR PACKAGE SLIDER ================= -->

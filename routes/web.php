@@ -8,9 +8,19 @@ Route::get('/', function () {
 });
 
 // Frontend Routes
-Route::get('/booking-langkawi', [\App\Http\Controllers\BookingController::class, 'langkawi']);
-Route::get('/booking-stjohnislands', [\App\Http\Controllers\BookingController::class, 'stjohnislands']);
-Route::get('/booking-sabah', [\App\Http\Controllers\BookingController::class, 'sabah']);
+Route::get('/langkawi', [\App\Http\Controllers\DestinasiController::class, 'langkawi']);
+Route::get('/stjohnislands', [\App\Http\Controllers\DestinasiController::class, 'stjohnislands']);
+Route::get('/sabah', [\App\Http\Controllers\DestinasiController::class, 'sabah']);
+
+// Langkawi Service Pages
+Route::prefix('langkawi')->group(function () {
+    Route::get('/car-rental', [\App\Http\Controllers\DestinasiController::class, 'carRental']);
+    Route::get('/island-hopping', [\App\Http\Controllers\DestinasiController::class, 'islandHopping']);
+    Route::get('/airport-transfer', [\App\Http\Controllers\DestinasiController::class, 'airportTransfer']);
+    Route::get('/mangrove-tour', [\App\Http\Controllers\DestinasiController::class, 'mangroveTour']);
+    Route::get('/jetski', [\App\Http\Controllers\DestinasiController::class, 'jetski']);
+    Route::get('/sunset-cruise', [\App\Http\Controllers\DestinasiController::class, 'sunsetCruise']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -21,9 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Admin Routes
-    Route::resource('admin/services', \App\Http\Controllers\Admin\ServiceController::class);
-    Route::resource('admin/tour-packages', \App\Http\Controllers\Admin\TourPackageController::class);
+    // Admin Routes - Removed
 });
 
 require __DIR__ . '/auth.php';

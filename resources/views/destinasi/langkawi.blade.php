@@ -75,7 +75,6 @@
             color: var(--white);
             font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 2rem;
             text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 1px;
         }
@@ -1481,12 +1480,24 @@
         }
 
         .tour-grid {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            overflow-x: auto;
             padding: 0 60px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 992px) {
+            .tour-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .tour-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .tour-grid::-webkit-scrollbar {
@@ -1494,12 +1505,9 @@
         }
 
         .tour-grid-card {
-            min-width: 300px;
-            max-width: 300px;
             background: #111;
             border-radius: 16px;
             overflow: hidden;
-            scroll-snap-align: start;
             transition: transform .3s ease;
         }
 
@@ -1597,90 +1605,91 @@
             outline: none;
         }
 
-      .hero {
-    position: relative;
-}
+        .hero {
+            position: relative;
+        }
 
-/* SEARCH BOX WRAPPER */
-.hero-search-box {
-    position: absolute;
-    left: 50%;
-    bottom: -25rem;
-    transform: translateX(-50%);
-    width: 85%;
-    max-width: 1300px;
-    z-index: 10;
-}
+        /* SEARCH BOX WRAPPER */
+        .hero-search-box {
+            position: absolute;
+            left: 50%;
+            bottom: -25rem;
+            transform: translateX(-50%);
+            width: 85%;
+            max-width: 1300px;
+            z-index: 10;
+        }
 
-/* FORM CONTAINER – LEBIH BESAR & TERANG */
-.hero-search-box form {
-    display: grid;
-    grid-template-columns: 2.2fr 1.2fr 1.2fr 1.6fr auto;
-    align-items: center;
+        /* FORM CONTAINER – LEBIH BESAR & TERANG */
+        .hero-search-box form {
+            display: grid;
+            grid-template-columns: 2.2fr 1.2fr 1.2fr 1.6fr auto;
+            align-items: center;
 
-    padding: 25px;                /* 🔥 LEBIH BESAR */
-    border-radius: 18px;
+            padding: 25px;
+            /* 🔥 LEBIH BESAR */
+            border-radius: 18px;
 
-    /* GLASS PANEL TERANG */
-    background: rgba(230, 230, 230, 0.85);
-    backdrop-filter: blur(18px);
+            /* GLASS PANEL TERANG */
+            background: rgba(230, 230, 230, 0.85);
+            backdrop-filter: blur(18px);
 
-    /* DEPTH */
-    box-shadow:
-        0 40px 90px rgba(0,0,0,0.45),
-        inset 0 1px 0 rgba(255,255,255,0.8);
-}
+            /* DEPTH */
+            box-shadow:
+                0 40px 90px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
 
-/* INPUT & SELECT – JANGAN REDUP */
-.hero-search-box input,
-.hero-search-box select {
-    height: 60px;
-    padding: 0 20px;
-    border: none;
-    outline: none;
-    font-size: 15px;
+        /* INPUT & SELECT – JANGAN REDUP */
+        .hero-search-box input,
+        .hero-search-box select {
+            height: 60px;
+            padding: 0 20px;
+            border: none;
+            outline: none;
+            font-size: 15px;
 
-    background: #ffffff;          /* PUTIH, JELAS */
-    color: #111;
+            background: #ffffff;
+            /* PUTIH, JELAS */
+            color: #111;
 
-    border-radius: 8px;
-}
+            border-radius: 8px;
+        }
 
-/* DIVIDER HALUS */
-.hero-search-box input:not(:last-child),
-.hero-search-box select {
-    border-right: 1px solid rgba(0,0,0,0.1);
-}
+        /* DIVIDER HALUS */
+        .hero-search-box input:not(:last-child),
+        .hero-search-box select {
+            border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
 
-/* PLACEHOLDER */
-.hero-search-box input::placeholder {
-    color: #555;
-}
+        /* PLACEHOLDER */
+        .hero-search-box input::placeholder {
+            color: #555;
+        }
 
-/* CTA BUTTON – TETAP DOMINAN */
-.hero-search-box button {
-    height: 60px;
-    padding: 0 36px;
+        /* CTA BUTTON – TETAP DOMINAN */
+        .hero-search-box button {
+            height: 60px;
+            padding: 0 36px;
 
-    background: linear-gradient(135deg, #ffb703, #ff9800);
-    color: #fff;
-    border: none;
-    border-radius: 12px;
+            background: linear-gradient(135deg, #ffb703, #ff9800);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
 
-    font-weight: 600;
-    font-size: 15px;
+            font-weight: 600;
+            font-size: 15px;
 
-    cursor: pointer;
-    transition: all .25s ease;
+            cursor: pointer;
+            transition: all .25s ease;
 
-    box-shadow: 0 14px 35px rgba(255,152,0,0.5);
-}
+            box-shadow: 0 14px 35px rgba(255, 152, 0, 0.5);
+        }
 
-.hero-search-box button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 20px 45px rgba(255,152,0,0.65);
-}
-
+        .hero-search-box button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 45px rgba(255, 152, 0, 0.65);
+        }
     </style>
 
     <div class="booking-page-font bg-black">
@@ -1696,103 +1705,74 @@
         <!-- HERO SECTION (Contains Search) -->
         <div class="hero" style="background-image: url('{{ asset('images/langkawi.jpg') }}');">
             <div class="hero-overlay"></div>
+            <h1 class="search-title">Discover Langkawi</h1>
 
-            <!-- Search Content -->
-            <div class="search-container" style="max-width: 1400px;">
-
-                <!-- HERO SEARCH BOX -->
-                <div class="hero-search-box">
-                    <form id="waBookingForm">
-                        <input type="text" id="destination" placeholder="Destination or activity" required>
-
-                        <input type="date" id="date" required>
-
-                        <input type="number" id="pax" min="1" placeholder="Number of pax" required>
-
-                        <select id="service" required>
-                            <option value="">Select service</option>
-                            <option value="Car Rental">Car Rental</option>
-                            <option value="Island Hopping">Island Hopping</option>
-                            <option value="Airport Transfer">Airport Transfer</option>
-                            <option value="Mangrove Tour">Mangrove Tour</option>
-                            <option value="JetSki">JetSki</option>
-                            <option value="Sunset Cruise">Sunset Cruise</option>
-                        </select>
-
-                        <button type="submit">Book via WhatsApp</button>
-                    </form>
-                </div>
-
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="Search activities (e.g., Jetski, Mangrove Tour)...">
+                <button class="search-btn">
+                    <i class="ri-search-line"></i>
+                </button>
             </div>
         </div>
 
-        <!-- SERVICE CARDS SECTION (SLIDER) -->
+        <!-- SERVICE CARDS SECTION (GRID) -->
         <div class="tour-grid-section">
-            <div class="tour-slider-wrapper">
-
-                <div class="tour-grid">
-                    <!-- Service Card 1 -->
-                    <div class="tour-grid-card">
-                        <div class="tg-image" style="background-image: url('{{ asset('images/car-rental.jpeg') }}');"></div>
-                        <div class="tg-content">
-                            <h3 class="tg-title">Car Rental</h3>
-                            <p class="tg-desc">Rent a car and explore Langkawi's islands and attractions.</p>
-                        </div>
+            <div class="tour-grid">
+                <!-- Service Card 1 -->
+                <a href="/langkawi/car-rental" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/car-rental.jpeg') }}');"></div>
+                    <div class="tg-content">
+                        <h3 class="tg-title">Car Rental</h3>
+                        <p class="tg-desc">Rent a car and explore Langkawi's islands and attractions.</p>
                     </div>
+                </a>
 
-                    <!-- Service Card 2 -->
-                    <div class="tour-grid-card">
-                        <div class="tg-image" style="background-image: url('{{ asset('images/islands-hopping.jpg') }}');"></div>
-                        <div class="tg-content">
-                            <h3 class="tg-title">Islands Hopping</h3>
-                            <p class="tg-desc">Explore Langkawi's islands and attractions.</p>
-                        </div>
+                <!-- Service Card 2 -->
+                <a href="/langkawi/island-hopping" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/islands-hopping.jpg') }}');"></div>
+                    <div class="tg-content">
+                        <h3 class="tg-title">Islands Hopping</h3>
+                        <p class="tg-desc">Explore Langkawi's islands and attractions.</p>
                     </div>
+                </a>
 
-                    <!-- Service Card 3 -->
-                    <div class="tour-grid-card">
-                        <div class="tg-image" style="background-image: url('{{ asset('images/airport-transfer.jpg') }}');"></div>
-                        <div class="tg-content">
-                            <h3 class="tg-title">Airport Transfer</h3>
-                            <p class="tg-desc">Experience a comfortable airport pickup service.</p>
-                        </div>
+                <!-- Service Card 3 -->
+                <a href="/langkawi/airport-transfer" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/airport-transfer.jpg') }}');"></div>
+                    <div class="tg-content">
+                        <h3 class="tg-title">Airport Transfer</h3>
+                        <p class="tg-desc">Experience a comfortable airport pickup service.</p>
                     </div>
+                </a>
 
-                    <!-- Service Card 4 -->
-                    <div class="tour-grid-card">
-                        <div class="tg-image" style="background-image: url('{{ asset('images/mangrove-tour.jpg') }}');"></div>
-                        <div class="tg-content">
-                            <h3 class="tg-title">Mangrove Tour</h3>
-                            <p class="tg-desc">Explore Langkawi's mangrove forests and wildlife.</p>
-                        </div>
+                <!-- Service Card 4 -->
+                <a href="/langkawi/mangrove-tour" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/mangrove-tour.jpg') }}');"></div>
+                    <div class="tg-content">
+                        <h3 class="tg-title">Mangrove Tour</h3>
+                        <p class="tg-desc">Explore Langkawi's mangrove forests and wildlife.</p>
                     </div>
+                </a>
 
-                    <!-- Service Card 5 -->
-                    <div class="tour-grid-card">
-                        <div class="tg-image" style="background-image: url('{{ asset('images/jetski.jpg') }}');"></div>
-                        <div class="tg-content">
-                            <h3 class="tg-title">JetSki</h3>
-                            <p class="tg-desc">Experience the thrill of jet skiing in Langkawi.</p>
-                        </div>
+                <!-- Service Card 5 -->
+                <a href="/langkawi/jetski" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/jetski.jpg') }}');"></div>
+                    <div class="tg-content">
+                        <h3 class="tg-title">JetSki</h3>
+                        <p class="tg-desc">Experience the thrill of jet skiing in Langkawi.</p>
                     </div>
+                </a>
 
-                    <!-- Service Card 6 -->
-                    <div class="tour-grid-card">
-                        <div class="tg-image" style="background-image: url('{{ asset('images/sunset.jpg') }}');"></div>
-                        <div class="tg-content">
-                            <h3 class="tg-title">Sunset Cruise</h3>
-                            <p class="tg-desc">Enjoy a beautiful sunset cruise experience.</p>
-                        </div>
+                <!-- Service Card 6 -->
+                <a href="/langkawi/sunset-cruise" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/sunset.jpg') }}');"></div>
+                    <div class="tg-content">
+                        <h3 class="tg-title">Sunset Cruise</h3>
+                        <p class="tg-desc">Enjoy a beautiful sunset cruise experience.</p>
                     </div>
-                </div>
-
-                <!-- CENTER BOTTOM ARROWS -->
-                <div class="slider-controls">
-                    <button class="slider-arrow prev">&lt;</button>
-                    <button class="slider-arrow next">&gt;</button>
-                </div>
-
+                </a>
             </div>
+
         </div>
 
 
@@ -2069,27 +2049,7 @@ Please confirm availability.`;
 
         </section>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const grid = document.querySelector('.tour-grid');
-                const nextBtn = document.querySelector('.slider-arrow.next');
-                const prevBtn = document.querySelector('.slider-arrow.prev');
 
-                nextBtn.addEventListener('click', () => {
-                    grid.scrollBy({
-                        left: 320,
-                        behavior: 'smooth'
-                    });
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    grid.scrollBy({
-                        left: -320,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        </script>
         <script>
             document.getElementById('waBookingForm').addEventListener('submit', function(e) {
                 e.preventDefault();

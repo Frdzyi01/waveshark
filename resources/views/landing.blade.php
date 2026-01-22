@@ -148,7 +148,7 @@
                                     <div class="sg-des">
                                         A tranquil getaway to experience nature and history.
                                     </div>
-                                    <button class="sg-btn" onclick="startTransition('/booking-stjohnislands')">See More</button>
+                                    <button class="sg-btn" onclick="startTransition('/stjohnislands')">See More</button>
                                 </div>
                             </div>
 
@@ -160,7 +160,7 @@
                                     <div class="sg-des">
                                         A tranquil getaway to experience nature and history.
                                     </div>
-                                    <button class="sg-btn" onclick="startTransition('/booking-stjohnislands')">See More</button>
+                                    <button class="sg-btn" onclick="startTransition('/stjohnislands')">See More</button>
                                 </div>
                             </div>
 
@@ -256,7 +256,7 @@
                                     <div class="mys-des">
                                         Negeri di Bawah Bayu, rumah bagi Gunung Kinabalu dan hidupan liar yang unik.
                                     </div>
-                                    <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/sabah')">See More</button>
                                 </div>
                             </div>
 
@@ -269,7 +269,7 @@
                                     <div class="mys-des">
                                         Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
                                     </div>
-                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/langkawi')">See More</button>
                                 </div>
                             </div>
 
@@ -280,7 +280,7 @@
                                     <div class="mys-des">
                                         Destinasi pelancongan utama dengan legenda Mahsuri dan keindahan alam semulajadi.
                                     </div>
-                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/langkawi')">See More</button>
                                 </div>
                             </div>
 
@@ -291,7 +291,7 @@
                                     <div class="mys-des">
                                         Terkenal dengan tapak menyelam bertaraf dunia di Sipadan dan budaya yang kaya.
                                     </div>
-                                    <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/sabah')">See More</button>
                                 </div>
                             </div>
 

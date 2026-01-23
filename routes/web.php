@@ -29,6 +29,15 @@ Route::prefix('sabah')->group(function () {
     Route::get('/mount-climbing', [\App\Http\Controllers\DestinasiController::class, 'mountClimbing']);
 });
 
+// ST John Islands Service Pages
+Route::prefix('stjohnislands')->group(function () {
+    Route::get('/island-hopping', [\App\Http\Controllers\DestinasiController::class, 'islandHopping']);
+    Route::get('/airport-transfer', [\App\Http\Controllers\DestinasiController::class, 'airportTransfer']);
+    Route::get('/mangrove-tour', [\App\Http\Controllers\DestinasiController::class, 'mangroveTour']);
+    Route::get('/jetski', [\App\Http\Controllers\DestinasiController::class, 'jetski']);
+    Route::get('/sunset-cruise', [\App\Http\Controllers\DestinasiController::class, 'sunsetCruise']);
+});
+
 Route::get('/dashboard', function () {
     $productCount = \App\Models\LangkawiProduct::count();
     return view('dashboard', compact('productCount'));

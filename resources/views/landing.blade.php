@@ -249,7 +249,6 @@
                         <div class="mys-slide">
 
                             <!-- Item 1: Sabah -->
-
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
@@ -262,7 +261,6 @@
 
 
                             <!-- Item 2: Langkawi -->
-
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
@@ -273,18 +271,8 @@
                                 </div>
                             </div>
 
-                            <!-- Item 3: Langkawi -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
-                                <div class="mys-content">
-                                    <div class="mys-name">Langkawi</div>
-                                    <div class="mys-des">
-                                        Destinasi pelancongan utama dengan legenda Mahsuri dan keindahan alam semulajadi.
-                                    </div>
-                                    <button class="mys-btn" onclick="startTransition('/langkawi')">See More</button>
-                                </div>
-                            </div>
+                            <!-- Item 3: sabah -->
 
-                            <!-- Item 4: Sabah -->
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
@@ -295,18 +283,18 @@
                                 </div>
                             </div>
 
-                            <!-- Item 5: Langkawi -->
+                            <!-- Item 4: langkawi -->
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
-                                        Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
+                                        Destinasi pelancongan utama dengan legenda Mahsuri dan keindahan alam semulajadi.
                                     </div>
-                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/langkawi')">See More</button>
                                 </div>
                             </div>
 
-                            <!-- Item 6: Sabah -->
+                            <!-- Item 5: Sabah -->
                             <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.jpg') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
@@ -314,6 +302,18 @@
                                         Negeri di Bawah Bayu, rumah bagi Gunung Kinabalu dan hidupan liar yang unik.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
+                                </div>
+                            </div>
+
+
+                            <!-- Item 6: Langkawi -->
+                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.jpg') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Langkawi</div>
+                                    <div class="mys-des">
+                                        Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
+                                    </div>
+                                    <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
                                 </div>
                             </div>
 

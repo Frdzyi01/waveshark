@@ -353,36 +353,76 @@
         <div x-show="!expanded" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
 
             <!-- ================= SERVICES ================= -->
-            <section class="services" x-data="{ servicePage: 0 }">
+            <section class="services" x-data="{ 
+                servicePage: 0,
+                totalCards: {{ count($landingServices) > 0 ? count($landingServices) : 4 }},
+                get totalPages() {
+                   return Math.ceil(this.totalCards / 2);
+                }
+            }">
                 <div class="services-viewport">
-                    <div class="services-grid" :class="{'slide-2': servicePage === 1}">
-                        <div class="service-card">
-                            <h1>01</h1>
-                            <h3>Tour Packages</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <div class="services-grid" :style="'transform: translateX(-' + (servicePage * 100) + '%)'">
+                        @forelse($landingServices as $service)
+                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
+                                @if($service->image)
+                                <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                                @endif
+                            </div>
+                            <div class="service-content">
+                                <h3 class="service-title">{{ $service->title }}</h3>
+                                <p class="service-desc">{{ $service->description }}</p>
+                            </div>
                         </div>
-                        <div class="service-card">
-                            <h1>02</h1>
-                            <h3>Flight Booking</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        @empty
+                        <!-- Fallback/Default Content if no dynamic services exist -->
+                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
+                                <img src="{{ asset('images/car-rental.png') }}" alt="Tour Packages" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="service-content">
+                                <h3 class="service-title">Tour Packages</h3>
+                                <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
                         </div>
-                        <div class="service-card">
-                            <h1>03</h1>
-                            <h3>Hotel Booking</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
+                                <img src="{{ asset('images/flight.png') }}" alt="Flight Booking" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="service-content">
+                                <h3 class="service-title">Flight Booking</h3>
+                                <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
                         </div>
-                        <div class="service-card">
-                            <h1>04</h1>
-                            <h3>Destination Booking</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
+                                <img src="{{ asset('images/hotel.png') }}" alt="Hotel Booking" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="service-content">
+                                <h3 class="service-title">Hotel Booking</h3>
+                                <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
                         </div>
+                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
+                                <img src="{{ asset('images/destination.png') }}" alt="Destination Booking" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <div class="service-content">
+                                <h3 class="service-title">Destination Booking</h3>
+                                <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                        @endforelse
                     </div>
                 </div>
 
                 <!-- Mobile Pagination Dots -->
                 <div class="service-dots">
-                    <div class="dot" :class="{'active': servicePage === 0}" @click="servicePage = 0"></div>
-                    <div class="dot" :class="{'active': servicePage === 1}" @click="servicePage = 1"></div>
+                    <template x-for="i in totalPages" :key="i">
+                        <div class="dot"
+                            :class="{'active': servicePage === i - 1}"
+                            @click="servicePage = i - 1"></div>
+                    </template>
                 </div>
             </section>
 
@@ -1277,54 +1317,85 @@
             }
 
             /* ================= SERVICES ================= */
+            /* ================= SERVICES DESKTOP ================= */
             .services {
                 padding: 100px 40px;
+                overflow: hidden;
+            }
+
+            .services-viewport {
+                overflow: visible;
+                width: 100%;
+                max-width: 1200px;
+                margin: 0 auto;
             }
 
             .services-grid {
-                max-width: 1000px;
-                /* Reduced to center content more */
-                margin: 0 auto;
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
-                gap: 30px;
+                gap: 25px;
                 justify-content: center;
+                width: 100%;
+                transition: none;
+                /* No transition for grid */
             }
 
             .service-card {
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                aspect-ratio: 1/1;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                height: 420px;
                 text-align: center;
-                padding: 40px 30px;
                 transition: .3s;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
+                overflow: hidden;
+                background: #000;
+            }
+
+            .service-dots {
+                display: none;
+            }
+
+            .dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.3);
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .dot.active {
+                background-color: var(--gold);
             }
 
             .service-card:hover {
                 border-color: var(--gold);
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             }
 
-            .service-card h1 {
-                font-size: 84px;
-                color: var(--gold);
-                margin-bottom: 20px;
+            .service-content {
+                background: #000;
+                padding: 1.5rem;
+                text-align: center;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                width: 100%;
             }
 
-            .service-card h3 {
-                color: var(--gold);
+            .service-title {
+                color: white;
+                margin-bottom: 0.5rem;
+                font-size: 1.25rem;
+                font-weight: bold;
                 text-transform: uppercase;
-                letter-spacing: 2px;
-                margin-bottom: 15px;
+                letter-spacing: 1px;
             }
 
-            .service-card p {
-                font-size: 12px;
-                color: var(--gray);
-                max-width: 200px;
-                line-height: 1.6;
+            .service-desc {
+                color: #9ca3af;
+                font-size: 0.875rem;
+                margin: 0 auto;
+                line-height: 1.5;
             }
 
             /* ================= ABOUT ================= */
@@ -1460,9 +1531,6 @@
             }
 
             /* ================= SERVICES MOBILE SLIDER ================= */
-            .service-dots {
-                display: none;
-            }
 
             @media (max-width: 768px) {
                 .services {
@@ -1481,6 +1549,7 @@
 
                 .services-grid {
                     display: flex;
+                    flex-wrap: nowrap;
                     gap: 15px;
                     /* Gap between cards */
                     margin: 0;
@@ -1492,34 +1561,34 @@
                     box-sizing: border-box;
                 }
 
-                .services-grid.slide-2 {
-                    transform: translateX(-100%);
-                }
-
                 .service-card {
                     min-width: calc(50% - 7.5px);
                     /* (100% - 15px gap) / 2 */
-                    aspect-ratio: 1 / 1;
+                    height: 280px;
+                    /* Mobile height */
                     flex-shrink: 0;
-                    padding: 15px;
+                    padding: 0;
+                    /* Override with 0 */
                     border: 1px solid rgba(255, 255, 255, 0.1);
                 }
 
                 /* Resize text for mobile cards */
-                .service-card h1 {
-                    font-size: 42px;
-                    /* Smaller for mobile */
-                    margin-bottom: 10px;
+                .service-title {
+                    font-size: 14px !important;
+                    margin-bottom: 5px !important;
                 }
 
-                .service-card h3 {
-                    font-size: 14px;
-                    margin-bottom: 10px;
+                .service-desc {
+                    font-size: 10px !important;
+                    line-height: 1.3 !important;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
                 }
 
-                .service-card p {
-                    font-size: 10px;
-                    line-height: 1.4;
+                .service-content {
+                    padding: 1rem !important;
                 }
 
                 .services-grid::-webkit-scrollbar {

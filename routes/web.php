@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('landing');
+    $landingServices = \App\Models\LandingService::all();
+    return view('landing', compact('landingServices'));
 });
 
 // Frontend Routes
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/langkawi-products', \App\Http\Controllers\Admin\LangkawiProductController::class);
     Route::resource('admin/sabah-products', \App\Http\Controllers\Admin\SabahProductController::class);
     Route::resource('admin/stjohn-products', \App\Http\Controllers\Admin\StJohnProductController::class);
+    Route::resource('admin/landing-services', \App\Http\Controllers\Admin\LandingServiceController::class);
 });
 
 require __DIR__ . '/auth.php';

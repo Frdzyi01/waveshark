@@ -60,6 +60,37 @@ class DestinasiController extends Controller
                 'description' => 'Challenge yourself with a climb up Mount Kinabalu, one of Southeast Asia’s highest peaks, and witness breathtaking views.',
                 'hero_image' => 'https://images.unsplash.com/photo-1577947137599-231548232924?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3',
             ],
+            // ST JOHN SERVICES
+            'stjohn-island-hopping' => [
+                'title' => 'Island Hopping',
+                'description' => 'Explore the clear waters and pristine beaches of St. John Islands.',
+                'hero_image' => 'https://images.unsplash.com/photo-1596423126838-895116740660?q=80&w=2755&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
+            'stjohn-airport-transfer' => [
+                'title' => 'Airport Transfer',
+                'description' => 'Reliable and comfortable transfers to your destination on St. John Islands.',
+                'hero_image' => 'https://images.unsplash.com/photo-1455383566085-e01e68078e87?q=80&w=2806&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
+            'stjohn-mangrove-tour' => [
+                'title' => 'Mangrove Tour',
+                'description' => 'Discover the rich biodiversity of St. John Islands mangrove forests.',
+                'hero_image' => 'https://images.unsplash.com/photo-1440557653067-27083b9fcecd?q=80&w=2910&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
+            'stjohn-jetski' => [
+                'title' => 'Jetski Tour',
+                'description' => 'Exciting jetski adventures around St. John Islands.',
+                'hero_image' => 'https://images.unsplash.com/photo-1605799307221-396df876b50e?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
+            'stjohn-sunset-cruise' => [
+                'title' => 'Sunset Cruise',
+                'description' => 'Relax and enjoy the sunset with our premium cruise experience.',
+                'hero_image' => 'https://images.unsplash.com/photo-1520023030372-e56a47a11075?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
+            'stjohn-car-rental' => [
+                'title' => 'Car Rental',
+                'description' => 'Affordable car rentals for your St. John Islands exploration.',
+                'hero_image' => 'https://plus.unsplash.com/premium_photo-1661293818249-f3195d5ad129?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
         ];
 
         // Fetch products from database
@@ -68,6 +99,8 @@ class DestinasiController extends Controller
 
         if (in_array($category, $sabahServices)) {
             $products = \App\Models\SabahProduct::where('service_category', $category)->get();
+        } elseif (str_starts_with($category, 'stjohn-')) {
+            $products = \App\Models\StJohnProduct::where('service_category', $category)->get();
         } else {
             $products = \App\Models\LangkawiProduct::where('service_category', $category)->get();
         }
@@ -164,5 +197,42 @@ class DestinasiController extends Controller
     {
         $data = $this->getServiceData('mount-climbing');
         return view('destinasi.sabah-services.mount-climbing', compact('data'));
+    }
+
+    // St John Service Methods
+    public function stJohnIslandHopping()
+    {
+        $data = $this->getServiceData('stjohn-island-hopping');
+        return view('destinasi.stjohnislands-services.islands-hopping', compact('data'));
+    }
+
+    public function stJohnAirportTransfer()
+    {
+        $data = $this->getServiceData('stjohn-airport-transfer');
+        return view('destinasi.stjohnislands-services.airport-transfer', compact('data'));
+    }
+
+    public function stJohnMangroveTour()
+    {
+        $data = $this->getServiceData('stjohn-mangrove-tour');
+        return view('destinasi.stjohnislands-services.mangrove-tour', compact('data'));
+    }
+
+    public function stJohnJetski()
+    {
+        $data = $this->getServiceData('stjohn-jetski');
+        return view('destinasi.stjohnislands-services.jetski', compact('data'));
+    }
+
+    public function stJohnSunsetCruise()
+    {
+        $data = $this->getServiceData('stjohn-sunset-cruise');
+        return view('destinasi.stjohnislands-services.sunset-cruise', compact('data'));
+    }
+
+    public function stJohnCarRental()
+    {
+        $data = $this->getServiceData('stjohn-car-rental');
+        return view('destinasi.stjohnislands-services.car-rental', compact('data'));
     }
 }

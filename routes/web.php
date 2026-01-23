@@ -31,11 +31,12 @@ Route::prefix('sabah')->group(function () {
 
 // ST John Islands Service Pages
 Route::prefix('stjohnislands')->group(function () {
-    Route::get('/island-hopping', [\App\Http\Controllers\DestinasiController::class, 'islandHopping']);
-    Route::get('/airport-transfer', [\App\Http\Controllers\DestinasiController::class, 'airportTransfer']);
-    Route::get('/mangrove-tour', [\App\Http\Controllers\DestinasiController::class, 'mangroveTour']);
-    Route::get('/jetski', [\App\Http\Controllers\DestinasiController::class, 'jetski']);
-    Route::get('/sunset-cruise', [\App\Http\Controllers\DestinasiController::class, 'sunsetCruise']);
+    Route::get('/island-hopping', [\App\Http\Controllers\DestinasiController::class, 'stJohnIslandHopping']);
+    Route::get('/airport-transfer', [\App\Http\Controllers\DestinasiController::class, 'stJohnAirportTransfer']);
+    Route::get('/mangrove-tour', [\App\Http\Controllers\DestinasiController::class, 'stJohnMangroveTour']);
+    Route::get('/jetski', [\App\Http\Controllers\DestinasiController::class, 'stJohnJetski']);
+    Route::get('/sunset-cruise', [\App\Http\Controllers\DestinasiController::class, 'stJohnSunsetCruise']);
+    Route::get('/car-rental', [\App\Http\Controllers\DestinasiController::class, 'stJohnCarRental']);
 });
 
 Route::get('/dashboard', function () {
@@ -51,6 +52,7 @@ Route::middleware('auth')->group(function () {
     // Admin Routes
     Route::resource('admin/langkawi-products', \App\Http\Controllers\Admin\LangkawiProductController::class);
     Route::resource('admin/sabah-products', \App\Http\Controllers\Admin\SabahProductController::class);
+    Route::resource('admin/stjohn-products', \App\Http\Controllers\Admin\StJohnProductController::class);
 });
 
 require __DIR__ . '/auth.php';

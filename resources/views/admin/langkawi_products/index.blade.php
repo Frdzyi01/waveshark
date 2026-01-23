@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-lg font-medium">Manage Products by Category</h3>
-                        <a href="{{ route('langkawi-products.create') }}" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Add New Product</a>
+                        <a href="{{ route('langkawi-products.create') }}" class="px-4 py-2 bg-indigo-600 text-black rounded-md hover:bg-indigo-700">Add New Product</a>
                     </div>
 
                     @if ($message = Session::get('success'))

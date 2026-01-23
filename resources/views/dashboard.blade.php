@@ -110,6 +110,27 @@
                             </div>
                         </div>
                     </a>
+
+                    <!-- St John Product Management Card -->
+                    <a href="{{ route('stjohn-products.index') }}" class="group block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 p-2 bg-gray-50 rounded-md group-hover:bg-gray-100 transition-colors">
+                                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-base font-semibold text-gray-900 mb-1">St John Products</h4>
+                                <p class="text-sm text-gray-500 mb-3">Manage tours and activities for St John.</p>
+                                <span class="text-xs font-medium text-blue-600 group-hover:text-blue-700 flex items-center gap-1">
+                                    Manage Inventory
+                                    <svg class="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
 

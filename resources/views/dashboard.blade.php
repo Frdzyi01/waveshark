@@ -13,61 +13,85 @@
         </div>
     </x-slot>
 
-    <div class="py-8">
+    <div class="py-8 mt-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-8">
 
             <!-- Statistics Row -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <style>
+                .stats-container {
+                    display: flex;
+                    flex-direction: column;
+                    /* Stack vertically on mobile */
+                    gap: 1.5rem;
+                    width: 100%;
+                }
+
+                @media (min-width: 768px) {
+                    .stats-container {
+                        flex-direction: row;
+                        /* Side-by-side on desktop */
+                    }
+                }
+
+                .stats-card {
+                    flex: 1;
+                    min-width: 0;
+                }
+            </style>
+
+            <div class="stats-container">
                 <!-- Total Products -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex flex-col justify-between h-32">
-                    <div class="flex justify-between items-start">
-                        <span class="text-sm font-medium text-gray-500">Total Products</span>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m0-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                        </svg>
-                    </div>
-                    <div>
-                        <span class="text-3xl font-bold text-gray-900 block" style="line-height:1;">{{ $productCount }}</span>
-                    </div>
-                </div>
-
-                <!-- Active Bookings (Mock) -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex flex-col justify-between h-32">
-                    <div class="flex justify-between items-start">
-                        <span class="text-sm font-medium text-gray-500">Active Bookings</span>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <div>
-                        <span class="text-3xl font-bold text-gray-900 block mb-1" style="line-height:1;">12</span>
-                        <span class="text-xs font-medium text-green-600 flex items-center gap-1">
-                            <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                <div class="stats-card bg-white p-6 rounded-xl shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="p-3 bg-blue-100 rounded-lg">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m0-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                             </svg>
-                            +2 today
-                        </span>
+                        </div>
+                        <span class="text-xs font-semibold text-blue-600 bg-blue-100 px-2 py-1 rounded-full">Products</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-bold text-gray-800">{{ $productCount }}</span>
+                        <span class="text-sm text-gray-500">Total Products available</span>
                     </div>
                 </div>
 
-                <!-- Revenue (Mock) -->
-                <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm flex flex-col justify-between h-32">
-                    <div class="flex justify-between items-start">
-                        <span class="text-sm font-medium text-gray-500">Total Revenue</span>
-                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                <!-- Active Bookings -->
+                <div class="stats-card bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="p-3 bg-green-100 rounded-lg">
+                            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <span class="text-xs font-semibold text-green-600 bg-green-100 px-2 py-1 rounded-full">+2 Today</span>
                     </div>
                     <div>
-                        <span class="text-3xl font-bold text-gray-900 block mb-1" style="line-height:1;">RM 4,250</span>
-                        <span class="text-xs font-medium text-gray-400">Current month</span>
+                        <span class="block text-2xl font-bold text-gray-800">12</span>
+                        <span class="text-sm text-gray-500">Active Bookings in progress</span>
+                    </div>
+                </div>
+
+                <!-- Total Revenue -->
+                <div class="stats-card bg-white p-6 rounded-xl shadow-lg border-l-4 border-purple-500 hover:shadow-xl transition-shadow duration-300">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="p-3 bg-purple-100 rounded-lg">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <span class="text-xs font-semibold text-purple-600 bg-purple-100 px-2 py-1 rounded-full">This Month</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl font-bold text-gray-800">RM 4,250</span>
+                        <span class="text-sm text-gray-500">Total Revenue generated</span>
                     </div>
                 </div>
             </div>
 
             <!-- Management Section -->
             <div>
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">Management</h3>
+                <h3 class="text-lg font-semibold text-gray-900 mb-4 mt-8">Management</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Product Management Card -->
                     <a href="{{ route('langkawi-products.index') }}" class="group block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200">

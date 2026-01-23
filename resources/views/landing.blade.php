@@ -356,14 +356,28 @@
             <section class="services" x-data="{ 
                 servicePage: 0,
                 totalCards: {{ count($landingServices) > 0 ? count($landingServices) : 4 }},
+                isMobile: window.innerWidth < 768,
                 get totalPages() {
-                   return Math.ceil(this.totalCards / 2);
+                   return Math.ceil(this.totalCards / (this.isMobile ? 2 : 4));
+                },
+                updateLayout() {
+                    const mobile = window.innerWidth < 768;
+                    if (this.isMobile !== mobile) {
+                         this.isMobile = mobile;
+                         this.servicePage = 0;
+                    }
+                },
+                isVisible(index) {
+                    if (this.isMobile) return true; // Always visible on mobile (slider handles view)
+                    // Desktop: Show only current page items
+                    return index >= this.servicePage * 4 && index < (this.servicePage + 1) * 4;
                 }
-            }">
+            }" x-on:resize.window.debounce.100ms="updateLayout()">
                 <div class="services-viewport">
-                    <div class="services-grid" :style="'transform: translateX(-' + (servicePage * 100) + '%)'">
+                    <!-- Mobile uses transform, Desktop uses filtered grid (transform: none) -->
+                    <div class="services-grid" :style="isMobile ? 'transform: translateX(-' + (servicePage * 100) + '%)' : ''">
                         @forelse($landingServices as $service)
-                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="service-card" x-show="isVisible({{ $loop->index }})" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
                                 @if($service->image)
                                 <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
@@ -376,7 +390,7 @@
                         </div>
                         @empty
                         <!-- Fallback/Default Content if no dynamic services exist -->
-                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="service-card" x-show="isVisible(0)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
                                 <img src="{{ asset('images/car-rental.png') }}" alt="Tour Packages" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
@@ -385,7 +399,7 @@
                                 <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </div>
-                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="service-card" x-show="isVisible(1)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
                                 <img src="{{ asset('images/flight.png') }}" alt="Flight Booking" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
@@ -394,7 +408,7 @@
                                 <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </div>
-                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="service-card" x-show="isVisible(2)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
                                 <img src="{{ asset('images/hotel.png') }}" alt="Hotel Booking" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
@@ -403,7 +417,7 @@
                                 <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                         </div>
-                        <div class="service-card" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
+                        <div class="service-card" x-show="isVisible(3)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
                                 <img src="{{ asset('images/destination.png') }}" alt="Destination Booking" style="width: 100%; height: 100%; object-fit: cover;">
                             </div>
@@ -1336,8 +1350,8 @@
                 gap: 25px;
                 justify-content: center;
                 width: 100%;
-                transition: none;
-                /* No transition for grid */
+                /* No transform on desktop, we filter items instead */
+                transform: none !important;
             }
 
             .service-card {
@@ -1352,7 +1366,10 @@
             }
 
             .service-dots {
-                display: none;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+                margin-top: 40px;
             }
 
             .dot {

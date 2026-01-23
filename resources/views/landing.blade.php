@@ -417,22 +417,94 @@
 
 
             <!-- ================= TESTIMONY SECTION ================= -->
-            <section class="testimony-section">
+            <!-- ================= TESTIMONY SECTION ================= -->
+            <section class="testimony-section" x-data="{
+                activeTestimonial: 0,
+                testimonials: [
+                    {
+                        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
+                        author: 'Febrian',
+                        role: 'Traveler'
+                    },
+                    {
+                        text: 'Pengalaman yang sangat luar biasa! Pemandangan indah dan pelayanan sangat memuaskan. Sangat direkomendasikan untuk liburan keluarga.',
+                        author: 'Sarah Johnson',
+                        role: 'Tourist'
+                    },
+                    {
+                        text: 'Booking mudah, harga terjangkau, dan tour guide yang sangat ramah. Pasti akan kembali lagi menggunakan layanan WaveShark.',
+                        author: 'Michael Tan',
+                        role: 'Backpacker'
+                    }
+                ],
+                next() {
+                    this.activeTestimonial = (this.activeTestimonial + 1) % this.testimonials.length;
+                },
+                prev() {
+                    this.activeTestimonial = (this.activeTestimonial - 1 + this.testimonials.length) % this.testimonials.length;
+                }
+            }">
                 <div class="testimony-bg" style="background-image: url('{{ asset('images/pangkalan-islands.jpg') }}');"></div>
                 <div class="testimony-overlay"></div>
                 <div class="testimony-content">
                     <h2 class="testimony-title">Testimony</h2>
                     <p class="testimony-subtitle">Happy travelers and what's they are saying?</p>
 
-                    <div class="quote-container">
-                        <span class="quote-icon left-quote">“</span>
-                        <p class="quote-text">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
-                        </p>
-                        <span class="quote-icon right-quote">”</span>
+                    <div class="quote-container relative max-w-4xl mx-auto">
+                        <div class="text-center px-4 md:px-12">
+                            <div class="relative h-48 md:h-32 flex items-center justify-center overflow-hidden">
+                                <template x-for="(testimony, index) in testimonials" :key="index">
+                                    <div x-show="activeTestimonial === index"
+                                        x-transition:enter="transition ease-out duration-500"
+                                        x-transition:enter-start="opacity-0 translate-x-10 scale-95"
+                                        x-transition:enter-end="opacity-100 translate-x-0 scale-100"
+                                        x-transition:leave="transition ease-in duration-300 transform absolute"
+                                        x-transition:leave-start="opacity-100 translate-x-0 scale-100"
+                                        x-transition:leave-end="opacity-0 -translate-x-10 scale-95"
+                                        class="w-full">
+
+                                        <span class="quote-icon left-quote inline-block relative -top-4">“</span>
+                                        <p class="quote-text inline italic text-lg md:text-xl text-gray-200">
+                                            <span x-text="testimony.text"></span>
+                                        </p>
+                                        <span class="quote-icon right-quote inline-block relative top-4">”</span>
+
+                                        <div class="mt-6">
+                                            <div class="testimony-author font-bold text-gold-400 text-xl" x-text="'- ' + testimony.author + ' -'"></div>
+                                            <div class="text-sm text-gray-400 uppercase tracking-wider" x-text="testimony.role"></div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="testimony-author">- Febrian -</div>
+                    <!-- Navigation Controls (Arrows + Dots) -->
+                    <div class="flex items-center justify-center gap-6 mt-8">
+                        <!-- Prev Button -->
+                        <button @click="prev()" class="text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                        </button>
+
+                        <!-- Dots -->
+                        <div class="flex gap-3">
+                            <template x-for="(testimony, index) in testimonials" :key="index">
+                                <button @click="activeTestimonial = index"
+                                    class="w-3 h-3 rounded-full transition-all duration-300"
+                                    :class="activeTestimonial === index ? 'bg-gold-500 w-8' : 'bg-white/30 hover:bg-white/50'">
+                                </button>
+                            </template>
+                        </div>
+
+                        <!-- Next Button -->
+                        <button @click="next()" class="text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </section>
 

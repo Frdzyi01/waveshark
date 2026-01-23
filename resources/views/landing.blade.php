@@ -368,14 +368,13 @@
                     }
                 },
                 isVisible(index) {
-                    if (this.isMobile) return true; // Always visible on mobile (slider handles view)
-                    // Desktop: Show only current page items
-                    return index >= this.servicePage * 4 && index < (this.servicePage + 1) * 4;
+                    const perPage = this.isMobile ? 2 : 4;
+                    return index >= this.servicePage * perPage && index < (this.servicePage + 1) * perPage;
                 }
             }" x-on:resize.window.debounce.100ms="updateLayout()">
                 <div class="services-viewport">
-                    <!-- Mobile uses transform, Desktop uses filtered grid (transform: none) -->
-                    <div class="services-grid" :style="isMobile ? 'transform: translateX(-' + (servicePage * 100) + '%)' : ''">
+                    <!-- Both Mobile and Desktop use filtered grid (no transform) -->
+                    <div class="services-grid">
                         @forelse($landingServices as $service)
                         <div class="service-card" x-show="isVisible({{ $loop->index }})" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
@@ -441,7 +440,7 @@
             </section>
 
             <!-- ================= ABOUT ================= -->
-            <section class="about">
+            <section class="about" style="margin-top: -25px;">
                 <div class="about-wrapper">
 
                     <div class="about-img">
@@ -1565,28 +1564,28 @@
                 }
 
                 .services-grid {
-                    display: flex;
-                    flex-wrap: nowrap;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
                     gap: 15px;
                     /* Gap between cards */
                     margin: 0;
                     width: 100%;
-                    transition: transform 0.5s ease-in-out;
-                    padding: 0 7.5px;
-                    /* Half of gap to ensure perfect paging */
-                    justify-content: flex-start;
+                    transform: none !important;
+                    /* Disable slider transform */
+                    padding: 0 10px;
                     box-sizing: border-box;
+                    justify-content: center;
                 }
 
                 .service-card {
-                    min-width: calc(50% - 7.5px);
-                    /* (100% - 15px gap) / 2 */
                     height: 280px;
                     /* Mobile height */
                     flex-shrink: 0;
                     padding: 0;
                     /* Override with 0 */
                     border: 1px solid rgba(255, 255, 255, 0.1);
+                    width: auto !important;
+                    /* Override min-width */
                 }
 
                 /* Resize text for mobile cards */

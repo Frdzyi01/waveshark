@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
 
     // Admin Routes
     Route::resource('admin/langkawi-products', \App\Http\Controllers\Admin\LangkawiProductController::class);
+    Route::resource('admin/sabah-products', \App\Http\Controllers\Admin\SabahProductController::class);
 });
 
 require __DIR__ . '/auth.php';

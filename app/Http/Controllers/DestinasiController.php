@@ -44,10 +44,33 @@ class DestinasiController extends Controller
                 'description' => 'Sail into the sunset with dinner, drinks, and the seawater Jacuzzi.',
                 'hero_image' => 'https://images.unsplash.com/photo-1520023030372-e56a47a11075?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
             ],
+            // SABAH SERVICES
+            'sunset-dinner-cruise' => [
+                'title' => 'Sunset Dinner Cruise',
+                'description' => 'Experience a magical evening with a gourmet dinner while cruising the beautiful waters of Sabah at sunset.',
+                'hero_image' => 'https://images.unsplash.com/photo-1534954495914-118c7edabd88?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
+            'fishing-charter' => [
+                'title' => 'Fishing Charter',
+                'description' => 'Embark on an exciting deep-sea fishing adventure with our experienced captains and fully equipped boats.',
+                'hero_image' => 'https://images.unsplash.com/photo-1544552866-d3ed42536cfd?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
+            'mount-climbing' => [
+                'title' => 'Mount Climbing',
+                'description' => 'Challenge yourself with a climb up Mount Kinabalu, one of Southeast Asia’s highest peaks, and witness breathtaking views.',
+                'hero_image' => 'https://images.unsplash.com/photo-1577947137599-231548232924?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3',
+            ],
         ];
 
         // Fetch products from database
-        $products = \App\Models\LangkawiProduct::where('service_category', $category)->get();
+        // Determine model based on category
+        $sabahServices = ['sunset-dinner-cruise', 'fishing-charter', 'mount-climbing'];
+
+        if (in_array($category, $sabahServices)) {
+            $products = \App\Models\SabahProduct::where('service_category', $category)->get();
+        } else {
+            $products = \App\Models\LangkawiProduct::where('service_category', $category)->get();
+        }
 
         // Convert db products to array format compatible with view
         $productsData = $products->map(function ($product) {

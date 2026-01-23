@@ -22,6 +22,13 @@ Route::prefix('langkawi')->group(function () {
     Route::get('/sunset-cruise', [\App\Http\Controllers\DestinasiController::class, 'sunsetCruise']);
 });
 
+// Sabah Service Pages
+Route::prefix('sabah')->group(function () {
+    Route::get('/sunset-dinner-cruise', [\App\Http\Controllers\DestinasiController::class, 'sunsetDinnerCruise']);
+    Route::get('/fishing-charter', [\App\Http\Controllers\DestinasiController::class, 'fishingCharter']);
+    Route::get('/mount-climbing', [\App\Http\Controllers\DestinasiController::class, 'mountClimbing']);
+});
+
 Route::get('/dashboard', function () {
     $productCount = \App\Models\LangkawiProduct::count();
     return view('dashboard', compact('productCount'));

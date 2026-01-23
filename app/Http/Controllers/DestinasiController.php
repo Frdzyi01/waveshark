@@ -124,4 +124,22 @@ class DestinasiController extends Controller
         $tourPackages = [];
         return view('destinasi.sabah', compact('services', 'tourPackages'));
     }
+
+    public function sunsetDinnerCruise()
+    {
+        $data = $this->getServiceData('sunset-dinner-cruise');
+        return view('destinasi.sabah-services.sunset-dinner-cruise', compact('data'));
+    }
+
+    public function fishingCharter()
+    {
+        $data = $this->getServiceData('fishing-charter');
+        return view('destinasi.sabah-services.fishing-charter', compact('data'));
+    }
+
+    public function mountClimbing()
+    {
+        $data = $this->getServiceData('mount-climbing');
+        return view('destinasi.sabah-services.mount-climbing', compact('data'));
+    }
 }

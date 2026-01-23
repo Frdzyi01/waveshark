@@ -1705,13 +1705,16 @@
         <!-- HERO SECTION (Contains Search) -->
         <div class="hero" style="background-image: url('{{ asset('images/langkawi.jpg') }}');">
             <div class="hero-overlay"></div>
-            <h1 class="search-title">Discover Langkawi</h1>
+            <!-- Search Content -->
+            <div class="search-container">
+                <h1 class="search-title">Discover Langkawi</h1>
 
-            <div class="search-box">
-                <input type="text" class="search-input" placeholder="Search activities (e.g., Jetski, Mangrove Tour)...">
-                <button class="search-btn">
-                    <i class="ri-search-line"></i>
-                </button>
+                <div class="search-box">
+                    <input type="text" class="search-input" placeholder="Search activities (e.g., Jetski, Mangrove Tour)...">
+                    <button class="search-btn">
+                        <i class="ri-search-line"></i>
+                    </button>
+                </div>
             </div>
         </div>
 

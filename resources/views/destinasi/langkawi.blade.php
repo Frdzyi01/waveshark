@@ -61,6 +61,59 @@
             z-index: 1;
         }
 
+        /* SCROLL DOWN INDICATOR */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            z-index: 20;
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+
+        .scroll-down:hover {
+            opacity: 1;
+        }
+
+        .scroll-text {
+            color: var(--white);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        .scroll-icon {
+            color: var(--gold);
+            font-size: 24px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
         /* SEARCH CONTAINER */
         .search-container {
             position: relative;
@@ -1635,8 +1688,7 @@
             backdrop-filter: blur(18px);
 
             /* DEPTH */
-            box-shadow:
-                0 40px 90px rgba(0, 0, 0, 0.45),
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.45),
                 inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
 
@@ -1715,6 +1767,10 @@
                         <i class="ri-search-line"></i>
                     </button>
                 </div>
+            </div>
+            <div class="scroll-down" onclick="window.scrollTo({top: window.innerHeight, behavior: 'smooth'})">
+                <span class="scroll-text">Scroll Down</span>
+                <i class="ri-arrow-down-line scroll-icon"></i>
             </div>
         </div>
 

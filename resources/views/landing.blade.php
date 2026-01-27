@@ -357,6 +357,10 @@
                 servicePage: 0,
                 totalCards: {{ count($landingServices) > 0 ? count($landingServices) : 4 }},
                 isMobile: window.innerWidth < 768,
+                touchStartX: 0,
+                touchEndX: 0,
+                minSwipeDistance: 50,
+                
                 get totalPages() {
                    return Math.ceil(this.totalCards / (this.isMobile ? 2 : 4));
                 },
@@ -370,8 +374,53 @@
                 isVisible(index) {
                     const perPage = this.isMobile ? 2 : 4;
                     return index >= this.servicePage * perPage && index < (this.servicePage + 1) * perPage;
+                },
+                touchStart(e) {
+                    this.touchStartX = e.changedTouches ? e.changedTouches[0].screenX : e.screenX;
+                },
+                touchEnd(e) {
+                    this.touchEndX = e.changedTouches ? e.changedTouches[0].screenX : e.screenX;
+                    this.handleSwipe();
+                },
+                handleSwipe() {
+                    const distance = this.touchStartX - this.touchEndX;
+                    
+                    if (Math.abs(distance) < this.minSwipeDistance) return;
+
+                    if (distance > 0) {
+                        // Swiped Left -> Next Page
+                        if (this.servicePage < this.totalPages - 1) {
+                            this.servicePage++;
+                        }
+                    } else {
+                        // Swiped Right -> Prev Page
+                        if (this.servicePage > 0) {
+                            this.servicePage--;
+                        }
+                    }
+                },
+                nextPage() {
+                    if (this.servicePage < this.totalPages - 1) {
+                        this.servicePage++;
+                    } else {
+                        // Optional: Wrap around to start?
+                        // this.servicePage = 0; 
+                    }
+                },
+                prevPage() {
+                    if (this.servicePage > 0) {
+                        this.servicePage--;
+                    } else {
+                        // Optional: Wrap around to end?
+                        // this.servicePage = this.totalPages - 1;
+                    }
                 }
-            }" x-on:resize.window.debounce.100ms="updateLayout()">
+            }"
+                x-on:resize.window.debounce.100ms="updateLayout()"
+                x-on:touchstart="touchStart($event)"
+                x-on:touchend="touchEnd($event)"
+                x-on:mousedown="touchStart($event)"
+                x-on:mouseup="touchEnd($event)">
                 <div class="services-viewport">
                     <!-- Both Mobile and Desktop use filtered grid (no transform) -->
                     <div class="services-grid">
@@ -428,15 +477,18 @@
                         @endforelse
                     </div>
                 </div>
-
-                <!-- Mobile Pagination Dots -->
-                <div class="service-dots">
-                    <template x-for="i in totalPages" :key="i">
-                        <div class="dot"
-                            :class="{'active': servicePage === i - 1}"
-                            @click="servicePage = i - 1"></div>
-                    </template>
+                <!-- Pagination Dots Only -->
+                <div class="flex items-center justify-center relative z-50">
+                    <div class="service-dots">
+                        <template x-for="i in totalPages" :key="i">
+                            <div class="dot"
+                                :class="{ 'active': servicePage === i - 1 }"
+                                @click="servicePage = i - 1">
+                            </div>
+                        </template>
+                    </div>
                 </div>
+
             </section>
 
             <!-- ================= ABOUT ================= -->
@@ -1616,8 +1668,8 @@
                     display: flex;
                     justify-content: center;
                     gap: 10px;
-                    margin-top: 20px;
-                    width: 100%;
+                    margin-top: 5px;
+                    width: auto;
                 }
             }
 

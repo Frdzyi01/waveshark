@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout
+    title="St. John Islands Tours - Pristine Beaches & Nature | Waveshark"
+    description="Escape to St. John Islands. Enjoy secluded beaches, crystal clear waters, and exclusive island tours with Waveshark Ventures.">
     <!-- Navbar -->
     <x-header />
 
@@ -1748,7 +1750,7 @@
     <div class="booking-page-font bg-black">
 
         <!-- Back Button -->
-        <a href="http://127.0.0.1:8000" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
+        <a href="{{('/')}}" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
             margin-top: 7rem;
             margin-left: 1rem;
             ">

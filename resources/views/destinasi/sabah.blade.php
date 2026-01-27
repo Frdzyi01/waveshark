@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout
+    title="Discover Sabah - Mount Kinabalu & Nature Tours | Waveshark"
+    description="Adventure awaits in Sabah! Climb Mount Kinabalu, dive in Sipadan, or explore the rainforests. Premium tour packages available.">
     <!-- Navbar -->
     <x-header />
 
@@ -1749,7 +1751,7 @@
     <div class="booking-page-font bg-black">
 
         <!-- Back Button -->
-        <a href="http://127.0.0.1:8000" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
+       <a href="{{('/')}}" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
             margin-top: 7rem;
             margin-left: 1rem;
             ">

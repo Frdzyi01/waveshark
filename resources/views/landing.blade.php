@@ -1,4 +1,7 @@
-<x-layout>
+<x-layout
+    title="Waveshark Ventures - Premier Langkawi Tours & Jetski Rentals"
+    description="Experience the best of Langkawi with Waveshark Ventures. We offer premium jetski rentals, island hopping tours, sunset cruises, hotel bookings, and private charters."
+    keywords="langkawi tours, jetski rental langkawi, island hopping, sunset cruise, langkawi holiday, water sports langkawi">
     <!-- Page Transition Overlay -->
     <div id="page-transition" class="fixed inset-0 z-[9999] pointer-events-none bg-black opacity-0 transition-opacity duration-500 ease-in-out flex items-center justify-center">
         <div class="relative">

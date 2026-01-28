@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Sunset Dinner Cruise | Sabah Services"
+    description="Experience the best sunset dinner cruise services in Sabah with Waveshark. Fast, reliable, and affordable transportation from Sabah to your destination."
+    keywords="Sunset Dinner Cruise, Sabah, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

@@ -1785,7 +1785,7 @@
                 <a href="/sabah/sunset-dinner-cruise" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/sunset-dinner-cruise.png') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">Sunset dinner cruise</h3>
+                        <h3 class="tg-title">SUNSET DINER CRUISE</h3>
                         <p class="tg-desc">Experience a romantic sunset dinner cruise with stunning views of the Andaman Sea.</p>
                     </div>
                 </a>
@@ -1794,7 +1794,7 @@
                 <a href="/sabah/fishing-charter" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/fishing-charter.png') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">Fishing charter</h3>
+                        <h3 class="tg-title">FISHING CHARTER</h3>
                         <p class="tg-desc">Experience a thrilling fishing adventure with our expert guides.</p>
                     </div>
                 </a>
@@ -1803,7 +1803,7 @@
                 <a href="/sabah/mount-climbing" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/mount-climbing.png') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">Mount climbing</h3>
+                        <h3 class="tg-title">MOUNT CLIMBING</h3>
                         <p class="tg-desc">Conquer the majestic Mount Kinabalu and witness breathtaking panoramic views.</p>
                     </div>
                 </a>

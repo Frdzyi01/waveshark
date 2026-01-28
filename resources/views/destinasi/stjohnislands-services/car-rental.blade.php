@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Car Rental | St. John's Island Services"
+    description="Experience the best car rental services in St. John's Island with Waveshark. Fast, reliable, and affordable transportation from St. John's Island to your destination."
+    keywords="Car Rental, St. John's Island, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

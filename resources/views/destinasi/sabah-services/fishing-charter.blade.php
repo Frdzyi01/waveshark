@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Fishing Charter | Sabah Services"
+    description="Experience the best fishing charter services in Sabah with Waveshark. Fast, reliable, and affordable transportation from Sabah to your destination."
+    keywords="Fishing Charter, Sabah, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

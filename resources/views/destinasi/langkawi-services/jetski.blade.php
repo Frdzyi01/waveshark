@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Jetski | Langkawi Services"
+    description="Experience the best jetski services in Langkawi with Waveshark. Fast, reliable, and affordable transportation from Langkawi to your destination."
+    keywords="Jetski, Langkawi, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

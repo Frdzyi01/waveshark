@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Airport Transfer | St. John's Island Services"
+    description="Experience the best airport transfer services in Langkawi with Waveshark. Fast, reliable, and affordable transportation from Langkawi International Airport to your destination."
+    keywords="Airport Transfer, Langkawi, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 
@@ -33,7 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('{{ $data['hero_image'] }}');
+            background-image: url('{{ $data[' hero_image'] }}');
             background-size: cover;
             background-position: center;
             padding-top: 80px;

@@ -1783,7 +1783,7 @@
                 <a href="/langkawi/car-rental" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/car-rental.jpeg') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">Car Rental</h3>
+                        <h3 class="tg-title">CAR RENTAL</h3>
                         <p class="tg-desc">Rent a car and explore Langkawi's islands and attractions.</p>
                     </div>
                 </a>
@@ -1792,7 +1792,7 @@
                 <a href="/langkawi/island-hopping" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/islands-hopping.jpg') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">Islands Hopping</h3>
+                        <h3 class="tg-title">ISLANDS HOPPING</h3>
                         <p class="tg-desc">Explore Langkawi's islands and attractions.</p>
                     </div>
                 </a>
@@ -1801,7 +1801,7 @@
                 <a href="/langkawi/airport-transfer" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/airport-transfer.jpg') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">Airport Transfer</h3>
+                        <h3 class="tg-title">AIRPORT TRANSFER</h3>
                         <p class="tg-desc">Experience a comfortable airport pickup service.</p>
                     </div>
                 </a>
@@ -1810,7 +1810,7 @@
                 <a href="/langkawi/mangrove-tour" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/mangrove-tour.jpg') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">Mangrove Tour</h3>
+                        <h3 class="tg-title">MANGROVE TOUR</h3>
                         <p class="tg-desc">Explore Langkawi's mangrove forests and wildlife.</p>
                     </div>
                 </a>
@@ -1819,7 +1819,7 @@
                 <a href="/langkawi/jetski" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/jetski.jpg') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">JetSki</h3>
+                        <h3 class="tg-title">JET SKI</h3>
                         <p class="tg-desc">Experience the thrill of jet skiing in Langkawi.</p>
                     </div>
                 </a>
@@ -1828,7 +1828,7 @@
                 <a href="/langkawi/sunset-cruise" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/sunset.jpg') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">Sunset Cruise</h3>
+                        <h3 class="tg-title">SUNSET CRUISE</h3>
                         <p class="tg-desc">Enjoy a beautiful sunset cruise experience.</p>
                     </div>
                 </a>

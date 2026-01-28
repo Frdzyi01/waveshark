@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Island Hopping | St. John's Island Services"
+    description="Experience the best island hopping services in St. John's Island with Waveshark. Fast, reliable, and affordable transportation from St. John's Island to your destination."
+    keywords="Island Hopping, St. John's Island, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

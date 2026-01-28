@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Mount Climbing | Sabah Services"
+    description="Experience the best mount climbing services in Sabah with Waveshark. Fast, reliable, and affordable transportation from Sabah to your destination."
+    keywords="Mount Climbing, Sabah, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

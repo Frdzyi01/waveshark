@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Jetski | St. John's Island Services"
+    description="Experience the best jetski services in St. John's Island with Waveshark. Fast, reliable, and affordable transportation from St. John's Island to your destination."
+    keywords="Jetski, St. John's Island, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 
@@ -33,7 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('{{ $data['hero_image'] }}');
+            background-image: url('{{ $data[' hero_image'] }}');
             background-size: cover;
             background-position: center;
             padding-top: 80px;

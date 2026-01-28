@@ -8,16 +8,18 @@
         <div class="flex items-center justify-between h-20">
             <!-- Left: Logo & Brand -->
             <div class="flex-shrink-0 flex items-center gap-3">
-                <img class="h-10 w-auto" src="{{ asset('images/logo-waveshart-removebg.png') }}" alt="Waveshark">
-                <span class="font-serif text-xl text-white tracking-widest uppercase">Waveshark Ventures</span>
+                <a href="{{('/')}}">
+                    <img class="h-10 w-auto" src="{{ asset('images/logo-waveshart-removebg.png') }}" alt="Waveshark">
+                </a>
+                <a class="font-serif text-xl text-white tracking-widest uppercase" href="{{('/')}}">Waveshark Ventures</a>
             </div>
 
             <!-- Right: Navigation -->
             <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-8">
-                    <a href="#" class="text-white hover:text-gold-400 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase tracking-wider">Home</a>
-                    <a href="#" class="text-white hover:text-gold-400 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase tracking-wider">About Us</a>
-                    <a href="#" class="text-white hover:text-gold-400 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase tracking-wider">Contact</a>
+                    <a href="{{('/')}}" class="text-white hover:text-gold-400 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase tracking-wider">Home</a>
+                    <a href="{{('/#about')}}" class="text-white hover:text-gold-400 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase tracking-wider">About Us</a>
+                    <a href="{{('/#contact')}}" class="text-white hover:text-gold-400 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase tracking-wider">Contact</a>
 
                     <span class="text-white/50">|</span>
 

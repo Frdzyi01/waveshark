@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Island Hopping | Langkawi Services"
+    description="Experience the best island hopping services in Langkawi with Waveshark. Fast, reliable, and affordable transportation from Langkawi to your destination."
+    keywords="Island Hopping, Langkawi, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

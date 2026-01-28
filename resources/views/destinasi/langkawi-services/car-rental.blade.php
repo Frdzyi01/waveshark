@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Car Rental | Langkawi Services"
+    description="Experience the best car rental services in Langkawi with Waveshark. Fast, reliable, and affordable transportation from Langkawi International Airport to your destination."
+    keywords="Car Rental, Langkawi, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

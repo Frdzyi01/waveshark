@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Mangrove Tour | Langkawi Services"
+    description="Experience the best mangrove tour services in Langkawi with Waveshark. Fast, reliable, and affordable transportation from Langkawi to your destination."
+    keywords="Mangrove Tour, Langkawi, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 

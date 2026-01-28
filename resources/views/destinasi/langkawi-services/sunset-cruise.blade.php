@@ -1,4 +1,6 @@
-<x-layout>
+<x-layout title="Sunset Cruise | Langkawi Services"
+    description="Experience the best sunset cruise services in Langkawi with Waveshark. Fast, reliable, and affordable transportation from Langkawi to your destination."
+    keywords="Sunset Cruise, Langkawi, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
 
@@ -33,7 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('{{ $data['hero_image'] }}');
+            background-image: url('{{ $data[' hero_image'] }}');
             background-size: cover;
             background-position: center;
             padding-top: 80px;

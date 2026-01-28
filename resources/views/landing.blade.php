@@ -24,6 +24,19 @@
                 window.location.href = url;
             }, 600);
         }
+
+        // Fix for back button black screen (bfcache)
+        window.addEventListener('pageshow', function(event) {
+            const overlay = document.getElementById('page-transition');
+            if (overlay) {
+                overlay.classList.add('opacity-0');
+                overlay.classList.remove('opacity-100');
+                // Use small timeout to ensure pointer-events are restored after fade out visual
+                setTimeout(() => {
+                    overlay.classList.add('pointer-events-none');
+                }, 50);
+            }
+        });
     </script>
 
     <x-header />

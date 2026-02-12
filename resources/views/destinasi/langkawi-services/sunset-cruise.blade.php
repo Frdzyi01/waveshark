@@ -35,7 +35,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('{{ $data[' hero_image'] }}');
+            background-image: url('{{ $data['hero_image'] }}');
             background-size: cover;
             background-position: center;
             padding-top: 80px;
@@ -405,7 +405,7 @@
                     body += `Date: ${this.bookingForm.date}\n`;
                     body += `Pax: ${this.bookingForm.pax}\n`;
 
-                    let url = `mailto:admin@waveshark.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    let url = `mailto:admin@wavesharktravel.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     window.location.href = url;
                 }
             }

@@ -690,7 +690,7 @@
                                 <button type="submit" class="newsletter-btn">Subscribe</button>
                             </form>
                             <div class="footer-contact mt-4" style="margin-top: 20px;">
-                                <p>info@waveshark.com</p>
+                                <p>admin@wavesharktravel.com</p>
                                 <p>+60 11-7187 1800</p>
                             </div>
                         </div>

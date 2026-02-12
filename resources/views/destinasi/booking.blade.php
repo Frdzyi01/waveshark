@@ -1196,7 +1196,7 @@
                         <button type="submit" class="newsletter-btn">Subscribe</button>
                     </form>
                     <div class="footer-contact mt-4" style="margin-top: 20px;">
-                        <p>info@waveshark.com</p>
+                        <p>admin@wavesharktravel.com</p>
                         <p>+62 812 3456 7890</p>
                     </div>
                 </div>

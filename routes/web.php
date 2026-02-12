@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', function () {
     $landingServices = \App\Models\LandingService::all();
@@ -11,7 +12,11 @@ Route::get('/', function () {
 // Frontend Routes
 Route::get('/langkawi', [\App\Http\Controllers\DestinasiController::class, 'langkawi']);
 Route::get('/stjohnislands', [\App\Http\Controllers\DestinasiController::class, 'stjohnislands']);
+Route::get('/stjohnislands', [\App\Http\Controllers\DestinasiController::class, 'stjohnislands']);
 Route::get('/sabah', [\App\Http\Controllers\DestinasiController::class, 'sabah']);
+Route::get('/contact', function () {
+    return view('contact');
+});
 
 // Langkawi Service Pages
 Route::prefix('langkawi')->group(function () {
@@ -55,6 +60,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('admin/sabah-products', \App\Http\Controllers\Admin\SabahProductController::class);
     Route::resource('admin/stjohn-products', \App\Http\Controllers\Admin\StJohnProductController::class);
     Route::resource('admin/landing-services', \App\Http\Controllers\Admin\LandingServiceController::class);
+});
+
+Route::get('/panggil', function () {
+    Artisan::call('optimize:clear');
+    
+    return redirect('/')->with('success', 'Cache cleared successfully!');
 });
 
 require __DIR__ . '/auth.php';

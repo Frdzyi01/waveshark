@@ -403,7 +403,7 @@
                     body += `Date: ${this.bookingForm.date}\n`;
                     body += `Pax: ${this.bookingForm.pax}\n`;
 
-                    let url = `mailto:admin@waveshark.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    let url = `mailto:admin@wavesharktravel.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     window.location.href = url;
                 }
             }

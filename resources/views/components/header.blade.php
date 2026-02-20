@@ -9,7 +9,7 @@
             <!-- Left: Logo & Brand -->
             <div class="flex-shrink-0 flex items-center gap-3">
                 <a href="{{ url('/') }}">
-                    <img class="h-10 w-auto" src="{{ asset('images/logo-waveshart-removebg.png') }}" alt="Waveshark">
+                    <img class="h-10 w-auto" src="{{ asset('images/logo-waveshart-removebg.webp') }}" alt="Waveshark">
                 </a>
                 <a class="font-serif text-xl text-white tracking-widest uppercase" href="{{ url('/') }}">Waveshark Ventures</a>
             </div>

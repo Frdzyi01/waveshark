@@ -3,7 +3,7 @@
     <div class="transition-panel top-panel bg-black h-1/2 w-full transform -translate-y-full transition-transform duration-700 ease-in-out"></div>
     <div class="transition-panel bottom-panel bg-black h-1/2 w-full transform translate-y-full transition-transform duration-700 ease-in-out"></div>
     <div class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 delay-300" id="transition-logo">
-        <img src="{{ asset('images/logo-waveshart-removebg.png') }}" class="h-24 w-auto animate-bounce" alt="Loading...">
+        <img src="{{ asset('images/logo-waveshart-removebg.webp') }}" class="h-24 w-auto animate-bounce" alt="Loading...">
     </div>
 </div>
 

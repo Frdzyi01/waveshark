@@ -17,32 +17,41 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ $title ?? config('app.name', 'Waveshark Ventures') }}">
     <meta property="og:description" content="{{ $description ?? 'Waveshark Ventures - Premier tour and travel services offering jetski rentals, island hopping, and hotel bookings.' }}">
-    <meta property="og:image" content="{{ asset('images/logo-waveshart-removebg.png') }}">
+    <meta property="og:image" content="{{ asset('images/logo-waveshart-removebg.webp') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
     <meta property="twitter:title" content="{{ $title ?? config('app.name', 'Waveshark Ventures') }}">
     <meta property="twitter:description" content="{{ $description ?? 'Waveshark Ventures - Premier tour and travel services offering jetski rentals, island hopping, and hotel bookings.' }}">
-    <meta property="twitter:image" content="{{ asset('images/logo-waveshart-removebg.png') }}">
+    <meta property="twitter:image" content="{{ asset('images/logo-waveshart-removebg.webp') }}">
 
     <title>{{ $title ?? config('app.name', 'Waveshark Ventures') }}</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/logo-waveshart-removebg.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('images/logo-waveshart-removebg.webp') }}" type="image/png">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-    <!-- Scripts -->
+    <!-- LCP Preload (Largest Contentful Paint Hero Image) -->
+    <link rel="preload" as="image" href="{{ asset('images/laut-malay-new.webp') }}" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ asset('images/laut-singapore2-new.webp') }}" fetchpriority="high">
+
+    <!-- Scripts & Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+    @stack('styles')
 </head>
 
 <body class="font-sans antialiased bg-black text-white selection:bg-gold-500 selection:text-black overflow-x-hidden">
     {{ $slot }}
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('scripts')
 </body>
 
 </html>

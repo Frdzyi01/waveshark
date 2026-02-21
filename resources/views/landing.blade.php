@@ -6,7 +6,7 @@
     <div id="page-transition" class="fixed inset-0 z-[9999] pointer-events-none bg-black opacity-0 transition-opacity duration-500 ease-in-out flex items-center justify-center">
         <div class="relative">
             <div class="absolute inset-0 bg-gold-500 blur-2xl opacity-20 animate-pulse rounded-full"></div>
-            <img src="{{ asset('images/logo-waveshart-removebg.webp') }}" width="200" height="96" fetchpriority="high" loading="eager" class="h-24 w-auto drop-shadow-2xl relative z-10" alt="Loading...">
+            <img src="{{ asset('images/logo-waveshart-removebg.webp') }}" width="200" height="96" loading="lazy" decoding="async" class="h-24 w-auto drop-shadow-2xl relative z-10" alt="Loading...">
         </div>
     </div>
 
@@ -60,21 +60,21 @@
                     thumbnail: '{{ asset('images/sabah.webp') }}'
                 }
             ],
-            mouseX: 0,
-            mouseY: 0,
-            ticking: false,
-            handleMove(e) {
-                if (this.expanded) return;
-                
-                // Throttle with requestAnimationFrame to avoid forced reflows
-                if (!this.ticking) {
-                    window.requestAnimationFrame(() => {
-                        this.mouseX = (e.clientX / window.innerWidth) - 0.5;
-                        this.mouseY = (e.clientY / window.innerHeight) - 0.5;
-                        this.ticking = false;
-                    });
-                    this.ticking = true;
-                }
+            initParallax() {
+                let ticking = false;
+                window.addEventListener('mousemove', (e) => {
+                    if (this.expanded) return;
+                    if (!ticking) {
+                        window.requestAnimationFrame(() => {
+                            const mx = (e.clientX / window.innerWidth) - 0.5;
+                            const my = (e.clientY / window.innerHeight) - 0.5;
+                            document.documentElement.style.setProperty('--mouse-x', `${mx * -20}px`);
+                            document.documentElement.style.setProperty('--mouse-y', `${my * -20}px`);
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }, { passive: true });
             },
             select(country) {
                 this.expanded = country;
@@ -89,7 +89,7 @@
                 this.activeDestination = (this.activeDestination - 1 + this.malaysiaDestinations.length) % this.malaysiaDestinations.length;
             }
         }"
-        @mousemove.window="handleMove"
+        x-init="initParallax()"
         :class="{ 'h-screen overflow-hidden': expanded }"
         class="relative min-h-screen bg-black overflow-x-hidden">
 
@@ -125,25 +125,25 @@
                   }"
                 @click="!expanded && select('singapore')">
 
-                <!-- Background Image (Explicit img tag for LCP) -->
-                <img
-                    src="{{ asset('images/laut-singapore2.webp') }}"
-                    srcset="{{ asset('images/laut-singapore2-480w.webp') }} 480w,
-                            {{ asset('images/laut-singapore2-800w.webp') }} 800w,
-                            {{ asset('images/laut-singapore2-1200w.webp') }} 1200w,
-                            {{ asset('images/laut-singapore2.webp') }} 1920w"
-                    sizes="(max-width: 480px) 480px, (max-width: 800px) 800px, (max-width: 1200px) 1200px, 50vw"
-                    alt="Singapore Islands"
-                    fetchpriority="high"
-                    loading="eager"
-                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out"
-                    :style="`
-                    transform: ${
-                    !expanded && hovered === 'singapore'
-                        ? 'scale(1.02)'
-                        : 'scale(1.0) translate(' + (mouseX * -20) + 'px, ' + (mouseY * -20) + 'px)'
-                    };
-                `">
+                <!-- Parallax Wrapper (GPU Accelerated) -->
+                <div class="absolute inset-0 w-full h-full transform-gpu will-change-transform transition-transform duration-100 ease-linear"
+                    style="transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px));">
+
+                    <!-- True LCP Optimized Image Structure -->
+                    <img
+                        src="{{ asset('images/laut-singapore2.webp') }}"
+                        srcset="{{ asset('images/laut-singapore2-480w.webp') }} 480w,
+                                {{ asset('images/laut-singapore2-800w.webp') }} 800w,
+                                {{ asset('images/laut-singapore2-1200w.webp') }} 1200w,
+                                {{ asset('images/laut-singapore2.webp') }} 1920w"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt="Singapore Islands"
+                        fetchpriority="high"
+                        loading="eager"
+                        decoding="sync"
+                        class="w-full h-full object-cover transition-transform duration-700 ease-out transform-gpu will-change-transform"
+                        :class="!expanded && hovered === 'singapore' ? 'scale-[1.03]' : 'scale-100'">
+                </div>
 
                 <!-- Overlay Gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500"
@@ -236,20 +236,26 @@
                 @mouseleave="!expanded && (hovered = null)"
                 @click="expanded = 'malaysia'">
 
-                <!-- Background Image (Dynamic) (Explicit img tag for LCP) -->
-                <img
-                    :src="expanded === 'malaysia' ? malaysiaDestinations[activeDestination].image : '{{ asset('images/laut-malay-new.webp') }}'"
-                    alt="Malaysia Destinations"
-                    fetchpriority="high"
-                    loading="eager"
-                    class="absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out"
-                    :style="`
-                        transform: ${
-                            !expanded && hovered === 'malaysia'
-                                ? 'scale(1.02)'
-                                : 'scale(1.0) translate(' + (mouseX * -20) + 'px, ' + (mouseY * -20) + 'px)'
-                        };
-                    `">
+                <!-- Parallax Wrapper (GPU Accelerated) -->
+                <div class="absolute inset-0 w-full h-full transform-gpu will-change-transform transition-transform duration-100 ease-linear"
+                    style="transform: translate(var(--mouse-x, 0px), var(--mouse-y, 0px));">
+
+                    <!-- True LCP Optimized Image Structure (Static fallback for preload scanner) -->
+                    <img
+                        :src="expanded === 'malaysia' ? malaysiaDestinations[activeDestination].image : '{{ asset('images/laut-malay-new.webp') }}'"
+                        src="{{ asset('images/laut-malay-new.webp') }}"
+                        srcset="{{ asset('images/laut-malay-new-480w.webp') }} 480w,
+                                {{ asset('images/laut-malay-new-800w.webp') }} 800w,
+                                {{ asset('images/laut-malay-new-1200w.webp') }} 1200w,
+                                {{ asset('images/laut-malay-new.webp') }} 1920w"
+                        :srcset="expanded === 'malaysia' ? null : '{{ asset('images/laut-malay-new-480w.webp') }} 480w, {{ asset('images/laut-malay-new-800w.webp') }} 800w, {{ asset('images/laut-malay-new-1200w.webp') }} 1200w, {{ asset('images/laut-malay-new.webp') }} 1920w'"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt="Malaysia Destinations"
+                        loading="eager"
+                        decoding="async"
+                        class="w-full h-full object-cover transition-transform duration-700 ease-out transform-gpu will-change-transform"
+                        :class="!expanded && hovered === 'malaysia' ? 'scale-[1.03]' : 'scale-100'">
+                </div>
 
                 <!-- Overlay Gradient -->
                 <div
@@ -377,8 +383,8 @@
                 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 transition-all duration-700 pointer-events-none"
                 :class="{ 'opacity-0 scale-50': expanded, 'opacity-100 scale-100': !expanded }">
                 <div class="relative">
-                    <div class="absolute inset-0 bg-gold-500 blur-3xl opacity-20 animate-pulse-slow rounded-full"></div>
-                    <img src="{{ asset('images/logo-waveshart-removebg.webp') }}" width="256" height="128" fetchpriority="high" loading="eager" class="h-32 w-auto drop-shadow-2xl relative z-10" alt="Center Logo">
+                    <div class="absolute inset-0 bg-gold-500 blur-3xl opacity-20 animate-pulse-slow rounded-full transform-gpu will-change-transform"></div>
+                    <img src="{{ asset('images/logo-waveshart-removebg.webp') }}" width="256" height="128" loading="eager" decoding="async" class="h-32 w-auto drop-shadow-2xl relative z-10" alt="Center Logo">
                 </div>
             </div>
 
@@ -463,7 +469,7 @@
                         <div class="service-card" x-show="isVisible({{ $loop->index }})" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
                                 @if($service->image)
-                                <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease;">
+                                <img src="{{ asset($service->image) }}" alt="{{ $service->title }}" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; transform: translateZ(0);">
                                 @endif
                             </div>
                             <div class="service-content">
@@ -475,7 +481,7 @@
                         <!-- Fallback/Default Content if no dynamic services exist -->
                         <div class="service-card" x-show="isVisible(0)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
-                                <img src="{{ asset('images/car-rental.webp') }}" alt="Tour Packages" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="{{ asset('images/car-rental.webp') }}" alt="Tour Packages" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
                             </div>
                             <div class="service-content">
                                 <h3 class="service-title">Tour Packages</h3>
@@ -484,7 +490,7 @@
                         </div>
                         <div class="service-card" x-show="isVisible(1)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
-                                <img src="{{ asset('images/flight.webp') }}" alt="Flight Booking" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="{{ asset('images/flight.webp') }}" alt="Flight Booking" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
                             </div>
                             <div class="service-content">
                                 <h3 class="service-title">Flight Booking</h3>
@@ -493,7 +499,7 @@
                         </div>
                         <div class="service-card" x-show="isVisible(2)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
-                                <img src="{{ asset('images/hotel.webp') }}" alt="Hotel Booking" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="{{ asset('images/hotel.webp') }}" alt="Hotel Booking" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
                             </div>
                             <div class="service-content">
                                 <h3 class="service-title">Hotel Booking</h3>
@@ -502,7 +508,7 @@
                         </div>
                         <div class="service-card" x-show="isVisible(3)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
                             <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
-                                <img src="{{ asset('images/destination.webp') }}" alt="Destination Booking" style="width: 100%; height: 100%; object-fit: cover;">
+                                <img src="{{ asset('images/destination.webp') }}" alt="Destination Booking" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
                             </div>
                             <div class="service-content">
                                 <h3 class="service-title">Destination Booking</h3>
@@ -733,10 +739,8 @@
         @endpush
 
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                // ... (Existing slider code) ...
-
-
+            // Execute interactive logic only after the window has fully loaded to free up the main thread during initial paint.
+            window.addEventListener('load', () => {
 
                 const container = document.querySelector(".mys-container");
                 const next = document.querySelector(".mys-next");
@@ -806,6 +810,8 @@
                         });
                     }
                 }
+            }, {
+                passive: true
             });
         </script>
 </x-layout>

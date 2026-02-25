@@ -70,7 +70,7 @@
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h3 class="modal-title">Complete Your Booking</h3>
-                    <button class="close-modal-btn" @click="closeModal()"><i class="ri-close-line"></i></button>
+                    <button class="close-modal-btn" aria-label="Close modal" @click="closeModal()"><i class="ri-close-line"></i></button>
                 </div>
 
                 <!-- Modal Body -->

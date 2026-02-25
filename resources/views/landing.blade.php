@@ -203,12 +203,12 @@
                         </div>
 
                         <div class="sg-button" style="display: none;">
-                            <button class="sg-prev">
+                            <button class="sg-prev" aria-label="Previous destination">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                                 </svg>
                             </button>
-                            <button class="sg-next">
+                            <button class="sg-next" aria-label="Next destination">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                                 </svg>
@@ -361,12 +361,12 @@
                         </div>
 
                         <div class="mys-button">
-                            <button class="mys-prev">
+                            <button class="mys-prev" aria-label="Previous destination">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                                 </svg>
                             </button>
-                            <button class="mys-next">
+                            <button class="mys-next" aria-label="Next destination">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                                 </svg>
@@ -478,43 +478,7 @@
                             </div>
                         </div>
                         @empty
-                        <!-- Fallback/Default Content if no dynamic services exist -->
-                        <div class="service-card" x-show="isVisible(0)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
-                                <img src="{{ asset('images/car-rental.webp') }}" alt="Tour Packages" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
-                            </div>
-                            <div class="service-content">
-                                <h3 class="service-title">Tour Packages</h3>
-                                <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        <div class="service-card" x-show="isVisible(1)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
-                                <img src="{{ asset('images/flight.webp') }}" alt="Flight Booking" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
-                            </div>
-                            <div class="service-content">
-                                <h3 class="service-title">Flight Booking</h3>
-                                <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        <div class="service-card" x-show="isVisible(2)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
-                                <img src="{{ asset('images/hotel.webp') }}" alt="Hotel Booking" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
-                            </div>
-                            <div class="service-content">
-                                <h3 class="service-title">Hotel Booking</h3>
-                                <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        <div class="service-card" x-show="isVisible(3)" style="padding: 0; border: 1px solid rgba(255,255,255,0.1);">
-                            <div style="flex: 1; width: 100%; position: relative; overflow: hidden;">
-                                <img src="{{ asset('images/destination.webp') }}" alt="Destination Booking" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
-                            </div>
-                            <div class="service-content">
-                                <h3 class="service-title">Destination Booking</h3>
-                                <p class="service-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
+                       
                         @endforelse
                     </div>
                 </div>
@@ -545,11 +509,11 @@
                         <div class="cross center-top"></div>
                         <h2>About Us</h2>
                         <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facere aut quibusdam beatae. Cum blanditiis odit nulla nisi, magni harum aliquam officia, aperiam odio sunt quas cupiditate in officiis molestias maiores repudiandae illo recusandae mollitia et a iste omnis. Laborum quis vitae unde sint possimus eaque accusantium, sunt magnam minus itaque explicabo a cumque asperiores, numquam, reprehenderit voluptatibus odit totam iure ipsa veritatis. Obcaecati odio tempore expedita fuga distinctio quas minus, ipsam rem numquam earum sequi alias adipisci culpa deserunt, excepturi, dolor sed corporis ut placeat iusto maxime! Amet veritatis omnis aut itaque voluptatibus nisi natus qui accusamus ex quae.
+                            Welcome to WaveShark Ventures, your premier travel consultant covering Langkawi, Singapore and Sabah based in the heart of Langkawi, Kuah. With years of experience in the travel industry, our trustworthy service and commitment to excellence are made possible by the dedication of our incredible team members. As your dedicated travel consultants, we pride ourselves on delivering professional yet friendly service to every client. We are committed to ensuring that all our tour products is undergo quality control to make sure your island adventure is safe, smooth, and full of happy memories and memorable island experience!
                         </p>
                         <div class="about-buttons">
-                            <button class="btn-gold">SEKARANG</button>
-                            <button class="btn-outline">KENAPA KAMI?</button>
+                            <button class="btn-gold">Booking Now</button>
+                            <button class="btn-outline">Why Us?</button>
                         </div>
                     </div>
 
@@ -568,19 +532,44 @@
                 activeTestimonial: 0,
                 testimonials: [
                     {
-                        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-                        author: 'Febrian',
-                        role: 'Traveler'
+                        text: 'An absolutely phenomenal experience! The scenery was breathtaking and the service exceeded all my expectations. Highly recommended for any family vacation.',
+                        author: 'Singapore',
+                        role: 'TRAVELER'
                     },
                     {
-                        text: 'Pengalaman yang sangat luar biasa! Pemandangan indah dan pelayanan sangat memuaskan. Sangat direkomendasikan untuk liburan keluarga.',
-                        author: 'Sarah Johnson',
-                        role: 'Tourist'
+                        text: 'Booking was incredibly easy, the prices were affordable, and our tour guide was exceptionally friendly. I will definitely be using WaveShark\'s services again for my future trips.',
+                        author: 'Malaysia',
+                        role: 'TRAVELER'
                     },
                     {
-                        text: 'Booking mudah, harga terjangkau, dan tour guide yang sangat ramah. Pasti akan kembali lagi menggunakan layanan WaveShark.',
-                        author: 'Michael Tan',
-                        role: 'Backpacker'
+                        text: 'A truly unforgettable journey from start to finish. Every detail was perfectly arranged, allowing us to simply relax and enjoy the stunning island views seamlessly.',
+                        author: 'Indonesia',
+                        role: 'TRAVELER'
+                    },
+                    {
+                        text: 'The most beautiful tropical escape I could have imagined. The pristine beaches and clear turquoise waters made it a perfect holiday. WaveShark made everything so effortless!',
+                        author: 'Italy',
+                        role: 'TRAVELER'
+                    },
+                    {
+                        text: 'Fantastic customer care and an incredible itinerary. We saw the best hidden gems of the islands, and the knowledgeable local guides really brought the culture to life.',
+                        author: 'US',
+                        role: 'TRAVELER'
+                    },
+                    {
+                        text: 'An expertly organized adventure that provided brilliant value for money. The accommodation, the transport, and the excursions were all absolutely first class.',
+                        author: 'UK',
+                        role: 'TRAVELER'
+                    },
+                    {
+                        text: 'A wonderful and seamless travel experience that I will cherish forever.',
+                        author: 'China',
+                        role: 'TRAVELER'
+                    },
+                    {
+                        text: 'Beautiful views, friendly staff, and the perfect island getaway.',
+                        author: 'Korea',
+                        role: 'TRAVELER'
                     }
                 ],
                 next() {
@@ -628,7 +617,7 @@
                     <!-- Navigation Controls (Arrows + Dots) -->
                     <div class="flex items-center justify-center gap-6 mt-8">
                         <!-- Prev Button -->
-                        <button @click="prev()" class="text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
+                        <button @click="prev()" aria-label="Previous testimonial" class="text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                             </svg>
@@ -638,6 +627,7 @@
                         <div class="flex gap-3">
                             <template x-for="(testimony, index) in testimonials" :key="index">
                                 <button @click="activeTestimonial = index"
+                                    aria-label="Go to testimonial"
                                     class="w-3 h-3 rounded-full transition-all duration-300"
                                     :class="activeTestimonial === index ? 'bg-gold-500 w-8' : 'bg-white/30 hover:bg-white/50'">
                                 </button>
@@ -645,7 +635,7 @@
                         </div>
 
                         <!-- Next Button -->
-                        <button @click="next()" class="text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
+                        <button @click="next()" aria-label="Next testimonial" class="text-white/50 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                             </svg>
@@ -665,17 +655,17 @@
                                 Explore the world with premium experiences. We bring you the best destinations with unforgettable memories.
                             </p>
                             <div class="social-links">
-                                <a href="https://www.facebook.com/share/1a4ofAgRwv/" class="social-link" target="_blank">
+                                <a href="https://www.facebook.com/share/1a4ofAgRwv/" class="social-link" target="_blank" aria-label="Facebook">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
                                     </svg>
                                 </a>
-                                <a href="https://www.instagram.com/wavesharkventures?igsh=d21zYW10cXp2M3l4" class="social-link" target="_blank">
+                                <a href="https://www.instagram.com/wavesharkventures?igsh=d21zYW10cXp2M3l4" class="social-link" target="_blank" aria-label="Instagram">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                                     </svg>
                                 </a>
-                                <a href="https://tiktok.com/@wavesharkventures" class="social-link" target="_blank">
+                                <a href="https://tiktok.com/@wavesharkventures" class="social-link" target="_blank" aria-label="TikTok">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 12.01a6.34 6.34 0 0 0 10.86 2.43 5.77 5.77 0 0 0 1.5-3.75V5.53A8.56 8.56 0 0 0 21.03 8.3v-4a4.48 4.48 0 0 1-1.44-1.61z" />
                                     </svg>

@@ -478,7 +478,7 @@
                             </div>
                         </div>
                         @empty
-                       
+
                         @endforelse
                     </div>
                 </div>
@@ -501,7 +501,7 @@
                 <div class="about-wrapper">
 
                     <div class="about-img">
-                        <img src="images/laut-singapore2.webp" width="300" height="200" loading="lazy" alt="Singapore">
+                        <img src="images/langkawi-landing.png" width="300" height="200" loading="lazy" alt="Singapore">
                         <div class="cross tr"></div>
                     </div>
 
@@ -512,13 +512,13 @@
                             Welcome to WaveShark Ventures, your premier travel consultant covering Langkawi, Singapore and Sabah based in the heart of Langkawi, Kuah. With years of experience in the travel industry, our trustworthy service and commitment to excellence are made possible by the dedication of our incredible team members. As your dedicated travel consultants, we pride ourselves on delivering professional yet friendly service to every client. We are committed to ensuring that all our tour products is undergo quality control to make sure your island adventure is safe, smooth, and full of happy memories and memorable island experience!
                         </p>
                         <div class="about-buttons">
-                            <button class="btn-gold">Booking Now</button>
-                            <button class="btn-outline">Why Us?</button>
+                            <button class="btn-gold" onclick="window.location.href='{{ url('/contact') }}'">Booking Now</button>
+                            <button class="btn-outline" onclick="window.location.href='{{ url('/contact') }}'">Why Us?</button>
                         </div>
                     </div>
 
                     <div class="about-img">
-                        <img src="images/laut-malay-new.webp" width="300" height="200" loading="lazy" alt="Malaysia">
+                        <img src="images/singapore-landing.png" width="300" height="200" loading="lazy" alt="Malaysia">
                         <div class="cross bl"></div>
                     </div>
 
@@ -689,10 +689,9 @@
                         <div class="footer-col">
                             <h4 class="footer-title">Top Tours</h4>
                             <ul class="footer-links">
-                                <li><a href="#">Bali, Indonesia</a></li>
+                                <li><a href="{{ url('langkawi') }}">Langkawi, Malaysia</a></li>
+                                <li><a href="{{ url('sabah') }}">Sabah, Malaysia</a></li>
                                 <li><a href="#">Singapore</a></li>
-                                <li><a href="#">Sabah, Malaysia</a></li>
-                                <li><a href="#">Marine Park</a></li>
                             </ul>
                         </div>
 
@@ -705,7 +704,7 @@
                                 <button type="submit" class="newsletter-btn">Subscribe</button>
                             </form>
                             <div class="footer-contact mt-4" style="margin-top: 20px;">
-                                <p>admin@wavesharktravel.com</p>
+                                <p>wavesharktravel@gmail.com</p>
                                 <p>+60 11-7187 1800</p>
                             </div>
                         </div>

@@ -9,9 +9,9 @@
 
     @push("styles")
     @vite("resources/css/service.css")
-@endpush
+    @endpush
 
-<div x-data='bookingSystem(@json($data["products"]))' class="relative">
+    <div x-data='bookingSystem(@json($data["products"]))' class="relative">
         <div class="service-hero">
             <div class="service-overlay"></div>
             <div class="service-hero-content">
@@ -208,11 +208,11 @@
                     body += `Date: ${this.bookingForm.date}\n`;
                     body += `Pax: ${this.bookingForm.pax}\n`;
 
-                    let url = `mailto:admin@wavesharktravel.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    let url = `mailto:wavesharktravel@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                     window.location.href = url;
                 }
             }
         }
     </script>
 
-    </x-layout>
+</x-layout>

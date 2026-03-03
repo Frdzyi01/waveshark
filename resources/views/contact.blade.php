@@ -124,7 +124,7 @@
                 }
 
                 const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-                const mailtoUrl = `mailto:admin@wavesharktravel.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                const mailtoUrl = `mailto:wavesharktravel@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
                 window.location.href = mailtoUrl;
             }
@@ -181,10 +181,9 @@
                 <div>
                     <h4 style="color: white; font-size: 18px; margin-bottom: 25px; margin-top: 0;">Top Destinations</h4>
                     <ul style="list-style: none; padding: 0; color: #999; font-size: 14px; line-height: 2;">
-                        <li><a href="#" style="color: inherit; text-decoration: none;">Bali, Indonesia</a></li>
+                        <li><a href="{{ url('langkawi') }}" style="color: inherit; text-decoration: none;">Langkawi, Malaysia</a></li>
                         <li><a href="#" style="color: inherit; text-decoration: none;">Singapore</a></li>
-                        <li><a href="#" style="color: inherit; text-decoration: none;">Sabah, Malaysia</a></li>
-                        <li><a href="#" style="color: inherit; text-decoration: none;">Marine Park</a></li>
+                        <li><a href="{{ url('sabah') }}" style="color: inherit; text-decoration: none;">Sabah, Malaysia</a></li>
                     </ul>
                 </div>
 

@@ -162,11 +162,11 @@
                 <div class="cross center-top"></div>
                 <h2>About Us</h2>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facere aut quibusdam beatae. Cum blanditiis odit nulla nisi, magni harum aliquam officia, aperiam odio sunt quas cupiditate in officiis molestias maiores repudiandae illo recusandae mollitia et a iste omnis. Laborum quis vitae unde sint possimus eaque accusantium, sunt magnam minus itaque explicabo a cumque asperiores, numquam, reprehenderit voluptatibus odit totam iure ipsa veritatis. Obcaecati odio tempore expedita fuga distinctio quas minus, ipsam rem numquam earum sequi alias adipisci culpa deserunt, excepturi, dolor sed corporis ut placeat iusto maxime! Amet veritatis omnis aut itaque voluptatibus nisi natus qui accusamus ex quae.
+                    Welcome to WaveShark Ventures, your premier travel consultant covering Langkawi, Singapore and Sabah based in the heart of Langkawi, Kuah. With years of experience in the travel industry, our trustworthy service and commitment to excellence are made possible by the dedication of our incredible team members. As your dedicated travel consultants, we pride ourselves on delivering professional yet friendly service to every client. We are committed to ensuring that all our tour products is undergo quality control to make sure your island adventure is safe, smooth, and full of happy memories and memorable island experience!
                 </p>
                 <div class="about-buttons">
-                    <button class="btn-gold">SEKARANG</button>
-                    <button class="btn-outline">KENAPA KAMI?</button>
+                    <button class="btn-gold" onclick="window.location.href='{{ url('/contact') }}'">CONTACT US</button>
+                    <button class="btn-outline" onclick="window.location.href='{{ url('/contact') }}'">WHY US?</button>
                 </div>
             </div>
 
@@ -260,7 +260,7 @@
             <div class="quote-container">
                 <span class="quote-icon left-quote">“</span>
                 <p class="quote-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    wow best trip with waveshark travel
                 </p>
                 <span class="quote-icon right-quote">”</span>
             </div>
@@ -302,10 +302,10 @@
                 <div class="footer-col">
                     <h4 class="footer-title">Quick Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Testimonials</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="{{ url('/about') }}">About Us</a></li>
+                        <li><a href="{{ url('/services') }}">Services</a></li>
+                        <li><a href="{{ url('/contact') }}">Testimonials</a></li>
                     </ul>
                 </div>
 
@@ -313,10 +313,9 @@
                 <div class="footer-col">
                     <h4 class="footer-title">Top Tours</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Bali, Indonesia</a></li>
+                        <li><a href="{{ url('langkawi') }}">Langkawi, Malaysia</a></li>
+                        <li><a href="{{ url('sabah') }}">Sabah, Malaysia</a></li>
                         <li><a href="#">Singapore</a></li>
-                        <li><a href="#">Sabah, Malaysia</a></li>
-                        <li><a href="#">Marine Park</a></li>
                     </ul>
                 </div>
 
@@ -329,7 +328,7 @@
                         <button type="submit" class="newsletter-btn">Subscribe</button>
                     </form>
                     <div class="footer-contact mt-4" style="margin-top: 20px;">
-                        <p>admin@wavesharktravel.com</p>
+                        <p>wavesharktravel@gmail.com</p>
                         <p>+62 812 3456 7890</p>
                     </div>
                 </div>

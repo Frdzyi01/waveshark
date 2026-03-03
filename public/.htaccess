@@ -64,6 +64,9 @@
 </IfModule>
 
 <IfModule mod_headers.c>
+    # Add HSTS Header
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
     # Assets, images, css, js, fonts should be cached for 1 year and immutable
     <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|webp|svg|js|css|swf|ttf|woff|woff2)$">
         Header set Cache-Control "max-age=31536000, public, immutable"

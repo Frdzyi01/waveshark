@@ -28,6 +28,9 @@
 
     <title>{{ $title ?? config('app.name', 'Waveshark Ventures') }}</title>
 
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/logo-waveshart-removebg.webp') }}" type="image/png">
 
@@ -44,6 +47,29 @@
     <!-- Scripts & Styles -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QDZQSBLHLF"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-QDZQSBLHLF');
+    </script>
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+        {
+            "@@context": "https://schema.org",
+            "@@type": "TravelAgency",
+            "name": "Waveshark Travel",
+            "url": "https://wavesharktravel.com",
+            "logo": "https://wavesharktravel.com/images/logo-waveshart-removebg.webp"
+        }
+    </script>
 </head>
 
 <body class="font-sans antialiased bg-black text-white selection:bg-gold-500 selection:text-black overflow-x-hidden">

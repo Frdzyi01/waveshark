@@ -64,8 +64,13 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/panggil', function () {
     Artisan::call('optimize:clear');
-    
+
     return redirect('/')->with('success', 'Cache cleared successfully!');
+});
+
+Route::get('/storage-link', function () {
+    Artisan::call('storage:link');
+    return redirect('/')->with('success', 'Storage linked successfully!');
 });
 
 require __DIR__ . '/auth.php';

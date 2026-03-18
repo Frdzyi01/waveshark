@@ -50,7 +50,7 @@
                         <div class="product-footer">
                             <div>
                                 <span class="price-label">Starts from</span>
-                                <div class="product-price">{{ $product['price'] }}</div>
+                                <div class="product-price">$ {{ $product['price'] }}</div>
                             </div>
                             @if(isset($product['status']) && $product['status'] === 'sold_out')
                             <button class="book-btn" style="background: #333; cursor: not-allowed; opacity: 0.7;" disabled>

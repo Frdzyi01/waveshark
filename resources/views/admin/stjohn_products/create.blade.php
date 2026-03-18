@@ -15,8 +15,26 @@
                         <div class="mb-4">
                             <label for="service_category" class="block mb-2 text-sm font-medium text-gray-900">Category</label>
                             <select id="service_category" name="service_category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                @php
+                                    // Filter: hanya tampilkan 3 yacht aktif (St John Islands)
+                                    // Value (slug) tetap asli agar backend tidak berubah
+                                    $stjohnAllowed = [
+                                        'stjohn-car-rental',
+                                        'stjohn-island-hopping',
+                                        'stjohn-airport-transfer',
+                                    ];
+                                    $stjohnYachtNames = [
+                                        'stjohn-car-rental'       => 'Leviathan 8',
+                                        'stjohn-island-hopping'   => 'Ocean Diva',
+                                        'stjohn-airport-transfer' => 'SG Yacht',
+                                    ];
+                                @endphp
                                 @foreach($categories as $key => $label)
-                                <option value="{{ $key }}">{{ $label }}</option>
+                                    @if(in_array($key, $stjohnAllowed))
+                                        <option value="{{ $key }}">
+                                            {{ $stjohnYachtNames[$key] ?? $label }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
@@ -27,7 +45,7 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price (e.g. RM 80)</label>
+                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900">Price (e.g. SGD $)</label>
                             <input type="text" id="price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                         </div>
 

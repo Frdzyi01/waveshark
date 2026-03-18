@@ -182,7 +182,7 @@
                                 <div class="sg-content">
                                     <div class="sg-name">ST John Island</div>
                                     <div class="sg-des">
-                                        A tranquil getaway to experience nature and history.
+                                      Singapore’s southern islands offer a tranquil escape from the city, where yachts gather in calm waters for a private and exclusive retreat.
                                     </div>
                                     <button class="sg-btn" onclick="startTransition('/stjohnislands')">See More</button>
                                 </div>
@@ -297,7 +297,7 @@
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
-                                        Negeri di Bawah Bayu, rumah bagi Gunung Kinabalu dan hidupan liar yang unik.
+                                        Sabah is a stunning paradise where majestic mountains, crystal-clear waters, and rich cultural heritage come together — a perfect blend of adventure and serenity.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/sabah')">See More</button>
                                 </div>
@@ -309,7 +309,7 @@
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
-                                        Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
+                                        Langkawi is a natural haven where serene hills, pristine beaches, mangroves, and hidden caves meet the open sea — a complete escape on both land and water.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/langkawi')">See More</button>
                                 </div>
@@ -321,7 +321,7 @@
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
-                                        Terkenal dengan tapak menyelam bertaraf dunia di Sipadan dan budaya yang kaya.
+                                        Sabah is a stunning paradise where majestic mountains, crystal-clear waters, and rich cultural heritage come together — a perfect blend of adventure and serenity.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/sabah')">See More</button>
                                 </div>
@@ -332,7 +332,7 @@
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
-                                        Destinasi pelancongan utama dengan legenda Mahsuri dan keindahan alam semulajadi.
+                                        Langkawi is a natural haven where serene hills, pristine beaches, mangroves, and hidden caves meet the open sea — a complete escape on both land and water.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/langkawi')">See More</button>
                                 </div>
@@ -343,7 +343,7 @@
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
-                                        Negeri di Bawah Bayu, rumah bagi Gunung Kinabalu dan hidupan liar yang unik.
+                                        Sabah is a stunning paradise where majestic mountains, crystal-clear waters, and rich cultural heritage come together — a perfect blend of adventure and serenity.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
                                 </div>
@@ -355,7 +355,7 @@
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
-                                        Permata Kedah, terkenal dengan pantai pasir putih dan kereta kabel yang menakjubkan.
+                                       Langkawi is a natural haven where serene hills, pristine beaches, mangroves, and hidden caves meet the open sea — a complete escape on both land and water.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
                                 </div>
@@ -806,4 +806,4 @@
                 passive: true
             });
         </script>
-</x-layout>
+</x-layout> 

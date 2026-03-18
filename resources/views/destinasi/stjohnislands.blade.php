@@ -9,9 +9,9 @@
 
     @push("styles")
     @vite("resources/css/destination.css")
-@endpush
+    @endpush
 
-<div class="booking-page-font bg-black">
+    <div class="booking-page-font bg-black">
 
         <!-- Back Button -->
         <a href="{{('/')}}" class="absolute top-2 left-8 z-50 text-white hover:text-gold transition-colors duration-300 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20" style="
@@ -45,58 +45,58 @@
         <div class="tour-grid-section">
             <div class="tour-grid">
                 <!-- Service Card 1 -->
-                <a href="/stjohnislands/car-rental" class="tour-grid-card">
-                    <div class="tg-image" style="background-image: url('{{ asset('images/car-rental.webp') }}');"></div>
+                <a href="/stjohnislands/leviathan-8" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/LEVIATHAN8.webp') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">CAR RENTAL</h3>
-                        <p class="tg-desc">Rent a car and explore Langkawi's islands and attractions.</p>
+                        <h3 class="tg-title">LEVIATHAN 8</h3>
+                        <p class="tg-desc">The Leviathan 8 is a 105ft luxury superyacht designed to deliver a premier maritime experience, featuring a spacious flybridge with a deck Jacuzzi and a professional crew dedicated to unforgettable private celebrations.</p>
                     </div>
                 </a>
 
                 <!-- Service Card 2 -->
-                <a href="/stjohnislands/island-hopping" class="tour-grid-card">
-                    <div class="tg-image" style="background-image: url('{{ asset('images/islands-hopping.webp') }}');"></div>
+                <a href="/stjohnislands/ocean-diva" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/OCEANDIVA.webp') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">ISLANDS HOPPING</h3>
-                        <p class="tg-desc">Explore Langkawi's islands and attractions.</p>
+                        <h3 class="tg-title">OCEAN DIVA</h3>
+                        <p class="tg-desc">The Ocean Diva is a premier Lagoon 450 sailing catamaran that offers a perfect blend of luxury and space, accommodating up to 27 guests for unforgettable private celebrations and corporate events in Singapore.</p>
                     </div>
                 </a>
 
                 <!-- Service Card 3 -->
-                <a href="/stjohnislands/airport-transfer" class="tour-grid-card">
-                    <div class="tg-image" style="background-image: url('{{ asset('images/airport-transfer.webp') }}');"></div>
+                <a href="/stjohnislands/sg-yacht" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/SGYACTHC.webp') }}');"></div>
                     <div class="tg-content">
-                        <h3 class="tg-title">AIRPORT TRANSFER</h3>
-                        <p class="tg-desc">Experience a comfortable airport pickup service.</p>
+                        <h3 class="tg-title">SG YACHT</h3>
+                        <p class="tg-desc">Experience the thrill of luxury yachting with our premium yacht rental service.</p>
                     </div>
                 </a>
 
                 <!-- Service Card 4 -->
-                <a href="/stjohnislands/mangrove-tour" class="tour-grid-card">
+                <!-- <a href="/stjohnislands/mangrove-tour" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/mangrove-tour.webp') }}');"></div>
                     <div class="tg-content">
                         <h3 class="tg-title">MANGROVE TOUR</h3>
                         <p class="tg-desc">Explore Langkawi's mangrove forests and wildlife.</p>
                     </div>
-                </a>
+                </a> -->
 
                 <!-- Service Card 5 -->
-                <a href="/stjohnislands/jetski" class="tour-grid-card">
+                <!-- <a href="/stjohnislands/jetski" class="tour-grid-card">
                     <div class="tg-image" style="background-image: url('{{ asset('images/jetski.webp') }}');"></div>
                     <div class="tg-content">
                         <h3 class="tg-title">JET SKI</h3>
                         <p class="tg-desc">Experience the thrill of jet skiing in Langkawi.</p>
                     </div>
-                </a>
+                </a> -->
 
                 <!-- Service Card 6 -->
-                <a href="/stjohnislands/sunset-cruise" class="tour-grid-card">
-                    <div class="tg-image" style="background-image: url('{{ asset('images/sunset.webp') }}');"></div>
+                <!-- <a href="/stjohnislands/sunset-cruise" class="tour-grid-card">
+                    <div class="tg-image" style="background-image: url('{{ asset('images/sunset-dinner-cruise-stjohn.webp') }}');"></div>
                     <div class="tg-content">
                         <h3 class="tg-title">SUNSET CRUISE</h3>
                         <p class="tg-desc">Enjoy a beautiful sunset cruise experience.</p>
                     </div>
-                </a>
+                </a> -->
             </div>
 
         </div>

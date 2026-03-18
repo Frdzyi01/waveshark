@@ -1,5 +1,15 @@
-<x-layout title="Island Hopping | St. John's Island Services"
-    description="Experience the best island hopping services in St. John's Island with Waveshark. Fast, reliable, and affordable transportation from St. John's Island to your destination."
+{{-- VIEW-ONLY MAPPING: Kategori backend → Produk Yacht (St John Islands ONLY)
+     Tidak mengubah database, model, controller, atau logic apapun.
+     Hanya override tampilan di layer ini. --}}
+@php
+    // Mapping hanya untuk tampilan St John Islands
+    $view_title       = 'OCEAN DIVA';
+    $view_description = 'The Ocean Diva is a premier Lagoon 450 sailing catamaran that offers a perfect blend of luxury and space, accommodating up to 27 guests for unforgettable private celebrations and corporate events in Singapore.';
+    $view_hero_image  = asset('images/OCEANDIVA.webp');
+@endphp
+
+<x-layout title="Ocean Diva | St. John's Island Yacht Charter"
+    description="Charter the Ocean Diva, a premier Lagoon 450 catamaran at St. John's Island. Luxury sailing for private events with Waveshark Ventures."
     keywords="Island Hopping, St. John's Island, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
@@ -12,11 +22,11 @@
     @endpush
 
     <div x-data='bookingSystem(@json($data["products"]))' class="relative">
-        <div class="service-hero">
+        <div class="service-hero" style="background-image: url('{{ $view_hero_image }}');">
             <div class="service-overlay"></div>
             <div class="service-hero-content">
-                <h1 class="service-title">{{ $data['title'] }}</h1>
-                <p class="service-desc">{{ $data['description'] }}</p>
+                <h1 class="service-title">{{ $view_title }}</h1>
+                <p class="service-desc">{{ $view_description }}</p>
             </div>
         </div>
 

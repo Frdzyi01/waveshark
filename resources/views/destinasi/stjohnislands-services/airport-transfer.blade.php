@@ -1,5 +1,15 @@
-<x-layout title="Airport Transfer | St. John's Island Services"
-    description="Experience the best airport transfer services in Langkawi with Waveshark. Fast, reliable, and affordable transportation from Langkawi International Airport to your destination."
+{{-- VIEW-ONLY MAPPING: Kategori backend → Produk Yacht (St John Islands ONLY)
+     Tidak mengubah database, model, controller, atau logic apapun.
+     Hanya override tampilan di layer ini. --}}
+@php
+    // Mapping hanya untuk tampilan St John Islands
+    $view_title       = 'SG YACHT';
+    $view_description = 'Experience the thrill of luxury yachting with our premium SG Yacht service. Perfect for private charters, corporate events, and island exploration around Singapore\'s southern islands.';
+    $view_hero_image  = asset('images/SGYACTHC.webp');
+@endphp
+
+<x-layout title="SG Yacht | St. John's Island Yacht Charter"
+    description="Charter the SG Yacht for a luxury experience at St. John's Island. Premium private yacht rentals with Waveshark Ventures."
     keywords="Airport Transfer, Langkawi, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
@@ -12,11 +22,11 @@
     @endpush
 
     <div x-data='bookingSystem(@json($data["products"]))' class="relative">
-        <div class="service-hero">
+        <div class="service-hero" style="background-image: url('{{ $view_hero_image }}');">
             <div class="service-overlay"></div>
             <div class="service-hero-content">
-                <h1 class="service-title">{{ $data['title'] }}</h1>
-                <p class="service-desc">{{ $data['description'] }}</p>
+                <h1 class="service-title">{{ $view_title }}</h1>
+                <p class="service-desc">{{ $view_description }}</p>
             </div>
         </div>
 

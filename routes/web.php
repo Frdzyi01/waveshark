@@ -43,6 +43,14 @@ Route::prefix('stjohnislands')->group(function () {
     Route::get('/jetski', [\App\Http\Controllers\DestinasiController::class, 'stJohnJetski']);
     Route::get('/sunset-cruise', [\App\Http\Controllers\DestinasiController::class, 'stJohnSunsetCruise']);
     Route::get('/car-rental', [\App\Http\Controllers\DestinasiController::class, 'stJohnCarRental']);
+
+    // URL Alias - Yacht branding (tampilan saja, controller tetap sama)
+    // car-rental   → leviathan-8
+    // island-hopping → ocean-diva
+    // airport-transfer → sg-yacht
+    Route::get('/leviathan-8', [\App\Http\Controllers\DestinasiController::class, 'stJohnCarRental']);
+    Route::get('/ocean-diva',   [\App\Http\Controllers\DestinasiController::class, 'stJohnIslandHopping']);
+    Route::get('/sg-yacht',     [\App\Http\Controllers\DestinasiController::class, 'stJohnAirportTransfer']);
 });
 
 Route::get('/dashboard', function () {

@@ -1,5 +1,39 @@
-<x-layout title="Car Rental | St. John's Island Services"
-    description="Experience the best car rental services in St. John's Island with Waveshark. Fast, reliable, and affordable transportation from St. John's Island to your destination."
+{{-- VIEW-ONLY MAPPING: Kategori backend → Produk Yacht (St John Islands ONLY)
+     Tidak mengubah database, model, controller, atau logic apapun.
+     Hanya override tampilan di layer ini. --}}
+@php
+    // Mapping hanya untuk tampilan St John Islands - TIDAK mempengaruhi section lain
+    $stjohn_view_map = [
+        'stjohn-car-rental'      => [
+            'title'       => 'LEVIATHAN 8',
+            'description' => 'The Leviathan 8 is a 105ft luxury superyacht designed to deliver a premier maritime experience, featuring a spacious flybridge with a deck Jacuzzi and a professional crew dedicated to unforgettable private celebrations.',
+            'hero_image'  => asset('images/LEVIATHAN8.webp'),
+        ],
+        'stjohn-island-hopping'  => [
+            'title'       => 'OCEAN DIVA',
+            'description' => 'The Ocean Diva is a premier Lagoon 450 sailing catamaran that offers a perfect blend of luxury and space, accommodating up to 27 guests for unforgettable private celebrations and corporate events in Singapore.',
+            'hero_image'  => asset('images/OCEANDIVA.webp'),
+        ],
+        'stjohn-airport-transfer' => [
+            'title'       => 'SG YACHT',
+            'description' => 'Experience the thrill of luxury yachting with our premium SG Yacht service. Perfect for private charters, corporate events, and island exploration around Singapore\'s southern islands.',
+            'hero_image'  => asset('images/SGYACTHC.webp'),
+        ],
+    ];
+    // Tentukan kategori dari data yang dikirim controller
+    $stjohn_category = $data['category'] ?? 'stjohn-car-rental';
+    // Fallback: cari berdasarkan title jika category key tidak tersedia
+    if (!array_key_exists($stjohn_category, $stjohn_view_map)) {
+        $stjohn_category = 'stjohn-car-rental'; // default untuk halaman ini
+    }
+    // Override tampilan (TIDAK mengubah $data asli untuk menjaga logic lain tetap berjalan)
+    $view_title       = $stjohn_view_map[$stjohn_category]['title'];
+    $view_description = $stjohn_view_map[$stjohn_category]['description'];
+    $view_hero_image  = $stjohn_view_map[$stjohn_category]['hero_image'];
+@endphp
+
+<x-layout title="Leviathan 8 | St. John's Island Yacht Charter"
+    description="Charter the Leviathan 8, a 105ft luxury superyacht at St. John's Island. Experience premier maritime luxury with Waveshark Ventures."
     keywords="Car Rental, St. John's Island, Waveshark, Transportation, Travel">
     <!-- Navbar -->
     <x-header />
@@ -12,11 +46,11 @@
     @endpush
 
     <div x-data='bookingSystem(@json($data["products"]))' class="relative">
-        <div class="service-hero">
+        <div class="service-hero" style="background-image: url('{{ $view_hero_image }}');">
             <div class="service-overlay"></div>
             <div class="service-hero-content">
-                <h1 class="service-title">{{ $data['title'] }}</h1>
-                <p class="service-desc">{{ $data['description'] }}</p>
+                <h1 class="service-title">{{ $view_title }}</h1>
+                <p class="service-desc">{{ $view_description }}</p>
             </div>
         </div>
 

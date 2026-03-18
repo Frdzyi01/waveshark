@@ -245,19 +245,13 @@
 
                     <!-- True LCP Optimized Image Structure (Static fallback for preload scanner) -->
                     <img
-                        :src="expanded === 'malaysia' ? malaysiaDestinations[activeDestination].image : '{{ asset('images/laut-malay-new.webp') }}'"
                         src="{{ asset('images/laut-malay-new.webp') }}"
-                        srcset="{{ asset('images/laut-malay-new-480w.webp') }} 480w,
-                                {{ asset('images/laut-malay-new-800w.webp') }} 800w,
-                                {{ asset('images/laut-malay-new-1200w.webp') }} 1200w,
-                                {{ asset('images/laut-malay-new.webp') }} 1920w"
-                        :srcset="expanded === 'malaysia' ? null : '{{ asset('images/laut-malay-new-480w.webp') }} 480w, {{ asset('images/laut-malay-new-800w.webp') }} 800w, {{ asset('images/laut-malay-new-1200w.webp') }} 1200w, {{ asset('images/laut-malay-new.webp') }} 1920w'"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        alt="Malaysia Destinations"
+                        alt="Malaysia"
                         loading="eager"
                         decoding="async"
-                        class="w-full h-full object-cover transition-transform duration-700 ease-out transform-gpu will-change-transform"
-                        :class="!expanded && hovered === 'malaysia' ? 'scale-[1.03]' : 'scale-100'">
+                        class="w-full h-full object-cover block min-h-[300px] md:min-h-0"
+                        style="transform: none;"
+                    >
                 </div>
 
                 <!-- Overlay Gradient -->
@@ -728,6 +722,13 @@
 
         @push("styles")
         @vite("resources/css/landing.css")
+        <style>
+            @media (max-width: 768px) {
+                .transform-gpu {
+                    transform: none !important;
+                }
+            }
+        </style>
         @endpush
 
         <script>

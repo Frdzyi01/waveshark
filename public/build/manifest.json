@@ -8,7 +8,7 @@
     "name": "vendor-axios"
   },
   "resources/css/app.css": {
-    "file": "assets/app-DL4n_a2t.css",
+    "file": "assets/app-BhTeEuLe.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
@@ -35,7 +35,7 @@
     ]
   },
   "resources/css/landing.css": {
-    "file": "assets/landing-PrdyId3G.css",
+    "file": "assets/landing-DDhTXc9c.css",
     "src": "resources/css/landing.css",
     "isEntry": true,
     "name": "landing",

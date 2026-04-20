@@ -174,23 +174,31 @@
                     x-transition:enter-end="opacity-100 translate-y-0"
                     class="absolute inset-0 z-30 overflow-y-auto bg-black/80 backdrop-blur-sm">
 
+                    <!-- SINGAPORE SLIDER (GPU-OPTIMIZED) -->
                     <div class="sg-container">
+
+                        <!-- GPU Background Layers -->
+                        <div class="sg-bg-layers" aria-hidden="true">
+                            <div class="sg-bg-layer active" data-sg-bg="0">
+                                <img src="{{ asset('images/laut-singapore2.webp') }}" alt="" loading="eager" decoding="async">
+                            </div>
+                        </div>
+
                         <div class="sg-slide">
 
-                            <!-- Item 1: ST John Island (Using Langkawi Image as requested 'tiru malay') -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.webp') }}');">
+                            <!-- Item 1 (index 0): Active BG — ST John Island, TEKS KIRI tampil -->
+                            <div class="sg-item" data-sg-index="0" data-sg-img="0" style="background-image: url('{{ asset('images/laut-singapore2.webp') }}');">
                                 <div class="sg-content">
                                     <div class="sg-name">ST John Island</div>
                                     <div class="sg-des">
-                                        Singapore’s southern islands offer a tranquil escape from the city, where yachts gather in calm waters for a private and exclusive retreat.
+                                        Singapore's southern islands offer a tranquil escape from the city, where yachts gather in calm waters for a private and exclusive retreat.
                                     </div>
                                     <button class="sg-btn" onclick="startTransition('/stjohnislands')">See More</button>
                                 </div>
                             </div>
 
-
-                            <!-- Item 2: Singapore City (Using Sabah Image) -->
-                            <div class="sg-item" style="background-image: url('{{ asset('images/laut-singapore2.webp') }}');">
+                            <!-- Item 2 (index 1): first small card -->
+                            <div class="sg-item" data-sg-index="1" data-sg-img="0" style="background-image: url('{{ asset('images/laut-singapore2.webp') }}');">
                                 <div class="sg-content">
                                     <div class="sg-name">ST John Island</div>
                                     <div class="sg-des">
@@ -200,8 +208,16 @@
                                 </div>
                             </div>
 
-
-
+                            <!-- Item 3 (index 2): prev bg / overflow -->
+                            <div class="sg-item" data-sg-index="2" data-sg-img="0" style="background-image: url('{{ asset('images/laut-singapore2.webp') }}');">
+                                <div class="sg-content">
+                                    <div class="sg-name">ST John Island</div>
+                                    <div class="sg-des">
+                                        A tranquil getaway to experience nature and history.
+                                    </div>
+                                    <button class="sg-btn" onclick="startTransition('/stjohnislands')">See More</button>
+                                </div>
+                            </div>
 
                         </div>
 
@@ -281,12 +297,23 @@
                     x-transition:enter-end="opacity-100 translate-y-0"
                     class="absolute inset-0 z-30 overflow-hidden">
 
-                    <!-- NEW MALAYSIA SLIDER IMPLEMENTATION -->
+                    <!-- MALAYSIA SLIDER (GPU-OPTIMIZED) -->
                     <div class="mys-container">
+
+                        <!-- GPU Background Layers: fade via opacity only (zero repaint) -->
+                        <div class="mys-bg-layers" aria-hidden="true">
+                            <div class="mys-bg-layer active" data-mys-bg="0">
+                                <img src="{{ asset('template-slider-malaysia/image/sabah.webp') }}" alt="" loading="eager" decoding="async">
+                            </div>
+                            <div class="mys-bg-layer" data-mys-bg="1">
+                                <img src="{{ asset('template-slider-malaysia/image/langkawi.webp') }}" alt="" loading="eager" decoding="async">
+                            </div>
+                        </div>
+
                         <div class="mys-slide">
 
-                            <!-- Item 1: Sabah -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
+                            <!-- Item 1 (index 0): Active BG saat init — Sabah, TEKS KIRI tampil -->
+                            <div class="mys-item" data-mys-index="0" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
@@ -296,9 +323,8 @@
                                 </div>
                             </div>
 
-
-                            <!-- Item 2: Langkawi -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
+                            <!-- Item 2 (index 1): Prev BG saat init — Langkawi -->
+                            <div class="mys-item" data-mys-index="1" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -308,9 +334,8 @@
                                 </div>
                             </div>
 
-                            <!-- Item 3: sabah -->
-
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
+                            <!-- Items 3-6 (index 2-5): Kartu-kartu kecil visible -->
+                            <div class="mys-item" data-mys-index="2" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
@@ -320,8 +345,7 @@
                                 </div>
                             </div>
 
-                            <!-- Item 4: langkawi -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
+                            <div class="mys-item" data-mys-index="3" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -331,8 +355,7 @@
                                 </div>
                             </div>
 
-                            <!-- Item 5: Sabah -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
+                            <div class="mys-item" data-mys-index="4" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
@@ -342,9 +365,7 @@
                                 </div>
                             </div>
 
-
-                            <!-- Item 6: Langkawi -->
-                            <div class="mys-item" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
+                            <div class="mys-item" data-mys-index="5" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -731,82 +752,273 @@
         @endpush
 
         <script>
-            // Execute interactive logic only after the window has fully loaded to free up the main thread during initial paint.
-            window.addEventListener('load', () => {
+            /**
+             * GPU-ACCELERATED SLIDER ENGINE v2
+             * ===================================
+             * ZERO DOM reordering. ZERO backgroundImage mutation on container.
+             *
+             * SLOT DEFINITION (currentIndex = index of ACTIVE BG item):
+             *   relSlot 0       = ACTIVE background: full-screen, bg:transparent (bg-layer handles it),
+             *                     content (text kiri) VISIBLE
+             *   relSlot 1,2,3   = Kartu kecil visible (bergerak GPU transform)
+             *   relSlot N-1     = PREVIOUS background: full-screen, opacity fade → 0 (hidden)
+             *   relSlot 4..N-2  = Overflow right: opacity 0, hidden
+             *
+             * Background image berganti via .active pada .mys-bg-layer → GPU opacity composite.
+             */
+            (function() {
 
-                const container = document.querySelector(".mys-container");
-                const next = document.querySelector(".mys-next");
-                const prev = document.querySelector(".mys-prev");
-                const slide = document.querySelector(".mys-slide");
+                // ============================================================
+                // MALAYSIA SLIDER
+                // ============================================================
+                function initMysSlider() {
+                    const slide = document.querySelector('.mys-slide');
+                    const btnNext = document.querySelector('.mys-next');
+                    const btnPrev = document.querySelector('.mys-prev');
+                    const bgLayers = document.querySelectorAll('.mys-bg-layer');
 
-                if (!container || !next || !prev || !slide) return;
+                    if (!slide || !btnNext || !btnPrev) return;
 
-                // OPTIMIZED: updateBackground hanya membaca style, tidak memicu layout recalculate
-                function updateBackground() {
-                    const items = slide.children;
-                    if (items.length > 1) {
-                        const backgroundImage = items[1].style.backgroundImage;
-                        container.style.backgroundImage = backgroundImage;
-                        container.style.backgroundSize = "cover";
-                        container.style.backgroundPosition = "center";
-                    }
-                }
+                    const items = Array.from(slide.querySelectorAll('.mys-item'));
+                    const N = items.length;
+                    if (N === 0) return;
 
-                updateBackground();
+                    // Simpan background-image asli setiap item agar tidak hilang saat restyling
+                    const origBg = items.map(item => item.style.backgroundImage || '');
 
-                // OPTIMIZED: Gunakan requestAnimationFrame agar update DOM tidak terjadi di luar render cycle
-                next.addEventListener("click", function() {
-                    requestAnimationFrame(() => {
-                        slide.appendChild(slide.children[0]);
-                        updateBackground();
-                    });
-                });
+                    const CARD_GAP = 220; // px antar kartu kecil
 
-                prev.addEventListener("click", function() {
-                    requestAnimationFrame(() => {
-                        slide.prepend(slide.children[slide.children.length - 1]);
-                        updateBackground();
-                    });
-                });
+                    // currentIndex = index item yang menjadi ACTIVE BACKGROUND (slot 0)
+                    // Init: items[0] = active bg (Sabah), bg-layer[0] (Sabah) sudah .active di HTML
+                    let currentIndex = 0;
 
-                // Singapore Slider Logic
-                {
-                    const sgContainer = document.querySelector(".sg-container");
-                    const sgNext = document.querySelector(".sg-next");
-                    const sgPrev = document.querySelector(".sg-prev");
-                    const sgSlide = document.querySelector(".sg-slide");
+                    function updateSlider() {
+                        // 1. Update GPU background layer (opacity fade — zero repaint)
+                        const activeBgImgIdx = items[currentIndex].dataset.mysImg;
+                        bgLayers.forEach(layer => {
+                            layer.classList.toggle('active', layer.dataset.mysBg === activeBgImgIdx);
+                        });
 
-                    if (sgContainer && sgNext && sgPrev && sgSlide) {
-                        // OPTIMIZED: Baca dari children (live HTMLCollection) — tidak perlu querySelectorAll berulang
-                        function sgUpdateBackground() {
-                            const items = sgSlide.children;
-                            if (items.length > 1) {
-                                const backgroundImage = items[1].style.backgroundImage;
-                                sgContainer.style.backgroundImage = backgroundImage;
-                                sgContainer.style.backgroundSize = "cover";
-                                sgContainer.style.backgroundPosition = "center";
+                        // 2. Posisikan setiap item
+                        items.forEach((item, i) => {
+                            const relSlot = ((i - currentIndex + N) % N);
+                            const content = item.querySelector('.mys-content');
+
+                            if (relSlot === 0) {
+                                // === ACTIVE BACKGROUND: full-screen, bg transparent, TEKS KIRI TAMPIL ===
+                                item.style.transition = 'opacity 0.4s ease';
+                                item.style.position = 'absolute';
+                                item.style.top = '0';
+                                item.style.left = '0';
+                                item.style.width = '100%';
+                                item.style.height = '100%';
+                                item.style.transform = 'translate3d(0,0,0)';
+                                item.style.borderRadius = '0';
+                                item.style.boxShadow = 'none';
+                                item.style.backgroundImage = 'none'; // bg-layer di belakang yang handle
+                                item.style.opacity = '1';
+                                item.style.pointerEvents = 'none';
+                                item.style.zIndex = '6';
+
+                                if (content) {
+                                    content.style.display = 'block';
+                                    // Re-trigger CSS keyframe animation teks
+                                    const els = content.querySelectorAll('.mys-name, .mys-des, .mys-btn');
+                                    els.forEach(el => {
+                                        el.style.animation = 'none';
+                                        el.offsetHeight; // 1x minimal reflow untuk reset animasi
+                                        el.style.animation = '';
+                                    });
+                                }
+
+                            } else if (relSlot === N - 1) {
+                                // === PREVIOUS BACKGROUND: full-screen, fade out ===
+                                item.style.transition = 'opacity 0.4s ease';
+                                item.style.position = 'absolute';
+                                item.style.top = '0';
+                                item.style.left = '0';
+                                item.style.width = '100%';
+                                item.style.height = '100%';
+                                item.style.transform = 'translate3d(0,0,0)';
+                                item.style.borderRadius = '0';
+                                item.style.boxShadow = 'none';
+                                item.style.backgroundImage = 'none';
+                                item.style.opacity = '0';
+                                item.style.pointerEvents = 'none';
+                                item.style.zIndex = '2';
+                                if (content) content.style.display = 'none';
+
+                            } else if (relSlot >= 1 && relSlot <= 3) {
+                                // === KARTU KECIL VISIBLE: GPU transform slide ===
+                                const offset = (relSlot - 1) * CARD_GAP;
+                                item.style.transition = 'transform 0.8s cubic-bezier(0.5,0,0.5,1), opacity 0.6s ease';
+                                item.style.position = 'absolute';
+                                item.style.top = '50%';
+                                item.style.left = '50%';
+                                item.style.width = '200px';
+                                item.style.height = '300px';
+                                item.style.transform = `translateX(${offset}px) translateY(-50%)`;
+                                item.style.borderRadius = '20px';
+                                item.style.boxShadow = '0 30px 50px rgba(0,0,0,0.5)';
+                                item.style.backgroundImage = origBg[i]; // restore bg asli
+                                item.style.opacity = '1';
+                                item.style.pointerEvents = 'auto';
+                                item.style.zIndex = String(20 - (relSlot - 1));
+                                if (content) content.style.display = 'none';
+
+                            } else {
+                                // === OVERFLOW (slot 4..N-2): tersembunyi di kanan ===
+                                item.style.transition = 'opacity 0.4s ease';
+                                item.style.position = 'absolute';
+                                item.style.top = '50%';
+                                item.style.left = '50%';
+                                item.style.width = '200px';
+                                item.style.height = '300px';
+                                item.style.transform = 'translateX(660px) translateY(-50%)';
+                                item.style.borderRadius = '20px';
+                                item.style.backgroundImage = origBg[i];
+                                item.style.opacity = '0';
+                                item.style.pointerEvents = 'none';
+                                item.style.zIndex = '3';
+                                if (content) content.style.display = 'none';
                             }
-                        }
-
-                        sgUpdateBackground();
-
-                        sgNext.addEventListener("click", function() {
-                            requestAnimationFrame(() => {
-                                sgSlide.appendChild(sgSlide.children[0]);
-                                sgUpdateBackground();
-                            });
-                        });
-
-                        sgPrev.addEventListener("click", function() {
-                            requestAnimationFrame(() => {
-                                sgSlide.prepend(sgSlide.children[sgSlide.children.length - 1]);
-                                sgUpdateBackground();
-                            });
                         });
                     }
+
+                    updateSlider();
+
+                    btnNext.addEventListener('click', function() {
+                        currentIndex = (currentIndex + 1) % N;
+                        requestAnimationFrame(updateSlider);
+                    });
+
+                    btnPrev.addEventListener('click', function() {
+                        currentIndex = (currentIndex - 1 + N) % N;
+                        requestAnimationFrame(updateSlider);
+                    });
                 }
-            }, {
-                passive: true
-            });
+
+                // ============================================================
+                // SINGAPORE SLIDER (sama logikanya, SG hanya 3 items)
+                // ============================================================
+                function initSgSlider() {
+                    const slide = document.querySelector('.sg-slide');
+                    const btnNext = document.querySelector('.sg-next');
+                    const btnPrev = document.querySelector('.sg-prev');
+                    const bgLayers = document.querySelectorAll('.sg-bg-layer');
+
+                    if (!slide || !btnNext || !btnPrev) return;
+
+                    const items = Array.from(slide.querySelectorAll('.sg-item'));
+                    const N = items.length;
+                    if (N === 0) return;
+
+                    const origBg = items.map(item => item.style.backgroundImage || '');
+                    const CARD_GAP = 220;
+                    let currentIndex = 0; // items[0] = active bg saat init
+
+                    function updateSgSlider() {
+                        // Update GPU background layer
+                        const activeBgImgIdx = items[currentIndex].dataset.sgImg;
+                        bgLayers.forEach(layer => {
+                            layer.classList.toggle('active', layer.dataset.sgBg === activeBgImgIdx);
+                        });
+
+                        items.forEach((item, i) => {
+                            const relSlot = ((i - currentIndex + N) % N);
+                            const content = item.querySelector('.sg-content');
+
+                            if (relSlot === 0) {
+                                // Active bg: full-screen, teks tampil
+                                item.style.transition = 'opacity 0.4s ease';
+                                item.style.position = 'absolute';
+                                item.style.top = '0';
+                                item.style.left = '0';
+                                item.style.width = '100%';
+                                item.style.height = '100%';
+                                item.style.transform = 'translate3d(0,0,0)';
+                                item.style.borderRadius = '0';
+                                item.style.boxShadow = 'none';
+                                item.style.backgroundImage = 'none';
+                                item.style.opacity = '1';
+                                item.style.pointerEvents = 'none';
+                                item.style.zIndex = '6';
+                                if (content) {
+                                    content.style.display = 'block';
+                                    const els = content.querySelectorAll('.sg-name, .sg-des, .sg-btn');
+                                    els.forEach(el => {
+                                        el.style.animation = 'none';
+                                        el.offsetHeight;
+                                        el.style.animation = '';
+                                    });
+                                }
+
+                            } else if (relSlot === N - 1) {
+                                // Prev bg: fade out
+                                item.style.transition = 'opacity 0.4s ease';
+                                item.style.position = 'absolute';
+                                item.style.top = '0';
+                                item.style.left = '0';
+                                item.style.width = '100%';
+                                item.style.height = '100%';
+                                item.style.transform = 'translate3d(0,0,0)';
+                                item.style.borderRadius = '0';
+                                item.style.boxShadow = 'none';
+                                item.style.backgroundImage = 'none';
+                                item.style.opacity = '0';
+                                item.style.pointerEvents = 'none';
+                                item.style.zIndex = '2';
+                                if (content) content.style.display = 'none';
+
+                            } else if (relSlot <= 3) {
+                                // Kartu kecil visible
+                                const offset = (relSlot - 1) * CARD_GAP;
+                                item.style.transition = 'transform 0.8s cubic-bezier(0.5,0,0.5,1), opacity 0.6s ease';
+                                item.style.position = 'absolute';
+                                item.style.top = '50%';
+                                item.style.left = '50%';
+                                item.style.width = '200px';
+                                item.style.height = '300px';
+                                item.style.transform = `translateX(${offset}px) translateY(-50%)`;
+                                item.style.borderRadius = '20px';
+                                item.style.boxShadow = '0 30px 50px rgba(0,0,0,0.5)';
+                                item.style.backgroundImage = origBg[i];
+                                item.style.opacity = '1';
+                                item.style.pointerEvents = 'auto';
+                                item.style.zIndex = String(20 - (relSlot - 1));
+                                if (content) content.style.display = 'none';
+
+                            } else {
+                                // Overflow
+                                item.style.opacity = '0';
+                                item.style.pointerEvents = 'none';
+                                item.style.zIndex = '3';
+                                if (content) content.style.display = 'none';
+                            }
+                        });
+                    }
+
+                    updateSgSlider();
+
+                    btnNext.addEventListener('click', function() {
+                        currentIndex = (currentIndex + 1) % N;
+                        requestAnimationFrame(updateSgSlider);
+                    });
+
+                    btnPrev.addEventListener('click', function() {
+                        currentIndex = (currentIndex - 1 + N) % N;
+                        requestAnimationFrame(updateSgSlider);
+                    });
+                }
+
+                // Jalankan setelah window load agar tidak memblokir LCP
+                window.addEventListener('load', function() {
+                    initMysSlider();
+                    initSgSlider();
+                }, {
+                    passive: true
+                });
+
+            })();
         </script>
 </x-layout>

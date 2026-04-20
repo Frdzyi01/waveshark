@@ -822,6 +822,7 @@
 
                                 if (content) {
                                     content.style.display = 'block';
+                                    content.style.pointerEvents = 'auto'; // tombol di dalam bisa diklik
                                     // Re-trigger CSS keyframe animation teks
                                     const els = content.querySelectorAll('.mys-name, .mys-des, .mys-btn');
                                     els.forEach(el => {
@@ -945,6 +946,7 @@
                                 item.style.zIndex = '6';
                                 if (content) {
                                     content.style.display = 'block';
+                                    content.style.pointerEvents = 'auto'; // tombol di dalam bisa diklik
                                     const els = content.querySelectorAll('.sg-name, .sg-des, .sg-btn');
                                     els.forEach(el => {
                                         el.style.animation = 'none';

@@ -3,7 +3,10 @@
     <x-header />
 
     <!-- Remix Icon -->
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Remix Icon (Non-blocking) -->
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet"></noscript>
 
     @push("styles")
     @vite("resources/css/service.css")

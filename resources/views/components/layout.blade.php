@@ -34,11 +34,13 @@
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('images/logo-waveshart-removebg.webp') }}" type="image/png">
 
-    <!-- Fonts -->
+    <!-- Fonts (Non-blocking: tidak menghambat render awal / FCP) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+          media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"></noscript>
 
     <!-- LCP Preload (Largest Contentful Paint Hero Image) -->
     <link rel="preload" as="image" href="{{ asset('images/laut-malay-new.webp') }}" fetchpriority="high">

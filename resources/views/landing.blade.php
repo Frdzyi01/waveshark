@@ -120,7 +120,7 @@
                 class="relative h-1/2 md:h-full transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
                   overflow-hidden cursor-pointer group transform-gpu
                   block md:block"
-                style="will-change: width, opacity;"
+                style="will-change: transform, opacity;"
                 :class="{
                 'absolute inset-0 z-40 w-full h-full md:relative md:inset-auto md:w-full md:z-20': expanded === 'singapore',
                 'md:w-0 h-0 opacity-0': expanded === 'malaysia',
@@ -182,7 +182,7 @@
                                 <div class="sg-content">
                                     <div class="sg-name">ST John Island</div>
                                     <div class="sg-des">
-                                      Singapore’s southern islands offer a tranquil escape from the city, where yachts gather in calm waters for a private and exclusive retreat.
+                                        Singapore’s southern islands offer a tranquil escape from the city, where yachts gather in calm waters for a private and exclusive retreat.
                                     </div>
                                     <button class="sg-btn" onclick="startTransition('/stjohnislands')">See More</button>
                                 </div>
@@ -229,7 +229,7 @@
                 class="relative h-1/2 md:h-full transition-none md:transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
                     overflow-hidden cursor-pointer group transform-gpu
                     block md:block"
-                style="will-change: width, opacity;"
+                style="will-change: transform, opacity;"
                 :class="{ 
                         'md:w-full h-full z-20': expanded === 'malaysia', 
                         'md:w-0 h-0 opacity-0': expanded === 'singapore', 
@@ -250,8 +250,7 @@
                         loading="eager"
                         decoding="async"
                         class="w-full h-full object-cover block min-h-[300px] md:min-h-0"
-                        style="transform: none;"
-                    >
+                        style="transform: none;">
                 </div>
 
                 <!-- Overlay Gradient -->
@@ -349,7 +348,7 @@
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
-                                       Langkawi is a natural haven where serene hills, pristine beaches, mangroves, and hidden caves meet the open sea — a complete escape on both land and water.
+                                        Langkawi is a natural haven where serene hills, pristine beaches, mangroves, and hidden caves meet the open sea — a complete escape on both land and water.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
                                 </div>
@@ -742,12 +741,11 @@
 
                 if (!container || !next || !prev || !slide) return;
 
+                // OPTIMIZED: updateBackground hanya membaca style, tidak memicu layout recalculate
                 function updateBackground() {
-                    const items = document.querySelectorAll(".mys-item");
+                    const items = slide.children;
                     if (items.length > 1) {
-                        const activeItem = items[1];
-                        const backgroundImage = activeItem.style.backgroundImage;
-
+                        const backgroundImage = items[1].style.backgroundImage;
                         container.style.backgroundImage = backgroundImage;
                         container.style.backgroundSize = "cover";
                         container.style.backgroundPosition = "center";
@@ -756,16 +754,19 @@
 
                 updateBackground();
 
+                // OPTIMIZED: Gunakan requestAnimationFrame agar update DOM tidak terjadi di luar render cycle
                 next.addEventListener("click", function() {
-                    let items = document.querySelectorAll(".mys-item");
-                    slide.appendChild(items[0]);
-                    updateBackground();
+                    requestAnimationFrame(() => {
+                        slide.appendChild(slide.children[0]);
+                        updateBackground();
+                    });
                 });
 
                 prev.addEventListener("click", function() {
-                    let items = document.querySelectorAll(".mys-item");
-                    slide.prepend(items[items.length - 1]);
-                    updateBackground();
+                    requestAnimationFrame(() => {
+                        slide.prepend(slide.children[slide.children.length - 1]);
+                        updateBackground();
+                    });
                 });
 
                 // Singapore Slider Logic
@@ -776,12 +777,11 @@
                     const sgSlide = document.querySelector(".sg-slide");
 
                     if (sgContainer && sgNext && sgPrev && sgSlide) {
+                        // OPTIMIZED: Baca dari children (live HTMLCollection) — tidak perlu querySelectorAll berulang
                         function sgUpdateBackground() {
-                            const items = document.querySelectorAll(".sg-item");
+                            const items = sgSlide.children;
                             if (items.length > 1) {
-                                const activeItem = items[1];
-                                const backgroundImage = activeItem.style.backgroundImage;
-
+                                const backgroundImage = items[1].style.backgroundImage;
                                 sgContainer.style.backgroundImage = backgroundImage;
                                 sgContainer.style.backgroundSize = "cover";
                                 sgContainer.style.backgroundPosition = "center";
@@ -791,15 +791,17 @@
                         sgUpdateBackground();
 
                         sgNext.addEventListener("click", function() {
-                            let items = document.querySelectorAll(".sg-item");
-                            sgSlide.appendChild(items[0]);
-                            sgUpdateBackground();
+                            requestAnimationFrame(() => {
+                                sgSlide.appendChild(sgSlide.children[0]);
+                                sgUpdateBackground();
+                            });
                         });
 
                         sgPrev.addEventListener("click", function() {
-                            let items = document.querySelectorAll(".sg-item");
-                            sgSlide.prepend(items[items.length - 1]);
-                            sgUpdateBackground();
+                            requestAnimationFrame(() => {
+                                sgSlide.prepend(sgSlide.children[sgSlide.children.length - 1]);
+                                sgUpdateBackground();
+                            });
                         });
                     }
                 }
@@ -807,4 +809,4 @@
                 passive: true
             });
         </script>
-</x-layout> 
+</x-layout>

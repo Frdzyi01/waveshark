@@ -312,19 +312,7 @@
 
                         <div class="mys-slide">
 
-                            <!-- Item 1 (index 0): Active BG saat init — Sabah, TEKS KIRI tampil -->
-                            <div class="mys-item" data-mys-index="0" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
-                                <div class="mys-content">
-                                    <div class="mys-name">Sabah</div>
-                                    <div class="mys-des">
-                                        Sabah is a stunning paradise where majestic mountains, crystal-clear waters, and rich cultural heritage come together — a perfect blend of adventure and serenity.
-                                    </div>
-                                    <button class="mys-btn" onclick="startTransition('/sabah')">See More</button>
-                                </div>
-                            </div>
-
-                            <!-- Item 2 (index 1): Prev BG saat init — Langkawi -->
-                            <div class="mys-item" data-mys-index="1" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
+                            <div class="mys-item" data-mys-index="0" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -334,8 +322,7 @@
                                 </div>
                             </div>
 
-                            <!-- Items 3-6 (index 2-5): Kartu-kartu kecil visible -->
-                            <div class="mys-item" data-mys-index="2" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
+                            <div class="mys-item" data-mys-index="1" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
@@ -345,7 +332,7 @@
                                 </div>
                             </div>
 
-                            <div class="mys-item" data-mys-index="3" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
+                            <div class="mys-item" data-mys-index="2" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
@@ -355,23 +342,33 @@
                                 </div>
                             </div>
 
-                            <div class="mys-item" data-mys-index="4" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
+                            <div class="mys-item" data-mys-index="3" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Sabah</div>
                                     <div class="mys-des">
                                         Sabah is a stunning paradise where majestic mountains, crystal-clear waters, and rich cultural heritage come together — a perfect blend of adventure and serenity.
                                     </div>
-                                    <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
+                                    <button class="mys-btn" onclick="startTransition('/sabah')">See More</button>
                                 </div>
                             </div>
 
-                            <div class="mys-item" data-mys-index="5" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
+                            <div class="mys-item" data-mys-index="4" data-mys-img="1" style="background-image: url('{{ asset('template-slider-malaysia/image/langkawi.webp') }}');">
                                 <div class="mys-content">
                                     <div class="mys-name">Langkawi</div>
                                     <div class="mys-des">
                                         Langkawi is a natural haven where serene hills, pristine beaches, mangroves, and hidden caves meet the open sea — a complete escape on both land and water.
                                     </div>
                                     <button class="mys-btn" onclick="startTransition('/booking-langkawi')">See More</button>
+                                </div>
+                            </div>
+
+                            <div class="mys-item" data-mys-index="5" data-mys-img="0" style="background-image: url('{{ asset('template-slider-malaysia/image/sabah.webp') }}');">
+                                <div class="mys-content">
+                                    <div class="mys-name">Sabah</div>
+                                    <div class="mys-des">
+                                        Sabah is a stunning paradise where majestic mountains, crystal-clear waters, and rich cultural heritage come together — a perfect blend of adventure and serenity.
+                                    </div>
+                                    <button class="mys-btn" onclick="startTransition('/booking-sabah')">See More</button>
                                 </div>
                             </div>
 

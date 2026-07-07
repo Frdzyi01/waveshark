@@ -94,7 +94,7 @@
                 <h3 class="text-lg font-semibold text-gray-900 mb-4 mt-8">Management</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Product Management Card -->
-                    <a href="{{ route('langkawi-products.index') }}" class="group block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200">
+                    <a href="{{ route('admin.categories', 'langkawi') }}" class="group block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200">
                         <div class="flex items-start gap-4">
                             <div class="flex-shrink-0 p-2 bg-gray-50 rounded-md group-hover:bg-gray-100 transition-colors">
                                 <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -115,7 +115,7 @@
                     </a>
 
                     <!-- Sabah Product Management Card -->
-                    <a href="{{ route('sabah-products.index') }}" class="group block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200">
+                    <a href="{{ route('admin.categories', 'sabah') }}" class="group block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200">
                         <div class="flex items-start gap-4">
                             <div class="flex-shrink-0 p-2 bg-gray-50 rounded-md group-hover:bg-gray-100 transition-colors">
                                 <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -136,7 +136,7 @@
                     </a>
 
                     <!-- St John Product Management Card -->
-                    <a href="{{ route('stjohn-products.index') }}" class="group block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200">
+                    <a href="{{ route('admin.categories', 'stjohnislands') }}" class="group block bg-white border border-gray-200 rounded-lg p-5 hover:border-gray-300 hover:shadow-md transition-all duration-200">
                         <div class="flex items-start gap-4">
                             <div class="flex-shrink-0 p-2 bg-gray-50 rounded-md group-hover:bg-gray-100 transition-colors">
                                 <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -54,7 +54,7 @@ Route::prefix('stjohnislands')->group(function () {
 });
 
 Route::get('/dashboard', function () {
-    $productCount = \App\Models\LangkawiProduct::count();
+    $productCount = \App\Models\Product::count();
     return view('dashboard', compact('productCount'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -63,10 +63,25 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Admin Routes
-    Route::resource('admin/langkawi-products', \App\Http\Controllers\Admin\LangkawiProductController::class);
-    Route::resource('admin/sabah-products', \App\Http\Controllers\Admin\SabahProductController::class);
-    Route::resource('admin/stjohn-products', \App\Http\Controllers\Admin\StJohnProductController::class);
+    // Admin Routes — Hierarchical: destination → category → products
+    Route::prefix('admin')->group(function () {
+        Route::get('/{destination}/categories', [\App\Http\Controllers\Admin\AdminProductController::class, 'categories'])
+            ->name('admin.categories');
+        Route::get('/{destination}/{category}/products', [\App\Http\Controllers\Admin\AdminProductController::class, 'index'])
+            ->name('admin.products.index');
+        Route::get('/{destination}/{category}/products/create', [\App\Http\Controllers\Admin\AdminProductController::class, 'create'])
+            ->name('admin.products.create');
+        Route::post('/{destination}/{category}/products', [\App\Http\Controllers\Admin\AdminProductController::class, 'store'])
+            ->name('admin.products.store');
+        Route::get('/{destination}/{category}/products/{product}/edit', [\App\Http\Controllers\Admin\AdminProductController::class, 'edit'])
+            ->name('admin.products.edit');
+        Route::put('/{destination}/{category}/products/{product}', [\App\Http\Controllers\Admin\AdminProductController::class, 'update'])
+            ->name('admin.products.update');
+        Route::delete('/{destination}/{category}/products/{product}', [\App\Http\Controllers\Admin\AdminProductController::class, 'destroy'])
+            ->name('admin.products.destroy');
+    });
+
+    // Landing Page Services (unchanged)
     Route::resource('admin/landing-services', \App\Http\Controllers\Admin\LandingServiceController::class);
 });
 

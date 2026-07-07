@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 
@@ -57,7 +59,7 @@ class DestinasiController extends Controller
             ],
             'mount-climbing' => [
                 'title' => 'Mount Climbing',
-                'description' => 'Challenge yourself with a climb up Mount Kinabalu, one of Southeast Asia’s highest peaks, and witness breathtaking views.',
+                'description' => 'Challenge yourself with a climb up Mount Kinabalu, one of Southeast Asia\'s highest peaks, and witness breathtaking views.',
                 'hero_image' => 'https://images.unsplash.com/photo-1577947137599-231548232924?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3',
             ],
             // ST JOHN SERVICES
@@ -93,16 +95,39 @@ class DestinasiController extends Controller
             ],
         ];
 
-        // Fetch products from database
-        // Determine model based on category
-        $sabahServices = ['sunset-dinner-cruise', 'fishing-charter', 'mount-climbing'];
+        // Determine destination and category slugs for new unified products table
+        $destinationSlugMap = [
+            // Langkawi categories
+            'car-rental' => ['destination' => 'langkawi', 'category' => 'car-rental'],
+            'island-hopping' => ['destination' => 'langkawi', 'category' => 'island-hopping'],
+            'airport-transfer' => ['destination' => 'langkawi', 'category' => 'airport-transfer'],
+            'mangrove-tour' => ['destination' => 'langkawi', 'category' => 'mangrove-tour'],
+            'jetski' => ['destination' => 'langkawi', 'category' => 'jetski'],
+            'sunset-cruise' => ['destination' => 'langkawi', 'category' => 'sunset-cruise'],
+            // Sabah categories
+            'sunset-dinner-cruise' => ['destination' => 'sabah', 'category' => 'sunset-dinner-cruise'],
+            'fishing-charter' => ['destination' => 'sabah', 'category' => 'fishing-charter'],
+            'mount-climbing' => ['destination' => 'sabah', 'category' => 'mount-climbing'],
+            // St John categories
+            'stjohn-island-hopping' => ['destination' => 'stjohnislands', 'category' => 'stjohn-island-hopping'],
+            'stjohn-airport-transfer' => ['destination' => 'stjohnislands', 'category' => 'stjohn-airport-transfer'],
+            'stjohn-mangrove-tour' => ['destination' => 'stjohnislands', 'category' => 'stjohn-mangrove-tour'],
+            'stjohn-jetski' => ['destination' => 'stjohnislands', 'category' => 'stjohn-jetski'],
+            'stjohn-sunset-cruise' => ['destination' => 'stjohnislands', 'category' => 'stjohn-sunset-cruise'],
+            'stjohn-car-rental' => ['destination' => 'stjohnislands', 'category' => 'stjohn-car-rental'],
+        ];
 
-        if (in_array($category, $sabahServices)) {
-            $products = \App\Models\SabahProduct::where('service_category', $category)->get();
-        } elseif (str_starts_with($category, 'stjohn-')) {
-            $products = \App\Models\StJohnProduct::where('service_category', $category)->get();
-        } else {
-            $products = \App\Models\LangkawiProduct::where('service_category', $category)->get();
+        $mapping = $destinationSlugMap[$category] ?? null;
+        $products = collect();
+
+        if ($mapping) {
+            $categoryModel = Category::whereHas('destination', function ($q) use ($mapping) {
+                $q->where('slug', $mapping['destination']);
+            })->where('slug', $mapping['category'])->first();
+
+            if ($categoryModel) {
+                $products = Product::where('category_id', $categoryModel->id)->get();
+            }
         }
 
         // Convert db products to array format compatible with view
